@@ -109,6 +109,7 @@ int main(void)
 		HAL_Delay(1000);
 		HAL_GPIO_TogglePin(LD1_GPIO_Port,LD1_Pin);
 		ios();
+		haltSignal();
   }
   /* USER CODE END 3 */
 }

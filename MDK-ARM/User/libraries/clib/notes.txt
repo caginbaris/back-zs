@@ -1,0 +1,15 @@
+*transformations
+
+transformation input a,b,c=1*sin(theta) with theta pll
+transformation output  d=1.224 peak
+3phase power invariant sqrt(3)*Vpp*Iline=Vd*Id
+
+*pll
+
+unity signal should be applied;
+
+void PLL(double alpha,pll_parameters* pll)
+alpha=A*sin(wt) | A=1; there alpha/(alpha_rms*sqrt2)
+
+
+

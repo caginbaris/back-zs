@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -84,7 +85,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	MX_DMA_Init();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -94,13 +95,18 @@ int main(void)
   MX_ADC3_Init();
   MX_TIM1_Init();
   MX_UART4_Init();
+  MX_DMA_Init();
   MX_USART3_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
+	init_ADC();
+	
   while (1)
   {
     /* USER CODE END WHILE */
@@ -110,6 +116,7 @@ int main(void)
 		HAL_GPIO_TogglePin(LD1_GPIO_Port,LD1_Pin);
 		ios();
 		haltSignal();
+		
   }
   /* USER CODE END 3 */
 }

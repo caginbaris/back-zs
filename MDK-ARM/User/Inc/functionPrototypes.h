@@ -4,4 +4,7 @@
 void ios(void);
 void haltSignal(void);
 
+//adc
+void init_ADC(void);
+
 #endif

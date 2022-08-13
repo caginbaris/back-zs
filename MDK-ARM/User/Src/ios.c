@@ -3,6 +3,8 @@
 
 digitalInputs input={0};
 digitalOutputs output={0};
+panelInputs panelInput={0};
+panelOutputs panelOutput={0};
 /*notes-beg
 
 DOR relay no contact is at the left side, mid is com
@@ -14,7 +16,7 @@ notes-end*/
 
 void ios(void){
 	
-	//inputs
+	//inputs @ mcu
 	input.ch._1=HAL_GPIO_ReadPin(DI1_GPIO_Port,DI1_Pin);
 	input.ch._2=HAL_GPIO_ReadPin(DI2_GPIO_Port,DI2_Pin);
 	input.ch._3=HAL_GPIO_ReadPin(DI3_GPIO_Port,DI3_Pin);
@@ -37,18 +39,43 @@ void ios(void){
 	input.ch._19=HAL_GPIO_ReadPin(DI19_GPIO_Port,DI19_Pin);
 	input.ch._20=HAL_GPIO_ReadPin(DI20_GPIO_Port,DI20_Pin);
 	
-	//outputs
 	
-	HAL_GPIO_WritePin(DO1_GPIO_Port,DO1_Pin,output.ch._1);
-	HAL_GPIO_WritePin(DO2_GPIO_Port,DO2_Pin,output.ch._2);
-	HAL_GPIO_WritePin(DO3_GPIO_Port,DO3_Pin,output.ch._3);
-	HAL_GPIO_WritePin(DO4_GPIO_Port,DO4_Pin,output.ch._4);
-	HAL_GPIO_WritePin(DO5_GPIO_Port,DO5_Pin,output.ch._5);
-	HAL_GPIO_WritePin(DO6_GPIO_Port,DO6_Pin,output.ch._6);
-	HAL_GPIO_WritePin(DO7_GPIO_Port,DO7_Pin,output.ch._7);
-	HAL_GPIO_WritePin(DO8_GPIO_Port,DO8_Pin,output.ch._8);
-	HAL_GPIO_WritePin(DO9_GPIO_Port,DO9_Pin,output.ch._9);
-	HAL_GPIO_WritePin(DO10_GPIO_Port,DO10_Pin,output.ch._10);
+	
+	//panel input assignment
+	
+	panelInput.ch.inverterFanSupplyFault=(input.ch._1==1)?(1):(0); //trig when panel=1
+	panelInput.ch.start=(input.ch._2==1)?(0):(1); 
+	panelInput.ch.stop=(input.ch._3==1)?(0):(1); 
+	panelInput.ch.reset=(input.ch._4==1)?(0):(1); 
+	
+	panelInput.ch.reactorThermoFault=(input.ch._5==1)?(1):0;
+	panelInput.ch.semiconductorFault=(input.ch._6==1)?(1):0;
+	
+	panelInput.ch.cb1Trip=(input.ch._7==0)?(1):0;
+	panelInput.ch.cb2Trip=(input.ch._8==0)?(1):0;
+	
+	panelInput.ch.cb1No=(input.ch._9==0)?(1):0;
+	panelInput.ch.cb2No=(input.ch._10==0)?(1):0;
+	
+	panelInput.ch.prechargeCB1NO=(input.ch._11==0)?(1):0;
+	panelInput.ch.prechargeCB2NO=(input.ch._12==0)?(1):0;
+	
+	
+	panelInput.ch.panelSupplyFault=(input.ch._13==1)?(1):0;
+	panelInput.ch.panelUpsFault=(input.ch._14==1)?(0):1;
+	
+	
+	
+	HAL_GPIO_WritePin(DO1_GPIO_Port,DO1_Pin,panelOutput.ch.closePrechargeCB1);
+	HAL_GPIO_WritePin(DO2_GPIO_Port,DO2_Pin,panelOutput.ch.closeCB1);
+	HAL_GPIO_WritePin(DO3_GPIO_Port,DO3_Pin,panelOutput.ch.closeCB2);
+	HAL_GPIO_WritePin(DO4_GPIO_Port,DO4_Pin,panelOutput.ch.statcomRunning);
+	HAL_GPIO_WritePin(DO5_GPIO_Port,DO5_Pin,panelOutput.ch.statcomTrip);
+	HAL_GPIO_WritePin(DO6_GPIO_Port,DO6_Pin,panelOutput.ch.openCB1);
+	HAL_GPIO_WritePin(DO7_GPIO_Port,DO7_Pin,panelOutput.ch.openCB2);
+	HAL_GPIO_WritePin(DO8_GPIO_Port,DO8_Pin,panelOutput.ch.statcomReady);
+	HAL_GPIO_WritePin(DO9_GPIO_Port,DO9_Pin,panelOutput.ch.closePrechargeCB2);
+	HAL_GPIO_WritePin(DO10_GPIO_Port,DO10_Pin,panelOutput.ch.spare);
 	
 	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,output.ch._11);
 	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,output.ch._12);
@@ -61,6 +88,9 @@ void ios(void){
 	HAL_GPIO_WritePin(DOR2_GPIO_Port,DOR2_Pin,output.ch._DOR2);
 	HAL_GPIO_WritePin(DOR3_GPIO_Port,DOR3_Pin,output.ch._DOR3);
 	HAL_GPIO_WritePin(DOR4_GPIO_Port,DOR4_Pin,output.ch._DOR4);
+	
+
+
 	
 }
 

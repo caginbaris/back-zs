@@ -6,12 +6,12 @@
 
 typedef struct underLimit_inputParameters {
 
-    double level;
-    double delay;
-    double dropout_ratio;
-    double dropout_time;
-    double comm_pick_on_delay;
-    double comm_pick_off_delay;
+    float level;
+    float delay;
+    float dropout_ratio;
+    float dropout_time;
+    float comm_pick_on_delay;
+    float comm_pick_off_delay;
 
     uint32_t fs;
 
@@ -33,7 +33,7 @@ typedef struct underLimit_outputParameters {
 }underLimit_outputParameters;
 
 void underLimitInitialization(underLimit_inputParameters in, underLimit_outputParameters *out);
-void underLimit(double rms,underLimit_inputParameters underLimit_in, underLimit_outputParameters *underLimit_out,uint8_t inhibit,uint8_t reset);
+void underLimit(float rms,underLimit_inputParameters underLimit_in, underLimit_outputParameters *underLimit_out,uint8_t inhibit,uint8_t reset);
 
 
 

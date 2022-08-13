@@ -1,12 +1,13 @@
 
 #include "clib.h"
-#include "arm_math.h"
+
 
 void tCalculations(float theta,sincosValues* tVal){
 	
 	float sinValue,cosValue;
 	
-	arm_sin_cos_f32(theta*57.2957f,(&sinValue),(&cosValue));
+	sinValue=sinf(theta);
+	cosValue=cosf(theta);
 	
 	tVal->sinVal=sinValue;
 	tVal->cosVal=cosValue;

@@ -3,12 +3,12 @@
 
 void underLimitInitialization(underLimit_inputParameters in, underLimit_outputParameters *out){
 
-    if( ( in.level>0.0)  &&
-        ( in.delay>0.0)  &&
-        ( in.dropout_ratio>=1.0)&&
-        ( (in.dropout_time >=0.0)    &&  (in.dropout_time<=in.delay))    &&
-        ( (in.comm_pick_on_delay >0.0) &&  (in.comm_pick_on_delay<=in.delay))  &&
-        ( in.comm_pick_off_delay >0.0 ) &&
+    if( ( in.level>0.0f)  &&
+        ( in.delay>0.0f)  &&
+        ( in.dropout_ratio>=1.0f)&&
+        ( (in.dropout_time >=0.0f)    &&  (in.dropout_time<=in.delay))    &&
+        ( (in.comm_pick_on_delay >0.0f) &&  (in.comm_pick_on_delay<=in.delay))  &&
+        ( in.comm_pick_off_delay >0.0f ) &&
         ( in.fs >0 ) &&
         ( out->initial_pick_up==0   &&
           out->pick_up.output==0    &&

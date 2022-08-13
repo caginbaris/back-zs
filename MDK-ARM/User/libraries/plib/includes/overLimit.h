@@ -7,12 +7,12 @@
 
 typedef struct overLimit_inputParameters {
 
-    double level;
-    double delay;
-    double dropout_ratio;
-    double dropout_time;
-    double comm_pick_on_delay;
-    double comm_pick_off_delay;
+    float level;
+    float delay;
+    float dropout_ratio;
+    float dropout_time;
+    float comm_pick_on_delay;
+    float comm_pick_off_delay;
 
     uint32_t fs;
 
@@ -35,7 +35,7 @@ typedef struct overLimit_outputParameters {
 
 
 void overLimitInitialization(overLimit_inputParameters in, overLimit_outputParameters *out);
-void overLimit(double rms,overLimit_inputParameters overLimit_in, overLimit_outputParameters *overLimit_out,uint8_t inhibit,uint8_t reset);
+void overLimit(float rms,overLimit_inputParameters overLimit_in, overLimit_outputParameters *overLimit_out,uint8_t inhibit,uint8_t reset);
 
 
 

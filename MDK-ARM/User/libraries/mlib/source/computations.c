@@ -1,11 +1,11 @@
 
 #include "mlib.h"
-#include "arm_math.h"
+
 
 void cs_computations(phase_cs_in p_in, phase_cs_out *p_out ){
 
   //p_out->V =sqrt((p_in.Vc)*(p_in.Vc) + (p_in.Vs)*(p_in.Vs))*isqrt2;
-  p_out->I =sqrt((p_in.Ic)*(p_in.Ic) + (p_in.Is)*(p_in.Is))*isqrt2;
+  p_out->I =sqrtf((p_in.Ic)*(p_in.Ic) + (p_in.Is)*(p_in.Is))*isqrt2;
 	
 
 	//p_out->P	=((p_in.Vc)*(p_in.Ic) +(p_in.Vs)*(p_in.Is))*i2;
@@ -77,11 +77,11 @@ float thermal_status(float rms, thermal_parameters therm, float mem){
 	float temp;
 	float t_constant;
 
-	if(therm.tau>1.0) {t_constant = therm.ts / therm.tau;}else{t_constant=0.0;}
+	if(therm.tau>1.0f) {t_constant = therm.ts / therm.tau;}else{t_constant=0.0f;}
 
-	if(therm.Inom * therm.k>1.0) {
+	if(therm.Inom * therm.k>1.0f) {
 			
-		temp = t_constant * (rms*rms) / (therm.Inom * therm.Inom * therm.k * therm.k) + mem * (1.0 - t_constant);
+		temp = t_constant * (rms*rms) / (therm.Inom * therm.Inom * therm.k * therm.k) + mem * (1.0f - t_constant);
 			
 	}
 	

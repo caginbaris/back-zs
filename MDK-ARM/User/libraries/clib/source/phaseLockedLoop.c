@@ -1,6 +1,6 @@
 
 #include "clib.h"
-#include "arm_math.h"
+
 
 #define _pi 3.1415926535897932384626433832795f
 #define _2pi 6.283185307179586476925286766559f
@@ -15,22 +15,17 @@
 
 void dq2b(float* beta,float d,float q, float theta){
 	
-		float sinVal,cosVal;
-
-		arm_sin_cos_f32(theta*57.2957f,(&sinVal),(&cosVal));
-
-    *beta  = -cosVal*d +sinVal*q;
+    *beta  = -cosf(theta)*d +sinf(theta)*q;
 }
 void ab2dq(float alpha,float beta,float* d,float* q, float theta){
 	
 		float sinVal,cosVal;
 
-		arm_sin_cos_f32(theta*57.2957f,(&sinVal),(&cosVal));
-		
+		sinVal=sinf(theta);
+		cosVal=cosf(theta);
 
     *d=alpha*sinVal-beta*cosVal;
     *q=alpha*cosVal+beta*sinVal;
-
 
 }
 

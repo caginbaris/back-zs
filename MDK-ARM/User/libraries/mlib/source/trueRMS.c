@@ -5,7 +5,7 @@
 #define frequency 50.0f
 #define period (1.0/frequency)
 #define N (10*samplingFrequency/frequency)
-#define invN 1.0/(N)
+#define invN 1.0f/(N)
 
 
 // True RMS half cycle
@@ -41,7 +41,7 @@ void trueRMS_sampled(float input,trueRMS_sampled_parameters* rms,uint16_t seq){
     if(seq==rms->sequence){
 
         rms->out=sqrt(rms->sum*invN);
-        rms->sum=0;
+        rms->sum=0.0f;
 
     }
 

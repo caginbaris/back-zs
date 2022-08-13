@@ -1,8 +1,8 @@
 
 #include "mlib.h"
 
-#define samplingFrequency 50000.0
-#define frequency 50.0
+#define samplingFrequency 50000.0f
+#define frequency 50.0f
 #define period (1.0/frequency)
 #define N (10*samplingFrequency/frequency)
 #define invN 1.0/(N)
@@ -13,10 +13,10 @@
 // delayLineCounter global counter for true rms calculation
 // length of delayLineArray - mult. inverse can be u
 
-double trueRMS_windowed(double rtInput, double *delayLineArray, uint16_t delayLineCounter, uint16_t arrayLength){
+float trueRMS_windowed(float rtInput, float *delayLineArray, uint16_t delayLineCounter, uint16_t arrayLength){
 
 	uint16_t i=0;
-	double rms = 0.0, rms_sum = 0.0, rms_data=0.0;
+	float rms = 0.0, rms_sum = 0.0, rms_data=0.0;
 
 	*(delayLineArray+delayLineCounter) = rtInput;
 
@@ -34,7 +34,7 @@ double trueRMS_windowed(double rtInput, double *delayLineArray, uint16_t delayLi
 
 }
 
-void trueRMS_sampled(double input,trueRMS_sampled_parameters* rms,uint16_t seq){
+void trueRMS_sampled(float input,trueRMS_sampled_parameters* rms,uint16_t seq){
 
     rms->sum+=input*input;
 

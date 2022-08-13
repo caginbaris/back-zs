@@ -17,7 +17,7 @@ void cs_computations(phase_cs_in p_in, phase_cs_out *p_out ){
 
 void sym_comp( phase_cs_in pa,  phase_cs_in pb, phase_cs_in pc, sym_out*sym){
 
-	double temp_r,temp_i;
+	float temp_r,temp_i;
 
 	temp_r=pa.Vc + pb.Vc*sym_r +   pc.Vc*sym_r;
 	temp_i=pb.Vs*sym_i - pc.Vs*sym_i;
@@ -39,7 +39,7 @@ void sym_comp( phase_cs_in pa,  phase_cs_in pb, phase_cs_in pc, sym_out*sym){
 
 void sym_mag( sym_out sym,  sym_out *sym_back,  sym_out *sym_rms  ){
 
-	double temp;
+	float temp;
 
 	temp = -(sym.V0-sym_back->V0)*sym_rms_scale;
 	sym_rms->V0=sqrt(temp*temp+sym.V0*sym.V0)*isqrt2;
@@ -72,10 +72,10 @@ void sym_mag( sym_out sym,  sym_out *sym_back,  sym_out *sym_rms  ){
 
 
 
-double thermal_status(double rms, thermal_parameters therm, double mem){
+float thermal_status(float rms, thermal_parameters therm, float mem){
 
-	double temp;
-	double t_constant;
+	float temp;
+	float t_constant;
 
 	if(therm.tau>1.0) {t_constant = therm.ts / therm.tau;}else{t_constant=0.0;}
 
@@ -94,9 +94,9 @@ double thermal_status(double rms, thermal_parameters therm, double mem){
 
 
 
-double max3p(double p1, double p2, double p3){
+float max3p(float p1, float p2, float p3){
 
-	double max=p1;
+	float max=p1;
 	
 	if(p2>max){max=p2;}
 	if(p3>max){max=p3;}
@@ -107,9 +107,9 @@ return max;
 }
 
 
-double min3p(double p1, double p2, double p3){
+float min3p(float p1, float p2, float p3){
 
-	double min=p1;
+	float min=p1;
 	
 	if(p2<min){min=p2;}
 	if(p3<min){min=p3;}

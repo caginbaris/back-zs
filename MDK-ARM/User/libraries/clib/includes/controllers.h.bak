@@ -7,23 +7,23 @@ typedef struct piInit{
 	
 	struct{
 		
-		float Kp;
-		float Ki;
-		float ts;
-		float atRest;
+		double Kp;
+		double Ki;
+		double ts;
+		double atRest;
 
 	}parameter;
 
 
 	struct{
 		
-		float refLimitUp;
-		float refLimitDown;
+		double refLimitUp;
+		double refLimitDown;
 		
-		float rateLimit;
+		double rateLimit;
 		
-		float outputLimitUp;
-		float outputLimitDown;
+		double outputLimitUp;
+		double outputLimitDown;
 
 	}limit;
 	
@@ -49,41 +49,41 @@ typedef struct piData{
 
 	struct{	
 
-		float ref;
-		float ref_rateLimited;
-		float feedback;	
-		float controllerOutput;
-		float atRestOutput;
+		double ref;
+		double ref_rateLimited;
+		double feedback;	
+		double controllerOutput;
+		double atRestOutput;
 
 	}signal;
 
 	struct{
 		
-		float error;
-		float Pout;
-		float Iout;
+		double error;
+		double Pout;
+		double Iout;
 
 	}state;
 
 
 	struct{
 		
-		float Kp;
-		float Ki;
-		float ts;
+		double Kp;
+		double Ki;
+		double ts;
 
 	}parameter;
 
 
 	struct{
 		
-		float refLimitUp;
-		float refLimitDown;
+		double refLimitUp;
+		double refLimitDown;
 		
-		float rateLimit;
+		double rateLimit;
 		
-		float outputLimitUp;
-		float outputLimitDown;
+		double outputLimitUp;
+		double outputLimitDown;
 
 	}limit;
 	

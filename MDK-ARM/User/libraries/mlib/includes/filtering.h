@@ -8,17 +8,17 @@
 
 typedef struct sos_parameters{
 	
-	double xz2;
-	double xz1;
-	double yz2;		
+	float xz2;
+	float xz1;
+	float yz2;		
 	
 	
 }sos_parameters;
 
-double filtering(double rtInput,  double *coeff, uint16_t coeffLength, double *zValues);
+float filtering(float rtInput,  float *coeff, uint16_t coeffLength, float *zValues);
 
-double fof_implementation(double rtInput,double* xz,double yz,  double *coeffs);
-double sos_implementation(double x ,double yBack,   double *coeffs, sos_parameters *back);
+float fof_implementation(float rtInput,float* xz,float yz,  float *coeffs);
+float sos_implementation(float x ,float yBack,   float *coeffs, sos_parameters *back);
 
 //macros
 

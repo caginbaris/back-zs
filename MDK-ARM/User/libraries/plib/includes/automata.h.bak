@@ -42,13 +42,13 @@ void high2lowTransition(uint8_t input, transition_parameters* p);
 void fToggle(uint8_t input, delay_parameters* p); 
 	
 
-
+void ui_limiter(uint16_t* parameter,uint16_t downLimit,uint16_t upLimit);
 void f_limiter(float* parameter,float downLimit,float upLimit);
-void d_limiter(double* parameter,double downLimit,double upLimit);
+
 
 
 //macros
-
+#define ui_LIMITER(x,down,up)								ui_limiter(&x,down,up)
 #define f_LIMITER(x,down,up)								f_limiter(&x,down,up)
 #define d_LIMITER(x,down,up)								d_limiter(&x,down,up)
 

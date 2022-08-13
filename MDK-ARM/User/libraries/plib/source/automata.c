@@ -160,12 +160,5 @@ void f_limiter(float* parameter,float downLimit,float upLimit){
 }
 
 
-void d_limiter(double* parameter,double downLimit,double upLimit){
 
-
-	if((*parameter)<=downLimit){*parameter=downLimit;}
-	if((*parameter)>  upLimit){*parameter=  upLimit;}
-
-
-}
 

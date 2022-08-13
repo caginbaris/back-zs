@@ -6,14 +6,14 @@
 
 typedef struct trueRMS_sampled_parameters{
 
-    double sum;
-    double out;
+    float sum;
+    float out;
     uint16_t  sequence;
 
 
 }trueRMS_sampled_parameters;
 
-void trueRMS_sampled(double input,trueRMS_sampled_parameters* rms,uint16_t seq);
+void trueRMS_sampled(float input,trueRMS_sampled_parameters* rms,uint16_t seq);
 
 
 

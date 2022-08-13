@@ -29,7 +29,7 @@ void overLimitInitialization(overLimit_inputParameters in, overLimit_outputParam
         out->initialized=0;
     }
 }
-void overLimit(double rms,overLimit_inputParameters overLimit_in, overLimit_outputParameters *overLimit_out,uint8_t inhibit,uint8_t reset){
+void overLimit(float rms,overLimit_inputParameters overLimit_in, overLimit_outputParameters *overLimit_out,uint8_t inhibit,uint8_t reset){
 
     if (overLimit_out->initialized){
 

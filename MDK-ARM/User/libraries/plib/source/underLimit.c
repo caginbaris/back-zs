@@ -29,7 +29,7 @@ void underLimitInitialization(underLimit_inputParameters in, underLimit_outputPa
         out->initialized=0;
     }
 }
-void underLimit(double rms,underLimit_inputParameters underLimit_in, underLimit_outputParameters *underLimit_out,uint8_t inhibit,uint8_t reset){
+void underLimit(float rms,underLimit_inputParameters underLimit_in, underLimit_outputParameters *underLimit_out,uint8_t inhibit,uint8_t reset){
 
     if (underLimit_out->initialized){
 

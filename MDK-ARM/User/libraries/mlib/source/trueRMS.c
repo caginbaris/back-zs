@@ -1,10 +1,10 @@
 
 #include "mlib.h"
 
-#define samplingFrequency 50000.0f
+#define samplingFrequency 10000.0f
 #define frequency 50.0f
 #define period (1.0/frequency)
-#define N (10*samplingFrequency/frequency)
+#define N (samplingFrequency/frequency)
 #define invN 1.0f/(N)
 
 

@@ -4,12 +4,12 @@
 #include "main.h"
 #include "LEDs.h"
 
-#define _pi 3.14159f
+
 
 void pllTest(void){
 
 	
-	if(pll.theta_comp >0 && pll.theta_comp<_pi){
+	if(pll.theta >0 && pll.theta<_pi){
 	
 		LED.out._3=1;
 	

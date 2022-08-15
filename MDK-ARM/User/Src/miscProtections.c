@@ -11,8 +11,8 @@
 #define meanCurrentThreshold 5.0f
 #define dcRippleThreshold 10.0f
 
-#define temp1threshold 85.0
-#define temp2threshold 95.0
+#define temp1threshold 85.0f
+#define temp2threshold 95.0f
 
 
 
@@ -79,7 +79,7 @@ void phaseSeqCheck(void){
 	
 	static delay_parameters phaseSeqDelay={0,samplingFrequency*3,0};
 	
-	on_delay(sym.V2>sym.V1*0.1,&phaseSeqDelay);
+	on_delay(sym.V2>sym.V1*0.1f,&phaseSeqDelay);
 	
 	if(phaseSeqDelay.output){faultWord.bit.phaseSequence=1;}
 	
@@ -95,8 +95,8 @@ void unbalanceCheck(void){
 	static delay_parameters unbalanceV={0,samplingFrequency*0.02,0};
 	static delay_parameters unbalanceI={0,samplingFrequency*0.1,0};
 	
-	on_delay(sym.V2>sym.V1*0.1,&unbalanceV);
-	on_delay(sym.I2>sym.I1*0.2,&unbalanceI);
+	on_delay(sym.V2>sym.V1*0.1f,&unbalanceV);
+	on_delay(sym.I2>sym.I1*0.2f,&unbalanceI);
 	
 	if(unbalanceV.output){faultWord.bit.voltageUnbalance=1;}
 	if(unbalanceI.output){faultWord.bit.currentUnbalance=1;}
@@ -108,8 +108,8 @@ void zeroSequenceCheck(void){
 	static delay_parameters zeroV={0,samplingFrequency*0.04,0};
 	static delay_parameters zeroI={0,samplingFrequency*0.04,0};
 	
-	on_delay(sym.V0>sym.V1*0.1,&zeroV);
-	on_delay(sym.I0>sym.I1*0.1,&zeroI);
+	on_delay(sym.V0>sym.V1*0.1f,&zeroV);
+	on_delay(sym.I0>sym.I1*0.1f,&zeroI);
 	
 	if(zeroV.output){faultWord.bit.voltageZeroSequence=1;}
 	if(zeroI.output){faultWord.bit.currentZeroSequence=1;}

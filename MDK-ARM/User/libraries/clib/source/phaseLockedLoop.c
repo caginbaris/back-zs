@@ -1,76 +1,82 @@
+#include "phaseLockedLoop.h"
 
-#include "clib.h"
+
+void PLL(float alpha, pll_parameters *pll) {
 
 
-#define _pi 3.1415926535897932384626433832795f
-#define _2pi 6.283185307179586476925286766559f
-#define wt (_2pi*50.0f)
-#define p_Kp 200.0f //12.5
-#define p_Ki 20000.0f //100
-#define p_fs 50000.0f
-#define p_ts 1.0f/(p_fs)
-#define p_comp  1.0f*_2pi/(p_fs*0.02f)
-#define p_fc_num 0.006244035046343f
-#define p_fc_den -0.987511929907314f
+		// SOGI part
 
-void dq2b(float* beta,float d,float q, float theta){
-	
-    *beta  = -cosf(theta)*d +sinf(theta)*q;
+		pll->yd = (alpha * numd0 + pll->xdz1 * numd1 + pll->xdz2 * numd2) - (pll->ydz1 * dend1 + pll->ydz2 * dend2);
+
+		pll->ydz2 = pll->ydz1;
+		pll->ydz1 = pll->yd;
+
+		pll->xdz2 = pll->xdz1;
+		pll->xdz1 = alpha;
+
+
+		pll->yq = (alpha * numq0 + pll->xqz1 * numq1 + pll->xqz2 * numq2) - (pll->yqz1 * denq1 + pll->yqz2 * denq2);
+
+		pll->yqz2 = pll->yqz1;
+		pll->yqz1 = pll->yq;
+
+		pll->xqz2 = pll->xqz1;
+		pll->xqz1 = alpha;
+
+		pll->q = pll->yd * cos(pll->theta_unc) + pll->yq * sin(pll->theta_unc);
+
+
+		// sos-1
+
+		pll->y1 = (pll->q * numy11 + pll->x1z1 * numy12 + pll->x1z2 * numy13) - (pll->y1z1 * deny12 + pll->y1z2 * deny13);
+
+		pll->y1z2 = pll->y1z1;
+		pll->y1z1 = pll->y1;
+
+		pll->x1z2 = pll->x1z1;
+		pll->x1z1 = pll->q;
+
+		// sos-2
+
+		pll->y2 = (pll->y1 * numy21 + pll->x2z1 * numy22 + pll->x2z2 * numy23) - (pll->y2z1 * deny22 + pll->y2z2 * deny23);
+
+		pll->y2z2 = pll->y2z1;
+		pll->y2z1 = pll->y2;
+
+		pll->x2z2 = pll->x2z1;
+		pll->x2z1 = pll->y1;
+
+
+		// sos-3
+
+		pll->y3 = (pll->y2 * numy31 + pll->x3z1 * numy32 + pll->x3z2 * numy33) - (pll->y3z1 * deny32 + pll->y3z2 * deny33);
+
+		pll->y3z2 = pll->y3z1;
+		pll->y3z1 = pll->y3;
+
+		pll->x3z2 = pll->x3z1;
+		pll->x3z1 = pll->y2;
+
+
+		// loop 
+
+		pll->out = 10*pll->y3+ pw;
+
+		pll->theta_unc = pll->theta_unc + pll->out * pts;
+
+
+		if (pll->theta_unc > 6.283185307179586f) {
+
+			pll->theta_unc = 0;
+
+		}
+
+		pll->theta = pll->theta_unc - 1.8 * (3.14159 / 180.0);
+
+		if (pll->theta < 0) {
+
+			pll->theta = pll->theta + 6.283185307179586f;
+		}
+
+
 }
-void ab2dq(float alpha,float beta,float* d,float* q, float theta){
-	
-		float sinVal,cosVal;
-
-		sinVal=sinf(theta);
-		cosVal=cosf(theta);
-
-    *d=alpha*sinVal-beta*cosVal;
-    *q=alpha*cosVal+beta*sinVal;
-
-}
-
-
-
-
-
-void PLL(float alpha,pll_parameters* pll){
- 
-    pll->Pout=-pll->df*p_Kp;
-    pll->Iout+=-pll->df*p_Ki*p_ts;
-
-    if(pll->Iout>wt){pll->Iout = wt;}
-    if(pll->Iout<-wt){pll->Iout = -wt;}
-
-    pll->PIout=pll->Pout+pll->Iout+wt;
-    pll->theta+=p_ts*pll->PIout;
-
-    if(pll->theta>=_2pi){pll->theta=0;};
-		if(pll->theta<0){pll->theta=0;};
-		
-		
-		
-    ab2dq(alpha,pll->beta,&(pll->d),&(pll->q),pll->theta-p_comp);
-		
-		
-
-    pll->df=(pll->d+pll->dz)*p_fc_num-pll->df*p_fc_den;
-    pll->dz=pll->d;
-
-    pll->qf=(pll->q+pll->qz)*p_fc_num-pll->qf*p_fc_den;
-    pll->qz=pll->q;
-		
-		
-
-    dq2b(&(pll->beta),pll->df,pll->qf,pll->theta);
-		
-		
-		
-    pll->theta_comp=pll->theta-1.5f*_pi;
-    if(pll->theta_comp>=_2pi){pll->theta_comp=pll->theta_comp-_2pi;}
-    if(pll->theta_comp<=0){pll->theta_comp=pll->theta_comp+_2pi;}
-		
-		
-		
-		
-
-	}

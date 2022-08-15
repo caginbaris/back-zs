@@ -10,7 +10,7 @@
 pll_parameters pll={0};
 
 static delay_parameters syncCheck={0,2000,0};
-static delay_parameters startupTimeout={0,100000,0};
+
 
 static float fofCoefficents5em1[2]={
 
@@ -24,22 +24,16 @@ static float fofCoefficents5em1[2]={
 void pllHandling(void){
 	
 	
-		pll_parameters resetPLL={0};
+	if(tRMS[rms_Van].out>5.0f){ 
 		
-		if(startupTimeout.output){
+	PLL(adc.ch.Van/(tRMS[rms_Van].out*1.414f),&pll);
 		
-			//pllTest();
-
-			on_delay(pll.qf<0.5,&syncCheck);
-			
-			if(syncCheck.output){faultWord.bit.synchronization=1;}
-		
-	}else{
-	
-	
-		pll=resetPLL;
-	
 	}
+	
+	on_delay(pll.q<0.5f,&syncCheck);
+	
+	if(syncCheck.output){faultWord.bit.synchronization=1;}
 		
 
 }
+

@@ -66,28 +66,28 @@ void ios(void){
 	
 	
 	
-	HAL_GPIO_WritePin(DO1_GPIO_Port,DO1_Pin,panelOutput.ch.closePrechargeCB1);
-	HAL_GPIO_WritePin(DO2_GPIO_Port,DO2_Pin,panelOutput.ch.closeCB1);
-	HAL_GPIO_WritePin(DO3_GPIO_Port,DO3_Pin,panelOutput.ch.closeCB2);
-	HAL_GPIO_WritePin(DO4_GPIO_Port,DO4_Pin,panelOutput.ch.statcomRunning);
-	HAL_GPIO_WritePin(DO5_GPIO_Port,DO5_Pin,panelOutput.ch.statcomTrip);
-	HAL_GPIO_WritePin(DO6_GPIO_Port,DO6_Pin,panelOutput.ch.openCB1);
-	HAL_GPIO_WritePin(DO7_GPIO_Port,DO7_Pin,panelOutput.ch.openCB2);
-	HAL_GPIO_WritePin(DO8_GPIO_Port,DO8_Pin,panelOutput.ch.statcomReady);
-	HAL_GPIO_WritePin(DO9_GPIO_Port,DO9_Pin,panelOutput.ch.closePrechargeCB2);
-	HAL_GPIO_WritePin(DO10_GPIO_Port,DO10_Pin,panelOutput.ch.spare);
+	HAL_GPIO_WritePin(DO1_GPIO_Port,DO1_Pin,(GPIO_PinState)panelOutput.ch.closePrechargeCB1);
+	HAL_GPIO_WritePin(DO2_GPIO_Port,DO2_Pin,(GPIO_PinState)panelOutput.ch.closeCB1);
+	HAL_GPIO_WritePin(DO3_GPIO_Port,DO3_Pin,(GPIO_PinState)panelOutput.ch.closeCB2);
+	HAL_GPIO_WritePin(DO4_GPIO_Port,DO4_Pin,(GPIO_PinState)panelOutput.ch.statcomRunning);
+	HAL_GPIO_WritePin(DO5_GPIO_Port,DO5_Pin,(GPIO_PinState)panelOutput.ch.statcomTrip);
+	HAL_GPIO_WritePin(DO6_GPIO_Port,DO6_Pin,(GPIO_PinState)panelOutput.ch.openCB1);
+	HAL_GPIO_WritePin(DO7_GPIO_Port,DO7_Pin,(GPIO_PinState)panelOutput.ch.openCB2);
+	HAL_GPIO_WritePin(DO8_GPIO_Port,DO8_Pin,(GPIO_PinState)panelOutput.ch.statcomReady);
+	HAL_GPIO_WritePin(DO9_GPIO_Port,DO9_Pin,(GPIO_PinState)panelOutput.ch.closePrechargeCB2);
+	HAL_GPIO_WritePin(DO10_GPIO_Port,DO10_Pin,(GPIO_PinState)panelOutput.ch.spare);
 	
-	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,output.ch._11);
-	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,output.ch._12);
-	HAL_GPIO_WritePin(DO13_GPIO_Port,DO13_Pin,output.ch._13);
-	HAL_GPIO_WritePin(DO14_GPIO_Port,DO14_Pin,output.ch._14);
-	HAL_GPIO_WritePin(DO15_GPIO_Port,DO15_Pin,output.ch._15);
-	HAL_GPIO_WritePin(DO16_GPIO_Port,DO16_Pin,output.ch._16);
+	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,(GPIO_PinState)output.ch._11);
+	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,(GPIO_PinState)output.ch._12);
+	HAL_GPIO_WritePin(DO13_GPIO_Port,DO13_Pin,(GPIO_PinState)output.ch._13);
+	HAL_GPIO_WritePin(DO14_GPIO_Port,DO14_Pin,(GPIO_PinState)output.ch._14);
+	HAL_GPIO_WritePin(DO15_GPIO_Port,DO15_Pin,(GPIO_PinState)output.ch._15);
+	HAL_GPIO_WritePin(DO16_GPIO_Port,DO16_Pin,(GPIO_PinState)output.ch._16);
 	
-	HAL_GPIO_WritePin(DOR1_GPIO_Port,DOR1_Pin,output.ch._DOR1);
-	HAL_GPIO_WritePin(DOR2_GPIO_Port,DOR2_Pin,output.ch._DOR2);
-	HAL_GPIO_WritePin(DOR3_GPIO_Port,DOR3_Pin,output.ch._DOR3);
-	HAL_GPIO_WritePin(DOR4_GPIO_Port,DOR4_Pin,output.ch._DOR4);
+	HAL_GPIO_WritePin(DOR1_GPIO_Port,DOR1_Pin,(GPIO_PinState)output.ch._DOR1);
+	HAL_GPIO_WritePin(DOR2_GPIO_Port,DOR2_Pin,(GPIO_PinState)output.ch._DOR2);
+	HAL_GPIO_WritePin(DOR3_GPIO_Port,DOR3_Pin,(GPIO_PinState)output.ch._DOR3);
+	HAL_GPIO_WritePin(DOR4_GPIO_Port,DOR4_Pin,(GPIO_PinState)output.ch._DOR4);
 	
 
 

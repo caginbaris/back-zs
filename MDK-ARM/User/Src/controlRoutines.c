@@ -135,7 +135,8 @@ void controlRoutines(void){
 	I.c=adc.ch.Ic;
 	
 	
-	tCalculations(pll.theta_comp,&scVal);
+	
+	tCalculations(pll.theta,&scVal);
 	
 	clarkeParkTransform(V,&cV,&pV,scVal);
 	clarkeParkTransform(I,&cI,&pI,scVal);

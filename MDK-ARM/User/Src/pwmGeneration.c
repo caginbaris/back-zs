@@ -52,13 +52,13 @@ void modulator(void){
 	
 	double inv_Vdc;
 	
-	if(ref.Vdc>1.0){
+	if(ref.Vdc>1.0f){
 		
 	inv_Vdc=1/ref.Vdc;	
 		
-	sw_count_a=wscale*(final.a+ref.Vdc*0.5)*inv_Vdc;
-	sw_count_b=wscale*(final.b+ref.Vdc*0.5)*inv_Vdc;
-	sw_count_c=wscale*(final.c+ref.Vdc*0.5)*inv_Vdc;
+	sw_count_a=wscale*(final.a+ref.Vdc*0.5f)*inv_Vdc;
+	sw_count_b=wscale*(final.b+ref.Vdc*0.5f)*inv_Vdc;
+	sw_count_c=wscale*(final.c+ref.Vdc*0.5f)*inv_Vdc;
 		
 	}
 	

@@ -2,12 +2,14 @@
 
 uint16_t calculationCounter=0;
 
-void measureemnts(void){
+void measurements(void){
 
 if(++calculationCounter==10000){calculationCounter=0;}	
 
+frequencyMeasurement();
 rmsMeasurement();
 csMeasurement();
+dcMeasurement();
 
 }
 

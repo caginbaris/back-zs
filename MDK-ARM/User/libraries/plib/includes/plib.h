@@ -4,7 +4,11 @@
 
 #include <stdint.h>
 
+#ifndef samplingFrequency
+
 #define samplingFrequency 10000
+
+#endif
 
 #include "automata.h"
 #include "overLimit.h"

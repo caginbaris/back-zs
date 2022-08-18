@@ -18,6 +18,9 @@ extern piData pidf,piqf,pidcf;
 
 extern sincosValues scVal;
 
+
+void controlRoutines(void);
+
 #endif
 
 

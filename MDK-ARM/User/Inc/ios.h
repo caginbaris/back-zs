@@ -153,4 +153,7 @@ extern digitalOutputs output;
 extern digitalInputs input;
 extern panelInputs panelInput;
 extern panelOutputs panelOutput;
+
+void ios(void);
+
 #endif

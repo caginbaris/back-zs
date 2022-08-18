@@ -50,7 +50,7 @@ void modulatorEnable(void){
 
 void modulator(void){
 	
-	double inv_Vdc;
+	float inv_Vdc;
 	
 	if(ref.Vdc>1.0f){
 		

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define samplingRate 50000
+#define samplingRate 10000
 
 typedef enum stateID{
 

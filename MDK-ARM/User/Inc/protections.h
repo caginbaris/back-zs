@@ -3,7 +3,6 @@
 
 #include "plib.h"
 
-#define samplingFrequency 10000
 
 //current
 extern overLimit_inputParameters overCurrentRMS_Config;

@@ -4,8 +4,6 @@
 recordedVariables rec={0};
 
 
-
-
 void recorder(){
 	
 	rec.rec_rmsIa=tRMS[rms_Ia].out;
@@ -21,7 +19,7 @@ void recorder(){
 	rec.rec_Ib=adc.ch.Ib;
 	rec.rec_Ic=adc.ch.Ic;
 	
-	/*
+	
 	
 	rec.rec_mIa=meanValueIa;
 	rec.rec_mIb=meanValueIb;
@@ -51,7 +49,7 @@ void recorder(){
 	rec.rec_cOut.b=tRMS[21].out;
 	rec.rec_cOut.c=tRMS[22].out;
 	
-	*/
+	
 
 
 }

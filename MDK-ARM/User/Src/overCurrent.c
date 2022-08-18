@@ -5,7 +5,7 @@
 #include "protections.h"
 #include "ios.h"
 #include "faultHandling.h"
-
+#include "flagHandling.h"
 
 
 overLimit_inputParameters overCurrentRMS_Config;
@@ -80,16 +80,16 @@ void overCurrent(void){
 	absB=adc.ch.Ib>0.0f?adc.ch.Ib:-adc.ch.Ib;
 	absC=adc.ch.Ic>0.0f?adc.ch.Ic:-adc.ch.Ic;
 	
-	overLimit(tRMS[rms_Ia].out,overCurrentRMS_Config,&overCurrentRMS_L1,0,panelInput.ch.reset);
-	overLimit(tRMS[rms_Ib].out,overCurrentRMS_Config,&overCurrentRMS_L2,0,panelInput.ch.reset);
-	overLimit(tRMS[rms_Ic].out,overCurrentRMS_Config,&overCurrentRMS_L3,0,panelInput.ch.reset);
+	overLimit(tRMS[rms_Ia].out,overCurrentRMS_Config,&overCurrentRMS_L1,0,flag.ch.reset);
+	overLimit(tRMS[rms_Ib].out,overCurrentRMS_Config,&overCurrentRMS_L2,0,flag.ch.reset);
+	overLimit(tRMS[rms_Ic].out,overCurrentRMS_Config,&overCurrentRMS_L3,0,flag.ch.reset);
 	
-	overLimit(cs_Aout.I,overCurrentCS_Config,&overCurrentCS_L1,0,panelInput.ch.reset);
-	overLimit(cs_Bout.I,overCurrentCS_Config,&overCurrentCS_L2,0,panelInput.ch.reset);
-	overLimit(cs_Cout.I,overCurrentCS_Config,&overCurrentCS_L3,0,panelInput.ch.reset);
+	overLimit(cs_Aout.I,overCurrentCS_Config,&overCurrentCS_L1,0,flag.ch.reset);
+	overLimit(cs_Bout.I,overCurrentCS_Config,&overCurrentCS_L2,0,flag.ch.reset);
+	overLimit(cs_Cout.I,overCurrentCS_Config,&overCurrentCS_L3,0,flag.ch.reset);
 
-	overLimit(absA,overCurrentPeak_Config,&overCurrentPeak_L1,0,panelInput.ch.reset);
-	overLimit(absB,overCurrentPeak_Config,&overCurrentPeak_L2,0,panelInput.ch.reset);
-	overLimit(absC,overCurrentPeak_Config,&overCurrentPeak_L3,0,panelInput.ch.reset);
+	overLimit(absA,overCurrentPeak_Config,&overCurrentPeak_L1,0,flag.ch.reset);
+	overLimit(absB,overCurrentPeak_Config,&overCurrentPeak_L2,0,flag.ch.reset);
+	overLimit(absC,overCurrentPeak_Config,&overCurrentPeak_L3,0,flag.ch.reset);
  
 }

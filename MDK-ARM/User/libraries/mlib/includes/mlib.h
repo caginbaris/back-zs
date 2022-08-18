@@ -6,6 +6,14 @@
 
 #include <math.h>
 
+#ifndef samplingFrequency
+
+#define samplingFrequency 10000
+
+#endif
+
+
+
 #include "trueRMS.h"
 #include "filtering.h"
 #include "computations.h"

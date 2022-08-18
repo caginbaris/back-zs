@@ -6,5 +6,6 @@ void haltSignal(void);
 
 //adc
 void init_ADC(void);
+void state_chart(void);
 
 #endif

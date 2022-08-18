@@ -11,6 +11,8 @@ void csMeasurement(void);
 void dcMeasurement(void);
 void ntcMeasurements(void);
 
+void measurement(void);
+
 
 typedef enum rmsChannel {   rms_Ia=0,
                             rms_Ib=1,
@@ -42,7 +44,7 @@ extern float fofCoefficents1e2[2];
 
 
 
-void measurement(void);
+
 
 extern uint16_t calculationCounter;
 

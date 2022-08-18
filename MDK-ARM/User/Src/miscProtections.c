@@ -25,11 +25,9 @@ void meanCurrentCheck(void){
 	
 	static uint32_t meanValueCounter=0;
 	
-	static double meanValueSumIa=0;
-	static double meanValueSumIb=0;
-	static double meanValueSumIc=0;
-	
-	
+	static float meanValueSumIa=0;
+	static float meanValueSumIb=0;
+	static float meanValueSumIc=0;
 	
 	meanValueSumIa+=adc.ch.Ia;
 	meanValueSumIb+=adc.ch.Ib;

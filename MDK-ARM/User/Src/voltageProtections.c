@@ -4,7 +4,7 @@
 #include "measurements.h"
 #include "states.h"
 #include "faultHandling.h"
-
+#include "flagHandling.h"
 
 
 overLimit_inputParameters overVoltageDC_Config,overVoltageAC_Config;
@@ -84,11 +84,11 @@ void voltageProtections(void){
 
 	inhibitUV=(currentState!=run);
 
-	overLimit(adc.ch.Vdc,overVoltageDC_Config,&overVoltageDC,0,panelInput.ch.reset);
-	overLimit(max3p(tRMS[3].out,tRMS[4].out,tRMS[5].out),overVoltageAC_Config,&overVoltageAC,0,panelInput.ch.reset);
+	overLimit(adc.ch.Vdc,overVoltageDC_Config,&overVoltageDC,0,flag.ch.reset);
+	overLimit(max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out),overVoltageAC_Config,&overVoltageAC,0,flag.ch.reset);
 	
-	underLimit(adc.ch.Vdc,underVoltageDC_Config,&underVoltageDC,inhibitUV,panelInput.ch.reset); 
-	underLimit(min3p(tRMS[3].out,tRMS[4].out,tRMS[5].out),underVoltageAC_Config,&underVoltageAC,inhibitUV,panelInput.ch.reset); 
+	underLimit(adc.ch.Vdc,underVoltageDC_Config,&underVoltageDC,inhibitUV,flag.ch.reset); 
+	underLimit(min3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out),underVoltageAC_Config,&underVoltageAC,inhibitUV,flag.ch.reset); 
 
 
 

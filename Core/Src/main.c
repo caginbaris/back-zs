@@ -112,11 +112,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		HAL_Delay(1000);
-		HAL_GPIO_TogglePin(LD1_GPIO_Port,LD1_Pin);
-		ios();
-		haltSignal();
+		HAL_Delay(100);
+		LEDs();
+		//ios();
+		//haltSignal();
 		
+
 		
   }
   /* USER CODE END 3 */

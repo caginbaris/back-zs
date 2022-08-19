@@ -11,15 +11,14 @@
 
 void mainFlow(void){
 
-		measurements();
-		protection();
-		pllHandling();
-		state_chart();
-		faultHandling();
+		//measurements();
+		//protection();
+		//pllHandling();
 		ios();
-
-		references();
-		controlRoutines();
+		state_chart();
+		//faultHandling();
+		//references();
+		//controlRoutines();
 
 
 }

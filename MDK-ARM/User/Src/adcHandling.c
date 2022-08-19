@@ -5,12 +5,12 @@
 
 #define scale4IPM (30.0/6.8)*(3.3/4095.0)
 
+void mainFlow(void);
+
 uint32_t adcReading[9];
-
-//calibration can be added
-
-
 adcData_Type adc={0};
+
+
 
 
 void init_ADC(void){
@@ -73,5 +73,6 @@ adc.ch.Temp=adcReading[seq_Temp]*scale4IPM;
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	
 	read_ADC();
+	mainFlow();
 	
 }

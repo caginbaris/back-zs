@@ -8,7 +8,7 @@
 #include "protections.h"
 #include "ios.h"
 #include "controlRoutines.h"
-
+#include "flagHandling.h"
 void mainFlow(void){
 
 		//measurements();
@@ -16,6 +16,7 @@ void mainFlow(void){
 		//pllHandling();
 		ios();
 		state_chart();
+		flagHandling();
 		//faultHandling();
 		//references();
 		//controlRoutines();

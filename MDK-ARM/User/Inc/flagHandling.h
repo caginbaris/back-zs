@@ -31,5 +31,7 @@ typedef union flags{
 
 
 extern flags flag;
+void flagHandling(void);
+
 
 #endif

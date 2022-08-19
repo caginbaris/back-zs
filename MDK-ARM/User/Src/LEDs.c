@@ -5,7 +5,7 @@
 
 LEDoutputs LED={0};
 
-static delay_parameters led_toggle={0,samplingFrequency,0};
+static delay_parameters led_toggle={0,10,0}; // due to main flow call 10-> 1sec
 
 void LEDs(void){
 	

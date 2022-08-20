@@ -23,8 +23,6 @@ flag.ch.bus1energised =bus1d.output;
 flag.ch.bus2energised =bus2d.output;
 	
 	
-flag.ch.bus1energised =1;
-flag.ch.bus2energised =0;	
 
 
 }

@@ -7,7 +7,7 @@ float dcRipple=0, dcAverage=0, Vdcf=0;
 static sos_parameters sos_pDC={0};
 static float Vdcz=0;
 
-
+ 
 
 //1e2 filter
 float fofCoefficents1e2[2]={

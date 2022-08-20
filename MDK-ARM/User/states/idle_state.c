@@ -7,10 +7,11 @@
 
 static delay_parameters idleToggle={0,samplingRate*0.5,0};
 static delay_parameters waiting4dcLevel={0,samplingRate*5,0};
+static delay_parameters timeout={0,samplingRate*10,0};
 
 stateID idle_state(void){
 	
-	
+//cau timeout needed	
 fToggle(1,&idleToggle);	
 	
 //boards indicator	
@@ -21,11 +22,17 @@ LED.out._3=0;
 //panel indicators
 panelOutput.ch.statcomTrip=0;		
 panelOutput.ch.statcomReady=idleToggle.output ;			
-panelOutput.ch.statcomRunning=0;	
+panelOutput.ch.statcomRunning=0;
 
+//timeout
+on_delay(1,&timeout);	
+if(timeout.output){
+stateFault.bit.idle_timeOut=1;
+}	
+	
+//dc level reach	
 on_delay(1,&waiting4dcLevel);	
 
-on_delay(1,&waiting4dcLevel);
 	
 if(waiting4dcLevel.output==1){
 
@@ -46,9 +53,19 @@ if(waiting4dcLevel.output==1){
 if(faultWord.all || stateFault.all){currentState=fault ;}
 
 if(currentState!=idle){
+	
 waiting4dcLevel.output=0;
 waiting4dcLevel.count=0;
-previousState=idle;}
+	
+timeout.output=0;
+timeout.count=0;
+	
+previousState=idle;
+
+
+
+
+}
 
 return currentState;
 

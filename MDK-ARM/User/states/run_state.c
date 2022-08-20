@@ -6,7 +6,7 @@
 #include "clib.h"
 #include "measurements.h"
 #include "LEDs.h"
-//#include "pwmGeneration.h"
+#include "pwmGeneration.h"
 //#include "controlRoutines.h"
 #include "references.h"
 //#include "testBenches.h"
@@ -15,8 +15,6 @@
 static delay_parameters wait4InitialConditions={0,samplingRate*5,0};
 static delay_parameters timeout={0,samplingRate*15,0};
 static transition_parameters checked={0};
-
-static uint8_t dcRamp=0;
 
 
 stateID run_state(void){
@@ -32,26 +30,17 @@ panelOutput.ch.statcomTrip=0;
 panelOutput.ch.statcomReady=0 ;			
 panelOutput.ch.statcomRunning=1;		
 
-//initialCheck=	(panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1) && tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f;
+//timeout
+on_delay(1,&timeout);
 
+if(timeout.output){
+stateFault.bit.idle_timeOut=1;
+}
+
+//cau initialCheck=	(panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1) && tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f;
 initialCheck=1;		
 	
-on_delay(initialCheck,&wait4InitialConditions);
-	
-on_delay(wait4InitialConditions.output==0,&timeout);
-
-
-if(timeout.output==1){ 
-
-	if(flag.ch.switchingStarted==0){
-
-		stateFault.bit.run_state_error=1;
-	
-	}
-
-}	
-	
-	
+on_delay(initialCheck,&wait4InitialConditions);	
 low2highTransition(wait4InitialConditions.output,&checked);
 
 
@@ -75,13 +64,7 @@ if(checked.output){
 	
 //cau dc ramp is removed due 3rd injection
 
-
-if(flag.ch.switchingStarted){
-
 ref.Vdc=ref.Vdc_opt;
-
-}
-
 
 //modulator();
 
@@ -94,15 +77,13 @@ if(faultWord.all || stateFault.all){currentState=fault;}
 if(currentState!=run){
 	
 	
-	//modulatorDisable();
+	modulatorDisable();
 	
 	recorder();
 	
 	pidcf.flag.enable=0;
 	piqf.flag.enable=0;
 	pidf.flag.enable=0;	
-	
-	dcRamp=0;
 	
 	previousState=run;
 	

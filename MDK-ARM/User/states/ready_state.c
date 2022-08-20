@@ -21,16 +21,34 @@ panelOutput.ch.statcomTrip=0;
 panelOutput.ch.statcomReady=1;			
 panelOutput.ch.statcomRunning=0;
 	
-
+//output signal set
+	
+panelOutput.ch.openCB1=1;
+panelOutput.ch.openCB2=1;
+	
+panelOutput.ch.closeCB1=0;
+panelOutput.ch.closeCB2=0;	
+	
+panelOutput.ch.closePrechargeCB1=0;
+panelOutput.ch.closePrechargeCB2=0;		
+	
+//get start
 low2highTransition(flag.ch.start,&startTrigger);	
 
 if(startTrigger.output){currentState=charged;}
-if(faultWord.all){currentState=fault;}
+if(faultWord.all || stateFault.all ){currentState=fault;}
 
 if(currentState!=ready){
 
 previousState=ready;
+
+//start trigger reset	
 startTrigger.back=0;
+startTrigger.output=0;	
+	
+//output	
+panelOutput.ch.openCB1=0;
+panelOutput.ch.openCB2=0;	
 
 }
 

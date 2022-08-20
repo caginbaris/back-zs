@@ -1,0 +1,9 @@
+TODO
+
+# handle states & internal signals (maybe fault coding)
+# edit filter coefficents from 50e3 to 10e3
+#cau adc rank is changed after last ioc update for tim2
+
+# relate stateFaults with faultWord and state decisions
+
+

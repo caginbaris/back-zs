@@ -3,7 +3,8 @@
 #include "adc.h"
 #include "adcHandling.h"
 
-#define scale4IPM (30.0/6.8)*(3.3/4095.0)
+#define scale4IPM (30.0f/6.8f)*(3.3f/4095.0f)
+#define scale4VAC (1320.0f/6.2f)*(3.3f/4095.0f)
 
 void mainFlow(void);
 
@@ -53,10 +54,12 @@ void init_ADC(void){
 }
 
 void read_ADC(void){
-
-adc.ch.Van=(adcReading[seq_Van]-2048.0);
-adc.ch.Vbn=(adcReading[seq_Vbn]-2048.0);
-adc.ch.Vcn=(adcReading[seq_Vcn]-2048.0);
+	
+	
+//cau voltages need to be inverted
+adc.ch.Van=(adcReading[seq_Van]-2048.0)*scale4VAC;
+adc.ch.Vbn=(adcReading[seq_Vbn]-2048.0)*scale4VAC;
+adc.ch.Vcn=(adcReading[seq_Vcn]-2048.0)*scale4VAC;
 	
 adc.ch.Ia=(adcReading[seq_Ia]-2048.0)*scale4IPM;
 adc.ch.Ib=(adcReading[seq_Ib]-2048.0)*scale4IPM;

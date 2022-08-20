@@ -6,12 +6,16 @@
 #include "states.h"
 
 float fundamentalFrequency=0;
-static delay_parameters p={0,100,0};
+static delay_parameters p={0,20,0};
 static delay_parameters freqCheck={0,4000,0};
 static transition_parameters t={0,0};
 
 
+static float fofCoefficents1e1[2]={
 
+0.003131764229193,
+-0.993736471541615
+};
 
 
 void frequencyDetect(float input,float *output){
@@ -40,8 +44,12 @@ void frequencyDetect(float input,float *output){
 
 
 void frequencyMeasurement(void){
+	
+	static float Vz=0,Vf=0;
+	
+	FOF(adc.ch.Van,Vz,Vf,fofCoefficents1e1); 
 
-	frequencyDetect(adc.ch.Van,&fundamentalFrequency);
+	frequencyDetect(Vf,&fundamentalFrequency);
 	
 	on_delay((fundamentalFrequency<48.0f || fundamentalFrequency>52.0f) && (currentState==idle || currentState==run),&freqCheck);
 	

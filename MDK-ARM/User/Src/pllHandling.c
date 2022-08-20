@@ -19,14 +19,29 @@ static float fofCoefficents5em1[2]={
 
 };
 
+/*
 
+>> [b,a]=butter(1,1/(10e3*0.5),'high')
+
+b =0.999685939389360  -0.999685939389360
+a =1.000000000000000  -0.999371878778719
+
+*/
 
 void pllHandling(void){
+	
+	static float Vf=0,Vz=0;
+
+	//hp for dc removal
+	Vf=0.999685939389360f*(adc.ch.Van-Vz)+(0.999371878778719f)*Vf;
+	Vz=adc.ch.Van;
+	
 	
 	
 	if(tRMS[rms_Van].out>5.0f){ 
 		
 	PLL(adc.ch.Van/(tRMS[rms_Van].out*1.414f),&pll);
+	//PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
 		
 	}
 	

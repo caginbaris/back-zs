@@ -14,6 +14,7 @@ void faultHandling(void){
 	if(flag.ch.reset==1){
 	
 	faultWord.all=0;
+	stateFault.all=0; 
 	
 	}
 	

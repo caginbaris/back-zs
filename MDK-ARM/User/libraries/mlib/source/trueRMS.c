@@ -39,7 +39,7 @@ void trueRMS_sampled(float input,trueRMS_sampled_parameters* rms,uint16_t seq){
 
     if(seq==rms->sequence){
 
-        rms->out=sqrt(rms->sum*invN);
+        rms->out=sqrtf(rms->sum*invN);
         rms->sum=0.0f;
 
     }

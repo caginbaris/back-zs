@@ -37,6 +37,8 @@ if(currentState!=fault){previousState=fault;}
 panelOutput.ch.openCB1=0;
 panelOutput.ch.openCB2=0;
 
+
+
 }
 
 return currentState;

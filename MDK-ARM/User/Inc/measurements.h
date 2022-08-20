@@ -87,6 +87,7 @@ typedef struct recordedVariables{
 	
 }recordedVariables; 
 
+void measurements(void);
 void recorder(void);
 
 extern float meanValueIa;

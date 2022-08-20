@@ -48,7 +48,10 @@ startTrigger.output=0;
 	
 //output	
 panelOutput.ch.openCB1=0;
-panelOutput.ch.openCB2=0;	
+panelOutput.ch.openCB2=0;
+
+//reset start flag
+flag.ch.start=0;	
 
 }
 

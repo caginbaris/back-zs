@@ -6,21 +6,21 @@ float dcRipple=0, dcAverage=0, Vdcf=0;
 
 static sos_parameters sos_pDC={0};
 static float Vdcz=0;
-
+static float Vdcrz=0;
  
-
+//cau correct filters
 //1e2 filter
 float fofCoefficents1e2[2]={
 
-0.006244035046343,
--0.987511929907314
+0.030468747091254f,
+-0.939062505817492f
 
 };
 
-float fofCoefficents2e1[2]={
+float fofCoefficents1e0[2]={
 
-0.001255060566451,
--0.997489878867098
+0.000314060610640432f,
+-0.999371878778719f
 
 };
 
@@ -29,10 +29,9 @@ float fofCoefficents2e1[2]={
 void dcMeasurement(void){
 	
 	
-//SOS(adc.ch.Vdc,dcAverage,sosCoefficentsDC,sos_pDC);
-FOF(adc.ch.Vdc,Vdcz,Vdcf,fofCoefficents2e1); 	
-dcRipple=adc.ch.Vdc-Vdcf; 
-//FOF(adc.ch.Vdc,Vdcz,Vdcf,fofCoefficents1e2); 
+FOF(adc.ch.Vdc,Vdcz,Vdcf,fofCoefficents1e2);
+FOF(adc.ch.Vdc,Vdcrz,dcAverage,fofCoefficents1e0); 	
+dcRipple=adc.ch.Vdc-dcAverage; 
 
 
 

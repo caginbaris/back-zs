@@ -1,11 +1,25 @@
 TODO
 
 # handle states & internal signals (maybe fault coding)
-# edit filter coefficents from 50e3 to 10e3
+
+# current hb1 and hb3 should be replaced
+
 #cau adc rank is changed after last ioc update for tim2
+
+# variac test is not fully completed due to delawere lines resides for voltage levels
 
 # relate stateFaults with faultWord and state decisions
 
 #check voltage squence ...!!! (sym is not responding well for inversion)
+
+
+
+for tomorrow
+
+-check adc for currents (seq and scalng)
+-adc timing(10khz)
+-switching signals
+
+
 
 

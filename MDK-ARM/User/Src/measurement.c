@@ -6,7 +6,7 @@ void measurements(void){
 
 if(++calculationCounter==200){calculationCounter=0;}	
 
-//frequencyMeasurement();
+frequencyMeasurement();
 rmsMeasurement();
 csMeasurement();
 dcMeasurement();

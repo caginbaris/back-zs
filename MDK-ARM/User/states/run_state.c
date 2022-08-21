@@ -33,8 +33,8 @@ panelOutput.ch.statcomRunning=1;
 //timeout
 on_delay(1,&timeout);
 
-if(timeout.output){
-stateFault.bit.idle_timeOut=1;
+if(timeout.output && flag.ch.switchingStarted==0){
+stateFault.bit.run_timeOut=1;
 }
 
 //cau initialCheck=	(panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1) && tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f;

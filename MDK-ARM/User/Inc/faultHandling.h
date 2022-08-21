@@ -76,13 +76,11 @@ typedef union stateFaults{
 		uint32_t charged_cbClosing:1;
 		uint32_t charged_noVoltageDetected:1;
 		uint32_t charged_simulataneousCBs:1;
-		uint32_t charged_closingCB1conditions:1;
-		uint32_t charged_closingCB2conditions:1;
-		
+
 		uint32_t idle_timeOut:1;
 		uint32_t idle_state_error:1;
 		
-		
+		uint32_t run_timeOut:1;
 		uint32_t run_state_error:1;
 	
 	}bit;

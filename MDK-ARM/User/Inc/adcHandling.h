@@ -9,8 +9,8 @@ typedef enum adcSeq_Type {  seq_Van=0,
                             seq_Ib=4,
                             seq_Ic=5,
 	
-														seq_Vdc=6,
-														seq_Temp=7,
+														seq_Vdc=7,
+														seq_Temp=6,
                      
 }adcSeq_Type;
 

@@ -14,10 +14,10 @@ void busChecks(void){
 	
 
 high2lowTransition((HAL_GPIO_ReadPin(Bus1_check_GPIO_Port,Bus1_check_Pin)),&bus1t);
-high2lowTransition((HAL_GPIO_ReadPin(Bus1_check_GPIO_Port,Bus1_check_Pin)),&bus2t);	
+high2lowTransition((HAL_GPIO_ReadPin(Bus2_check_GPIO_Port,Bus2_check_Pin)),&bus2t);	
 
 off_delay(bus1t.output,&bus1d);
-off_delay(bus2t.output,&bus1d);		
+off_delay(bus2t.output,&bus2d);		
 
 flag.ch.bus1energised =bus1d.output;
 flag.ch.bus2energised =bus2d.output;

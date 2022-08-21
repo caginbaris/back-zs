@@ -6,4 +6,6 @@ TODO
 
 # relate stateFaults with faultWord and state decisions
 
+#check voltage squence ...!!! (sym is not responding well for inversion)
+
 

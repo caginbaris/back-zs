@@ -57,15 +57,15 @@ void read_ADC(void){
 	
 	
 //cau voltages need to be inverted
-adc.ch.Van=(adcReading[seq_Van]-2048.0)*scale4VAC;
-adc.ch.Vbn=(adcReading[seq_Vbn]-2048.0)*scale4VAC;
-adc.ch.Vcn=(adcReading[seq_Vcn]-2048.0)*scale4VAC;
+adc.ch.Van=(adcReading[seq_Van]-2048.0f)*scale4VAC;
+adc.ch.Vbn=(adcReading[seq_Vbn]-2048.0f)*scale4VAC;
+adc.ch.Vcn=(adcReading[seq_Vcn]-2048.0f)*scale4VAC;
 	
-adc.ch.Ia=(adcReading[seq_Ia]-2048.0)*scale4IPM;
-adc.ch.Ib=(adcReading[seq_Ib]-2048.0)*scale4IPM;
-adc.ch.Ic=(adcReading[seq_Ic]-2048.0)*scale4IPM;	
+adc.ch.Ia=(adcReading[seq_Ia]-2048.0f)*scale4IPM;
+adc.ch.Ib=(adcReading[seq_Ib]-2048.0f)*scale4IPM;
+adc.ch.Ic=(adcReading[seq_Ic]-2048.0f)*scale4IPM;	
 
-adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM;	
+adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM*100.0f;	
 adc.ch.Temp=adcReading[seq_Temp]*scale4IPM;
 	
 	

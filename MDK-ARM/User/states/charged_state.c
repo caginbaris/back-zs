@@ -88,10 +88,6 @@ if(waiting4dcLevel.output==1){
 						panelOutput.ch.closeCB1=cbClose.output;
 						flag.ch.closeCBsent=1;
 			
-				}else{
-					
-						stateFault.bit.charged_closingCB1conditions=1;
-				
 				}
 				
 				
@@ -101,10 +97,6 @@ if(waiting4dcLevel.output==1){
 						flag.ch.closeCBsent=1;
 						
 			
-				}else{
-					
-						stateFault.bit.charged_closingCB2conditions=1;
-				
 				}
 				
 				//check for simulataneous CB

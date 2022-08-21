@@ -11,6 +11,8 @@
 #include "flagHandling.h"
 #include "testBenches.h"
 #include "tim.h"
+#include "functionPrototypes.h"
+
 
 uint32_t mainFlowCounter=0,secCounter=0;
 delay_parameters mainFlowSecondCounter={0,samplingFrequency,0};
@@ -24,7 +26,7 @@ void mainFlow(void){
 
 		measurements();
 		//protection();
-		pllHandling();
+		//pllHandling();
 		//pllTest();
 		ios();
 		state_chart();
@@ -32,6 +34,8 @@ void mainFlow(void){
 		//faultHandling();
 		//references();
 		//controlRoutines();
+	
+		busChecks();
 	
 		if(++mainFlowCounter==samplingFrequency){secCounter++;mainFlowCounter=0;}
 

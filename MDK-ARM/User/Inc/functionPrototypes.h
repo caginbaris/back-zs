@@ -8,4 +8,6 @@ void haltSignal(void);
 void init_ADC(void);
 void LEDs(void);
 
+void busChecks(void);
+
 #endif

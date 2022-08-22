@@ -11,14 +11,12 @@
 
 static delay_parameters chargedToggle={0,samplingRate*1,0};
 
+static delay_parameters timeout={0,samplingRate*30,0};
 static delay_parameters waiting4dcLevel={0,samplingRate*20,0};
-
 static delay_parameters cbWait={0,samplingRate*5,0};
 static delay_parameters cbClose={1,samplingRate*0.2,0};
-
 static delay_parameters cbCheckPosition={1,samplingRate*1,0};
 
-static delay_parameters timeout={0,samplingRate*30,0};
 
 
 stateID charged_state(void){
@@ -66,8 +64,8 @@ stateFault.bit.charged_simulataneousContactors=1;
 
 if(waiting4dcLevel.output==1){
 	
-	//cau if(tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.1f){
-	if(1){
+	if(tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f){
+	
 	//open contactors 
 	panelOutput.ch.closePrechargeCB1=0;			
 	panelOutput.ch.closePrechargeCB2=0;	
@@ -77,10 +75,10 @@ if(waiting4dcLevel.output==1){
 
 	//cau checking for contactor positions might be better
 
-	if(panelInput.ch.prechargeCB1NO==0 && panelInput.ch.prechargeCB2NO==0){
+	if(cbWait.output==1){
 	
-			if(cbWait.output==1){
-
+		if(panelInput.ch.prechargeCB1NO==0 && panelInput.ch.prechargeCB2NO==0){
+	
 				off_delay(0,&cbClose);
 				
 				if(flag.ch.bus1energised==1 && panelInput.ch.cb2No==0 && panelInput.ch.cb1Trip==0){
@@ -117,7 +115,7 @@ if(waiting4dcLevel.output==1){
 				currentState=idle;
 			
 				}
-			}
+			}else{stateFault.bit.charged_contactorsCannotBeOpened=1;}
 		}
 	}else{
 		
@@ -127,7 +125,7 @@ if(waiting4dcLevel.output==1){
 }
 
 
-on_delay(flag.ch.closeCBsent,&cbCheckPosition); //cau reset cbclosesent flag
+on_delay(flag.ch.closeCBsent,&cbCheckPosition);
 	
 if(cbCheckPosition.output==1 && (panelInput.ch.cb1No==0 && panelInput.ch.cb2No==0)){
 		
@@ -137,6 +135,7 @@ if(cbCheckPosition.output==1 && (panelInput.ch.cb1No==0 && panelInput.ch.cb2No==
 	
 
 if(faultWord.all || stateFault.all){currentState=fault;}
+if(panelInput.ch.stop){currentState=stopped;}
 
 if(currentState!=charged){
 	

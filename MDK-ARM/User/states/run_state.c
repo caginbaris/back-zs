@@ -12,8 +12,8 @@
 //#include "testBenches.h"
 #include "flagHandling.h"
 
-static delay_parameters wait4InitialConditions={0,samplingRate*5,0};
 static delay_parameters timeout={0,samplingRate*15,0};
+static delay_parameters wait4InitialConditions={0,samplingRate*5,0};
 static transition_parameters checked={0};
 
 
@@ -37,8 +37,8 @@ if(timeout.output && flag.ch.switchingStarted==0){
 stateFault.bit.run_timeOut=1;
 }
 
-//cau initialCheck=	(panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1) && tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f;
-initialCheck=1;		
+initialCheck=	(panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1) && tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.3f;
+
 	
 on_delay(initialCheck,&wait4InitialConditions);	
 low2highTransition(wait4InitialConditions.output,&checked);
@@ -87,12 +87,12 @@ if(currentState!=run){
 	
 	previousState=run;
 	
+	timeout.count=0;
+	timeout.output=0;
+	
 	wait4InitialConditions.count=0;
 	wait4InitialConditions.output=0;
 	
-	timeout.count=0;
-	timeout.output=0;
-
 	checked.output=0;
 	checked.back=0;
 	

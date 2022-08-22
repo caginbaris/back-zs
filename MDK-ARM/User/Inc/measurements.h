@@ -9,7 +9,7 @@ void frequencyMeasurement(void);
 void rmsMeasurement(void);
 void csMeasurement(void);
 void dcMeasurement(void);
-void ntcMeasurements(void);
+
 
 void measurement(void);
 
@@ -29,7 +29,8 @@ typedef enum rmsChannel {   rms_Ia=0,
 	                          rms_V2=12,
 														rms_I0=13,
 														rms_I1=14,
-	                          rms_I2=15
+	                          rms_I2=15,
+														rms_dcr=16
 
                        
 }rmsChannel_Type;
@@ -39,8 +40,10 @@ extern trueRMS_sampled_parameters tRMS[23];
 extern phase_cs_out cs_Aout,cs_Bout,cs_Cout;
 extern sym_out sym;
 extern float dcRipple, dcAverage,Vdcf;
-extern float fofCoefficents1e2[2];
 
+extern float fofCoefficents1e3[2];
+extern float fofCoefficents1e2[2];
+extern float fofCoefficents1e0[2];
 
 
 
@@ -98,6 +101,8 @@ extern float meanValueIc;
 extern piData pidf,piqf,pidcf;
 extern park  pV,pI;
 extern phase  cOut,final;
+
+
 
 #endif
 

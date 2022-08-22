@@ -6,12 +6,14 @@
 #include "LEDs.h"
 
 static delay_parameters idleToggle={0,samplingRate*0.5,0};
-static delay_parameters waiting4dcLevel={0,samplingRate*5,0};
+
 static delay_parameters timeout={0,samplingRate*10,0};
+static delay_parameters waiting4dcLevel={0,samplingRate*5,0};
+
 
 stateID idle_state(void){
 	
-//cau timeout needed	
+
 fToggle(1,&idleToggle);	
 	
 //boards indicator	
@@ -30,16 +32,14 @@ if(timeout.output){
 stateFault.bit.idle_timeOut=1;
 }	
 	
-//dc level reach	
+//dc level reached	
 on_delay(1,&waiting4dcLevel);	
 
 	
 if(waiting4dcLevel.output==1){
 
-	//if(tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f && (panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1)){
+	if(tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.3f && (panelInput.ch.cb1No==1 || panelInput.ch.cb2No==1)){
 	
-	if(1){
-		
 	currentState=run;	
 
 	}else{
@@ -51,6 +51,7 @@ if(waiting4dcLevel.output==1){
 }	
 	
 if(faultWord.all || stateFault.all){currentState=fault ;}
+if(panelInput.ch.stop){currentState=stopped;}
 
 if(currentState!=idle){
 	

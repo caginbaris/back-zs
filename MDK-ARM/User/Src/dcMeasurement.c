@@ -3,13 +3,17 @@
 #include "mlib.h" 
 
 float dcRipple=0, dcAverage=0, Vdcf=0;
-
-static sos_parameters sos_pDC={0};
 static float Vdcz=0;
 static float Vdcrz=0;
  
-//cau correct filters
-//1e2 filter
+
+float fofCoefficents1e3[2]={
+
+0.245237275252786f,
+-0.509525449494429
+
+};
+
 float fofCoefficents1e2[2]={
 
 0.030468747091254f,

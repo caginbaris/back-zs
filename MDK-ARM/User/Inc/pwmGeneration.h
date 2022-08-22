@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define wscale 2399
+#define wscale 8399
 
 void modulatorDisable(void);
 void modulatorEnable(void);

@@ -3,6 +3,6 @@
 
 void switchingTest(void);
 void pllTest(void);
-
+void channelOffsetCalculation(void);
 
 #endif

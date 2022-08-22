@@ -22,7 +22,7 @@ overLimit_outputParameters overCurrentPeak_L1,overCurrentPeak_L2,overCurrentPeak
 void overCurrentInit(void){
 
 
-overCurrentRMS_Config.level=10;
+overCurrentRMS_Config.level=15;
 overCurrentRMS_Config.delay=1;
 overCurrentRMS_Config.dropout_ratio=0.99;
 overCurrentRMS_Config.dropout_time=0.01;
@@ -35,7 +35,7 @@ overLimitInitialization(overCurrentRMS_Config,&overCurrentRMS_L2);
 overLimitInitialization(overCurrentRMS_Config,&overCurrentRMS_L3);	
 	
 	
-overCurrentCS_Config.level=12;
+overCurrentCS_Config.level=18;
 overCurrentCS_Config.delay=0.01;
 overCurrentCS_Config.dropout_ratio=0.99;
 overCurrentCS_Config.dropout_time=0.001;
@@ -48,7 +48,7 @@ overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L2);
 overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L3);		
 
 
-overCurrentPeak_Config.level=15*1.414;
+overCurrentPeak_Config.level=20*1.414;
 overCurrentPeak_Config.delay=0.002;
 overCurrentPeak_Config.dropout_ratio=0.99;
 overCurrentPeak_Config.dropout_time=0.0005;

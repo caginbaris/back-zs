@@ -12,13 +12,6 @@ pll_parameters pll={0};
 static delay_parameters syncCheck={0,2000,0};
 
 
-static float fofCoefficents5em1[2]={
-
-0.999968585060383f,
--0.999937170120766f
-
-};
-
 /*
 
 >> [b,a]=butter(1,1/(10e3*0.5),'high')

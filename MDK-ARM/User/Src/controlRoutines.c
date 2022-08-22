@@ -24,16 +24,8 @@ piData pidf={0},piqf={0},pidcf={0};
 clarke icV;
 park   ipV,ipVz;
 phase  cOut,final;
-phase filteredV={0},filteredVz={0};
 
 
-//0.5e4 filter
-float fofCoefficents5e3[2]={
-
-0.245237275252786,
--0.509525449494429
-
-};
 
 void initControlRoutines(void){
 	
@@ -142,27 +134,28 @@ void controlRoutines(void){
 	clarkeParkTransform(I,&cI,&pI,scVal);
 	
 	
-	//d-side
+	//***d-side
 	
-	pidcf.signal.ref=ref.Vdc;
+	//dc pi
+	pidcf.signal.ref=ref.Vdc_opt;
 	pidcf.signal.feedback=Vdcf;
 	piControllerImplementation(&pidcf);
 	
+	//d-pi
 	pidf.signal.ref=pidcf.signal.controllerOutput;
 	pidf.signal.feedback=pI.d;
 	piControllerImplementation(&pidf);
 
-	//q-side
+	//***q-side
 	
+	//q-pi
 	piqf.signal.ref=ref.I;
 	piqf.signal.feedback=pI.q;
 	piControllerImplementation(&piqf);
 	
-	//current direction is reverse 
 	
-	
-	FOF(pidf.signal.controllerOutput,ipVz.d,ipV.d,fofCoefficents1e2);
-	FOF(piqf.signal.controllerOutput,ipVz.q,ipV.q,fofCoefficents1e2);
+	FOF(pidf.signal.controllerOutput,ipVz.d,ipV.d,fofCoefficents1e3);
+	FOF(piqf.signal.controllerOutput,ipVz.q,ipV.q,fofCoefficents1e3);
 
 	
 	//ipV.d=	ipV.d-ref.decouplingTermQ;			
@@ -171,18 +164,11 @@ void controlRoutines(void){
 					
 	inverseClarkeParkTransform(ipV,&icV,&cOut,scVal);
 
-	FOF(adc.ch.Van,filteredVz.a,filteredV.a,fofCoefficents5e3); 
-	FOF(adc.ch.Vbn,filteredVz.b,filteredV.b,fofCoefficents5e3); 
-	FOF(adc.ch.Vcn,filteredVz.c,filteredV.c,fofCoefficents5e3); 
+	final.a=cOut.a+ref.thirHarmOut;
+	final.b=cOut.b+ref.thirHarmOut;
+	final.c=cOut.c+ref.thirHarmOut;
 	
-	
-	final.a=cOut.a+filteredV.a+ref.thirHarmOut;
-	final.b=cOut.b+filteredV.b+ref.thirHarmOut;
-	final.c=cOut.c+filteredV.c+ref.thirHarmOut;
-	
-	//final.a=cOut.a-adc.ch.Van;
-	//final.b=cOut.b-adc.ch.Vbn;
-	//final.c=cOut.c-adc.ch.Vcn;
+
 	
 	
 

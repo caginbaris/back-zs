@@ -60,7 +60,7 @@ void rmsMeasurement(void){
 		trueRMS_sampled(sym.I1,&tRMS[14],calculationCounter);
 		trueRMS_sampled(sym.I2,&tRMS[15],calculationCounter);
 		
-		//trueRMS_sampled(dcRipple,&tRMS[16],calculationCounter);
+		trueRMS_sampled(dcRipple,&tRMS[16],calculationCounter);
 		
 		//trueRMS_sampled(final.a,&tRMS[17],calculationCounter);
 		//trueRMS_sampled(final.b,&tRMS[18],calculationCounter);

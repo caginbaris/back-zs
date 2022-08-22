@@ -73,6 +73,7 @@ typedef union stateFaults{
 		uint32_t charged_timeOut:1;
 		uint32_t charged_chargeLevel:1;
 		uint32_t charged_simulataneousContactors:1;
+		uint32_t charged_contactorsCannotBeOpened:1;
 		uint32_t charged_cbClosing:1;
 		uint32_t charged_noVoltageDetected:1;
 		uint32_t charged_simulataneousCBs:1;

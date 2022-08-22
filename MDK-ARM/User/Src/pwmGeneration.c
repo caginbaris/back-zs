@@ -59,9 +59,9 @@ void modulator(void){
 	sw_count_a=wscale*(final.a+ref.Vdc*0.5f)*inv_Vdc;
 	sw_count_b=wscale*(final.b+ref.Vdc*0.5f)*inv_Vdc;
 	sw_count_c=wscale*(final.c+ref.Vdc*0.5f)*inv_Vdc;
-		
-	}
 	
+
+	}
 	
 	ui_LIMITER(sw_count_a,0,wscale);
 	ui_LIMITER(sw_count_b,0,wscale);

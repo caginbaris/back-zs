@@ -23,10 +23,10 @@ float cpuLoading;
 void mainFlow(void){
 	
 		cycleCount=htim2.Instance->CNT; // get count of tim2
-
+	
 		measurements();
-		//protection();
-		//pllHandling();
+		protection();
+		pllHandling();
 		//pllTest();
 		ios();
 		state_chart();
@@ -36,10 +36,12 @@ void mainFlow(void){
 		//controlRoutines();
 	
 		busChecks();
+		channelOffsetCalculation();
+		
 	
 		if(++mainFlowCounter==samplingFrequency){secCounter++;mainFlowCounter=0;}
 
 		cycleCount=htim2.Instance->CNT-cycleCount;
-		cpuLoading=100.0*(float)(cycleCount)*0.000119061793070604; //reverse of tim2 period 
+		cpuLoading=100.0f*(float)(cycleCount)*0.000119061793070604f; //reverse of tim2 period 
 
 }

@@ -17,9 +17,8 @@ float Vdc_final;
 float dTermD;	
 float dTermQ;
 
-
-float thirdHarmTheta;
-float thirHarmOut;	
+float thirdHarmMag;
+float thirdHarmOut;	
 	
 
 }reference;

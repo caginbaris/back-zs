@@ -25,12 +25,12 @@ void dqTransformSignalling(void){
 static uint8_t counter=0;
 
 
-Vtest.a=sinf(2*3.14159*counter/200);
-Vtest.b=1.0*sinf(2*3.14159*counter/200-2*pi_3);
+Vtest.a=sinf(2*3.14159f*counter/200.0f);
+Vtest.b=1.0f*sinf(2*3.14159f*counter/200.0f-2.0f*pi_3);
 Vtest.c=-Vtest.a-Vtest.b;
 	
-sc.sinVal=sinf(2*3.14159*counter/200);
-sc.cosVal=cosf(2*3.14159*counter/200);	
+sc.sinVal=sinf(2*3.14159f*counter/200.0f);
+sc.cosVal=cosf(2*3.14159f*counter/200.0f);	
 	
 counter++;
 

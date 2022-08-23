@@ -19,6 +19,11 @@ extern piData pidf,piqf,pidcf;
 extern sincosValues scVal;
 
 
+extern park ipV;
+
+
+
+
 void controlRoutines(void);
 
 //void dqFiltering(park in, park* out,float* interValue,sos_parameters* sosP, float* fofP);
@@ -32,6 +37,17 @@ float fofBuffer[2];
 
 
 }dqFilterBuffers;
+
+
+typedef struct decouplingTerms{
+	
+
+float Pd;
+float Pq;	
+float Nd;
+float Nq;	
+
+}decouplingTerms;
 
 void dqFiltering(park in, park* out,dqFilterBuffers* b);
 #endif

@@ -22,10 +22,10 @@ void references(void){
 	
 	FOF((tRMS[rms_Van].out+ref.Iline*Xvalue)*sqrt3*sqrt2,ref_oz,ref.Vdc_opt,fofCoefficents1e0);
 	
-	ref.thirdHarmTheta=3*scVal.sinVal-4*scVal.sinVal*scVal.sinVal*scVal.sinVal;
-	ref.thirHarmOut=tRMS[3].out*1.414f*0.1667f*ref.thirdHarmTheta;
-	
-	
+	// third harmonic generation
+	ref.thirdHarmMag=sqrtf(ipV.d*ipV.d + ipV.q*ipV.q)*0.16667f;
+	ref.thirdHarmOut=sinf(3.0f *pll.theta)*ref.thirdHarmMag;
+	 
 								
 
 }

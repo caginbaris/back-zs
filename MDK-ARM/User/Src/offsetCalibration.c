@@ -42,15 +42,15 @@ counter++;
 
 if(counter==10000){
 
-value.Van=sum.Van*0.0001;
-value.Vbn=sum.Vbn*0.0001;
-value.Vcn=sum.Vcn*0.0001;
+value.Van=sum.Van*0.0001f;
+value.Vbn=sum.Vbn*0.0001f;
+value.Vcn=sum.Vcn*0.0001f;
 	
-value.Ia=sum.Ia*0.0001;
-value.Ib=sum.Ib*0.0001;
-value.Ic=sum.Ic*0.0001;	
+value.Ia=sum.Ia*0.0001f;
+value.Ib=sum.Ib*0.0001f;
+value.Ic=sum.Ic*0.0001f;	
 
-value.Vdc=sum.Vdc*0.0001;
+value.Vdc=sum.Vdc*0.0001f;
 
 sum.Van=0;
 sum.Vbn=0;

@@ -1,7 +1,7 @@
 #include "adcHandling.h"
 #include "mlib.h"
 #include "measurements.h"
-
+#include "testBenches.h"
 
 trueRMS_sampled_parameters tRMS[23]={
 	
@@ -62,7 +62,7 @@ void rmsMeasurement(void){
 		
 		trueRMS_sampled(dcRipple,&tRMS[16],calculationCounter);
 		
-		//trueRMS_sampled(final.a,&tRMS[17],calculationCounter);
+		trueRMS_sampled(pllDiff ,&tRMS[17],calculationCounter);
 		//trueRMS_sampled(final.b,&tRMS[18],calculationCounter);
 		//trueRMS_sampled(final.c,&tRMS[19],calculationCounter);
 		

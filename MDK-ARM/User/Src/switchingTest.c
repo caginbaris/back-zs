@@ -7,7 +7,7 @@ uint8_t switchingEnable=0;
 
 static transition_parameters swHTransition={0,0};
 static transition_parameters swLTransition={0,0};
-static delay_parameters swEnable={0,samplingFrequency*0.0002,0};
+static delay_parameters swEnable={0,samplingFrequency*0.0004,0};
 
 void switchingTest(void){
 	
@@ -17,20 +17,20 @@ void switchingTest(void){
 	
 	if(swHTransition.output){
 	
-	//modulatorEnable();
+	modulatorEnable();
 	switchingEnable=0;
 
 	}
 	
 	if(swLTransition.output){
 	
-	//modulatorDisable();
+	modulatorDisable();
 	
 	}
 	
 
 	
-	//modulator();
+	modulator();
 
 
 }

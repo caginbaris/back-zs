@@ -6,6 +6,7 @@
 #include "faultHandling.h"
 #include "pllHandling.h"
 #include "references.h"
+#include "controlRoutines.h"
 
 #define fs 10000.0f
 #define pi_ts 1.0f/(fs)
@@ -14,6 +15,10 @@
 
 phase V,I;
 park  pV,pI;
+
+park  pVf,pIf;
+dqFilterBuffers vBuf={0},iBuf={0};
+
 clarke cV,cI;
 sincosValues scVal;
 
@@ -133,6 +138,10 @@ void controlRoutines(void){
 	clarkeParkTransform(V,&cV,&pV,scVal);
 	clarkeParkTransform(I,&cI,&pI,scVal);
 	
+	//dq filtering
+	
+	dqFiltering(pV,&pVf,&vBuf);
+	dqFiltering(pI,&pIf,&iBuf);
 	
 	//***d-side
 	
@@ -143,14 +152,14 @@ void controlRoutines(void){
 	
 	//d-pi
 	pidf.signal.ref=pidcf.signal.controllerOutput;
-	pidf.signal.feedback=pI.d;
+	pidf.signal.feedback=pIf.d;
 	piControllerImplementation(&pidf);
 
 	//***q-side
 	
 	//q-pi
 	piqf.signal.ref=ref.I;
-	piqf.signal.feedback=pI.q;
+	piqf.signal.feedback=pIf.q;
 	piControllerImplementation(&piqf);
 	
 	

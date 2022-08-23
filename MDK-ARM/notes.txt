@@ -1,16 +1,11 @@
 TODO
 
-# handle states & internal signals (maybe fault coding)
+#variac test is not fully completed due to delawere lines resides for voltage levels
 
-# current hb1 and hb3 should be replaced
+#before commisioning check offset with calibration routine
 
-# cau adc rank is changed after last ioc update for tim2
 
-# variac test is not fully completed due to delawere lines resides for voltage levels
 
-#check voltage squence ...!!! (sym is not responding well for inversion)
-
-#before commisioning check offeset with calibration routine
 
 
 

@@ -4,5 +4,9 @@
 void switchingTest(void);
 void pllTest(void);
 void channelOffsetCalculation(void);
+void dqTransformSignalling(void);
+
+
+extern float pllDiff;
 
 #endif

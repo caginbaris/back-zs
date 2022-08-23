@@ -71,12 +71,11 @@ void PLL(float alpha, pll_parameters *pll) {
 
 		}
 
-		pll->theta = pll->theta_unc - 1.8 * (3.14159 / 180.0);
+		pll->theta = pll->theta_unc; // hp filter applied  on inputs
+		
 
-		if (pll->theta < 0) {
-
-			pll->theta = pll->theta + 6.283185307179586f;
-		}
+		
+		
 
 
 }

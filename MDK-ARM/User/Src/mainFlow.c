@@ -27,16 +27,22 @@ void mainFlow(void){
 		measurements();
 		protection();
 		pllHandling();
-		//pllTest();
+		
+		pllTest();
+		
 		ios();
 		state_chart();
 		flagHandling();
-		//faultHandling();
-		//references();
-		//controlRoutines();
+		faultHandling();
+		references();
+		controlRoutines();
 	
 		busChecks();
+		
+		//cau test routines
 		channelOffsetCalculation();
+		//dqTransformSignalling();
+		//switchingTest();
 		
 	
 		if(++mainFlowCounter==samplingFrequency){secCounter++;mainFlowCounter=0;}

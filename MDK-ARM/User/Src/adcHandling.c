@@ -4,7 +4,7 @@
 #include "adcHandling.h"
 
 #define scale4IPM (30.0f/6.8f)*(3.3f/4095.0f)
-#define scale4Vdc (100.0f/10.0f) //10mV/V
+#define scale4Vdc (100.0f) //10mV/V
 #define scale4Current (1000.0f/24) // 24mV/A
 #define scale4VAC (1320.0f/6.2f)*(3.3f/4095.0f)
 

@@ -23,7 +23,7 @@ void PLL(float alpha, pll_parameters *pll) {
 		pll->xqz2 = pll->xqz1;
 		pll->xqz1 = alpha;
 
-		pll->q = pll->yd * cos(pll->theta_unc) + pll->yq * sin(pll->theta_unc);
+		pll->q = pll->yd * cosf(pll->theta_unc) + pll->yq * sinf(pll->theta_unc);
 
 
 		// sos-1

@@ -19,7 +19,7 @@ typedef union haltSignalHandling{
 }haltSignalHandling; 
 
 
-
+void haltSignal(void);
 
 
 extern haltSignalHandling halt;

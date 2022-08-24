@@ -36,11 +36,11 @@ void pllHandling(void){
 	PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
 	//PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
 		
-	}
+	}//cau fault can be generated
 	
 	
 	//cau check for pll parameters for fault
-	on_delay(pll.q>0.5f,&syncCheck);
+	on_delay(pll.q>0.1f,&syncCheck);
 	
 	if(syncCheck.output){faultWord.bit.synchronization=1;}
 		

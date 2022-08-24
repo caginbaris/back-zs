@@ -104,8 +104,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	
-	init_ADC();
+	initialization();
 	
   while (1)
   {

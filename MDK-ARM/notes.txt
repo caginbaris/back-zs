@@ -4,7 +4,17 @@ TODO
 
 #dc mod (with low thd current) is not enabled check sim for further implementation 
 
+#check for inits (control and others)
+
 #check for analog watchdog
+
+#ipm phase order is reversed, should be changed on panel !!!
+
+#minor off delay to reset should be added
+
+#check vdc opt level with pscad
+
+#add stop to flags for pc stop
 
 
 

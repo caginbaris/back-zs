@@ -22,12 +22,15 @@ extern overLimit_outputParameters overVoltageDC, overVoltageAC;
 extern underLimit_inputParameters underVoltageDC_Config,underVoltageAC_Config;
 extern underLimit_outputParameters underVoltageDC, underVoltageAC;
 
-
+void overCurrentInit(void);
+void voltageProtectionsInit(void);
 
 
 void overCurrent(void);
 void voltageProtections(void);
 void miscProtections(void);
+
+
 
 void protection(void);
 

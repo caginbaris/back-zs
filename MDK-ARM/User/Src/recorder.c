@@ -45,9 +45,17 @@ void recorder(){
 	rec.rec_final.c=tRMS[19].out;
 	
 	
-	rec.rec_cOut.a=tRMS[20].out;
-	rec.rec_cOut.b=tRMS[21].out;
-	rec.rec_cOut.c=tRMS[22].out;
+	rec.rec_pos.a=tRMS[20].out;
+	rec.rec_pos.b=tRMS[21].out;
+	rec.rec_pos.c=tRMS[22].out;
+	
+	
+	rec.rec_pos.a=tRMS[23].out;
+	rec.rec_pos.b=tRMS[24].out;
+	rec.rec_pos.c=tRMS[25].out;
+	
+	
+	rec.thirdHarm=tRMS[26].out;
 	
 	
 

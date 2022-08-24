@@ -12,6 +12,7 @@
 #include "testBenches.h"
 #include "tim.h"
 #include "functionPrototypes.h"
+#include "haltSignal.h"
 
 
 
@@ -28,20 +29,25 @@ void mainFlow(void){
 		measurements();
 		protection();
 		pllHandling();
-		haltSignal(); 
-		
-		
+		haltSignal();
+			
 		ios();
 		state_chart();
-		flagHandling();
+		
 		faultHandling();
+	
+		busChecks();
+		flagHandling();
+	
+		
+	
 		references();
 		controlRoutines();
 	
-		busChecks();
+		
 		
 		//cau test routines
-		channelOffsetCalculation();
+		//channelOffsetCalculation();
 		//dqTransformSignalling();
 		//switchingTest();
 		//pllTest();
@@ -50,5 +56,5 @@ void mainFlow(void){
 
 		cycleCount=htim2.Instance->CNT-cycleCount;
 		cpuLoading=100.0f*(float)(cycleCount)*0.000119061793070604f; //reverse of tim2 period 
-
+		
 }

@@ -152,7 +152,7 @@ void controlRoutines(void){
 	
 	tCalculations(pll.theta,&scVal);
 	
-	//neg seq thetas
+	//neg seq thetas //cau check for transform block
 	scValn.sinVal=-scVal.sinVal; 
 	scValn.cosVal= scVal.cosVal;
 	
@@ -177,6 +177,8 @@ void controlRoutines(void){
 	FOF(pInf.d,fofBuffer4NegSeq[2],pInf_lp.d,fofCoefficents1e2);
 	FOF(pInf.q,fofBuffer4NegSeq[3],pInf_lp.q,fofCoefficents1e2);
 	
+	//cau check for pi init
+	
 	//*****for positive squence -start
 	//***d-side
 	//dc pi
@@ -185,7 +187,7 @@ void controlRoutines(void){
 	piControllerImplementation(&pidcf);
 	
 	//d-pi
-	pidf.signal.ref=pidcf.signal.controllerOutput;
+	pidf.signal.ref=pidcf.signal.controllerOutput; //cau check for sign
 	pidf.signal.feedback=pIf.d;
 	piControllerImplementation(&pidf);
 

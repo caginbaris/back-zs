@@ -7,7 +7,7 @@
 #include "measurements.h"
 #include "LEDs.h"
 #include "pwmGeneration.h"
-//#include "controlRoutines.h"
+#include "controlRoutines.h"
 #include "references.h"
 //#include "testBenches.h"
 #include "flagHandling.h"
@@ -53,8 +53,12 @@ if(checked.output){
 	flag.ch.switchingStarted=1;
 	
 	pidcf.flag.enable=1;
-	piqf.flag.enable=1;
+	
 	pidf.flag.enable=1;
+	piqf.flag.enable=1;
+	
+	pidnf.flag.enable=1;
+	piqnf.flag.enable=1;
 
 	recorder();	
   	

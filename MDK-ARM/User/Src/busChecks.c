@@ -23,7 +23,8 @@ flag.ch.bus1energised =bus1d.output;
 flag.ch.bus2energised =bus2d.output;
 	
 	
-
+//cau for delawere
+flag.ch.bus1energised=1;	
 
 }
 

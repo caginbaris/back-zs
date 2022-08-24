@@ -36,7 +36,7 @@ typedef enum rmsChannel {   rms_Ia=0,
 }rmsChannel_Type;
 
 extern rmsChannel_Type rmsSeq;
-extern trueRMS_sampled_parameters tRMS[23];
+extern trueRMS_sampled_parameters tRMS[28];
 extern phase_cs_out cs_Aout,cs_Bout,cs_Cout;
 extern sym_out sym;
 extern float dcRipple, dcAverage,Vdcf;
@@ -85,7 +85,10 @@ typedef struct recordedVariables{
 		park rec_pI;
 		
 		phase rec_final;
-		phase rec_cOut;
+		phase rec_pos;
+		phase rec_neg;
+		
+		float thirdHarm;
 		
 	
 }recordedVariables; 

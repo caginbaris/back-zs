@@ -2,8 +2,9 @@
 #include "mlib.h"
 #include "measurements.h"
 #include "testBenches.h"
-
-trueRMS_sampled_parameters tRMS[23]={
+#include "controlRoutines.h"
+#include "references.h"
+trueRMS_sampled_parameters tRMS[28]={
 	
 {0,0,0},
 {0,0,1},
@@ -28,6 +29,12 @@ trueRMS_sampled_parameters tRMS[23]={
 {0,0,20},
 {0,0,21},
 {0,0,22},
+{0,0,23},
+{0,0,24},
+{0,0,25},
+{0,0,26},
+{0,0,27},
+
 
 };
 
@@ -62,13 +69,18 @@ void rmsMeasurement(void){
 		
 		trueRMS_sampled(dcRipple,&tRMS[16],calculationCounter);
 		
-		trueRMS_sampled(pllDiff ,&tRMS[17],calculationCounter);
-		//trueRMS_sampled(final.b,&tRMS[18],calculationCounter);
-		//trueRMS_sampled(final.c,&tRMS[19],calculationCounter);
+		trueRMS_sampled(final.a ,&tRMS[17],calculationCounter);
+		trueRMS_sampled(final.b,&tRMS[18],calculationCounter);
+		trueRMS_sampled(final.c,&tRMS[19],calculationCounter);
 		
-		//trueRMS_sampled(cOut.a,&tRMS[20],calculationCounter);
-		//trueRMS_sampled(cOut.b,&tRMS[21],calculationCounter);
-		//trueRMS_sampled(cOut.c,&tRMS[22],calculationCounter);
+		trueRMS_sampled(posOut.a,&tRMS[20],calculationCounter);
+		trueRMS_sampled(posOut.b,&tRMS[21],calculationCounter);
+		trueRMS_sampled(posOut.c,&tRMS[22],calculationCounter);
+		
+		trueRMS_sampled(negOut.a,&tRMS[23],calculationCounter);
+		trueRMS_sampled(negOut.b,&tRMS[24],calculationCounter);
+		trueRMS_sampled(negOut.c,&tRMS[25],calculationCounter);
 
-
+		trueRMS_sampled(ref.thirdHarmOut,&tRMS[26],calculationCounter);
+		
 }

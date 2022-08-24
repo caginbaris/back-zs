@@ -11,10 +11,12 @@ extern clarke cV,cI;
 extern park  pV,pI;
 extern float theta;
 
-extern phase  cOut,final;
+extern phase  posOut,negOut,final;
 
 extern piInit pidInit,piqInit,pidcInit;
+
 extern piData pidf,piqf,pidcf;
+extern piData pidnf,piqnf;
 
 extern sincosValues scVal;
 

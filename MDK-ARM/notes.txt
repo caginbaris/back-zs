@@ -16,6 +16,8 @@ TODO
 
 #add stop to flags for pc stop
 
+#check for available cau's
+
 
 
 

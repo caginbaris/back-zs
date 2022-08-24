@@ -32,7 +32,7 @@ sum.Vbn+=adcReading[seq_Vbn];
 sum.Vcn+=adcReading[seq_Vcn];
 	
 sum.Ia+=adcReading[seq_Ic];
-sum.Ib+=adcReading[seq_Ia];
+sum.Ib+=adcReading[seq_Ib];
 sum.Ic+=adcReading[seq_Ia];
 
 sum.Vdc+=adcReading[seq_Vdc];

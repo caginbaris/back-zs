@@ -6,7 +6,7 @@
 #include "states.h"
 
 #define averagingPeriod (samplingFrequency/50.0f)
-
+#define averagingFactor (1.0f/averagingPeriod)
 
 #define meanCurrentThreshold 5.0f
 #define dcRippleThreshold 10.0f
@@ -35,13 +35,13 @@ void meanCurrentCheck(void){
 	
 	meanValueCounter++;
 	
-	if(meanValueCounter==samplingFrequency){
+	if(meanValueCounter==averagingPeriod){
 	
 	meanValueCounter=0;
 		
-	meanValueIa=meanValueSumIa*averagingPeriod;	
-	meanValueIb=meanValueSumIb*averagingPeriod;
-	meanValueIc=meanValueSumIc*averagingPeriod;
+	meanValueIa=meanValueSumIa*averagingFactor;	
+	meanValueIb=meanValueSumIb*averagingFactor;
+	meanValueIc=meanValueSumIc*averagingFactor;
 		
 	meanValueSumIa=0;	
 	meanValueSumIb=0;
@@ -77,7 +77,7 @@ void phaseSeqCheck(void){
 	
 	static delay_parameters phaseSeqDelay={0,samplingFrequency*3,0};
 	
-	on_delay(tRMS[rms_V2].out>tRMS[rms_V1].out*0.25f,&phaseSeqDelay);
+	on_delay((tRMS[rms_V2].out>tRMS[rms_V1].out*0.25f) && (currentState==idle || currentState==run) ,&phaseSeqDelay);
 	
 	if(phaseSeqDelay.output){faultWord.bit.phaseSequence=1;}
 	
@@ -89,12 +89,19 @@ void phaseSeqCheck(void){
 
 
 void unbalanceCheck(void){
+	
+	float minV,maxI;
 
 	static delay_parameters unbalanceV={0,samplingFrequency*0.04,0};
 	static delay_parameters unbalanceI={0,samplingFrequency*0.1,0};
 	
-	on_delay(tRMS[rms_V2].out>tRMS[rms_V1].out*0.1f,&unbalanceV);
-	on_delay(tRMS[rms_I2].out>tRMS[rms_I1].out*0.2f,&unbalanceI);
+	minV=min3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out);
+	maxI=max3p(tRMS[rms_Ia].out,tRMS[rms_Ib].out,tRMS[rms_Ic].out);
+	
+	
+	
+	on_delay((tRMS[rms_V2].out>tRMS[rms_V1].out*0.1f) && minV>10.0f,&unbalanceV);
+	on_delay((tRMS[rms_I2].out>tRMS[rms_I1].out*0.2f) && maxI>20.0f,&unbalanceI);
 	
 	if(unbalanceV.output){faultWord.bit.voltageUnbalance=1;}
 	if(unbalanceI.output){faultWord.bit.currentUnbalance=1;}
@@ -102,12 +109,17 @@ void unbalanceCheck(void){
 }
 
 void zeroSequenceCheck(void){
+	
+	float minV,maxI;
 
 	static delay_parameters zeroV={0,samplingFrequency*0.04,0};
 	static delay_parameters zeroI={0,samplingFrequency*0.08,0};
 	
-	on_delay(tRMS[rms_V0].out>tRMS[rms_V1].out*0.1f,&zeroV);
-	on_delay(tRMS[rms_I0].out>tRMS[rms_I1].out*0.2f,&zeroI);
+	minV=min3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out);
+	maxI=max3p(tRMS[rms_Ia].out,tRMS[rms_Ib].out,tRMS[rms_Ic].out);
+	
+	on_delay((tRMS[rms_V0].out>tRMS[rms_V1].out*0.1f)&& minV>10.0f,&zeroV);
+	on_delay((tRMS[rms_I0].out>tRMS[rms_I1].out*0.2f)&& maxI>20.0f,&zeroI);
 	
 	if(zeroV.output){faultWord.bit.voltageZeroSequence=1;}
 	if(zeroI.output){faultWord.bit.currentZeroSequence=1;}

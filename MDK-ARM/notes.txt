@@ -2,10 +2,9 @@ TODO
 
 #variac test is not fully completed due to delawere lines resides for voltage levels
 
-#before commisioning check offset with calibration routine
-
 #dc mod (with low thd current) is not enabled check sim for further implementation 
 
+#check for analog watchdog
 
 
 

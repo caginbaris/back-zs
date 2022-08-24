@@ -59,13 +59,13 @@ void read_ADC(void){
 	
 	
 //cau voltages need to be inverted
-adc.ch.Van=-(adcReading[seq_Van]-2048.0f)*scale4VAC;
-adc.ch.Vbn=-(adcReading[seq_Vbn]-2048.0f)*scale4VAC;
-adc.ch.Vcn=-(adcReading[seq_Vcn]-2048.0f)*scale4VAC;
+adc.ch.Van=-(adcReading[seq_Van]-2045.67554f)*scale4VAC;
+adc.ch.Vbn=-(adcReading[seq_Vbn]-2046.7594f)*scale4VAC;
+adc.ch.Vcn=-(adcReading[seq_Vcn]-2045.70972f)*scale4VAC;
 	
-adc.ch.Ic=(adcReading[seq_Ia]-2048.0f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
-adc.ch.Ib=(adcReading[seq_Ib]-2048.0f)*scale4IPM*scale4Current;
-adc.ch.Ia=-(adcReading[seq_Ic]-2048.0f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
+adc.ch.Ic=(adcReading[seq_Ia]-2041.2135f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
+adc.ch.Ib=(adcReading[seq_Ib]-2057.77124f)*scale4IPM*scale4Current;
+adc.ch.Ia=-(adcReading[seq_Ic]-2067.16162f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
 
 adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM*scale4Vdc; // 10mv/v	
 adc.ch.Temp=adcReading[seq_Temp]*scale4IPM;

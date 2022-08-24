@@ -17,7 +17,7 @@ void switchingTest(void){
 	
 	if(swHTransition.output){
 	
-	modulatorEnable();
+	//modulatorEnable();
 	switchingEnable=0;
 
 	}

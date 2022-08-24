@@ -14,6 +14,7 @@
 #include "functionPrototypes.h"
 
 
+
 uint32_t mainFlowCounter=0,secCounter=0;
 delay_parameters mainFlowSecondCounter={0,samplingFrequency,0};
 
@@ -27,8 +28,8 @@ void mainFlow(void){
 		measurements();
 		protection();
 		pllHandling();
+		haltSignal(); 
 		
-		pllTest();
 		
 		ios();
 		state_chart();
@@ -43,7 +44,7 @@ void mainFlow(void){
 		channelOffsetCalculation();
 		//dqTransformSignalling();
 		//switchingTest();
-		
+		//pllTest();
 	
 		if(++mainFlowCounter==samplingFrequency){secCounter++;mainFlowCounter=0;}
 

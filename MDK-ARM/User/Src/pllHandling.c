@@ -38,7 +38,9 @@ void pllHandling(void){
 		
 	}
 	
-	on_delay(pll.q<0.5f,&syncCheck);
+	
+	//cau check for pll parameters for fault
+	on_delay(pll.q>0.5f,&syncCheck);
 	
 	if(syncCheck.output){faultWord.bit.synchronization=1;}
 		

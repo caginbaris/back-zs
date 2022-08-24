@@ -52,7 +52,7 @@ void faultHandling(void){
 	//grid freq in freq. measurement
 	// halt signal in it's source file
 	
-	faultWord.bit.inverterFanSupplyFault=panelInput.ch.inverterFanSupplyFault;
+	//cau faultWord.bit.inverterFanSupplyFault=panelInput.ch.inverterFanSupplyFault;
 	faultWord.bit.reactorThermoFault=panelInput.ch.reactorThermoFault;
 	faultWord.bit.semiconductorFault=panelInput.ch.semiconductorFault;
 		

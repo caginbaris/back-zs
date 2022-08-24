@@ -76,10 +76,10 @@ if(faultWord.all || stateFault.all){currentState=fault;}
 
 if(currentState!=run){
 	
-	
+	recorder();
 	modulatorDisable();
 	
-	recorder();
+	
 	
 	pidcf.flag.enable=0;
 	piqf.flag.enable=0;

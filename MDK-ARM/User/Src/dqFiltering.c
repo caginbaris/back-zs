@@ -50,3 +50,4 @@ b->filterBuffer[1]=sos_implementation(in.q,b->filterBuffer[1],sosCoefficentsNotc
 out->q=fof_implementation(b->filterBuffer[1],&(b->fofBuffer[1]),out->q,fofCoefficents150hz); 
 
 }
+

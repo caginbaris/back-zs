@@ -50,9 +50,9 @@ void recorder(){
 	rec.rec_pos.c=tRMS[22].out;
 	
 	
-	rec.rec_pos.a=tRMS[23].out;
-	rec.rec_pos.b=tRMS[24].out;
-	rec.rec_pos.c=tRMS[25].out;
+	rec.rec_neg.a=tRMS[23].out;
+	rec.rec_neg.b=tRMS[24].out;
+	rec.rec_neg.c=tRMS[25].out;
 	
 	
 	rec.thirdHarm=tRMS[26].out;

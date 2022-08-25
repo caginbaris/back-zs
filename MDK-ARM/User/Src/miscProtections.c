@@ -92,7 +92,7 @@ void unbalanceCheck(void){
 	
 	float maxV,maxI;
 
-	static delay_parameters unbalanceV={0,samplingFrequency*0.04,0};
+	static delay_parameters unbalanceV={0,samplingFrequency*0.1,0};
 	static delay_parameters unbalanceI={0,samplingFrequency*0.1,0};
 	
 	maxV=max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out);

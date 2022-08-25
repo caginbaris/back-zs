@@ -51,7 +51,7 @@ float fofBuffer4NegSeq[4]={0};
 
 void initControlRoutines(void){
 	
-
+//vau check for pi parameters
 	
 //**************************************
 //**************************************
@@ -61,14 +61,14 @@ pidInit.parameter.Kp=0.04f;
 pidInit.parameter.Ki=1.35f;
 pidInit.parameter.atRest=0.0f;	
 	
-pidInit.limit.refLimitUp=20.0f;
-pidInit.limit.refLimitDown=-20.0f;
+pidInit.limit.refLimitUp=30.0f;
+pidInit.limit.refLimitDown=-30.0f;
 		
 
 pidInit.limit.rateLimit=1000.0f;
 	
-pidInit.limit.outputLimitUp=20.0f;	
-pidInit.limit.outputLimitDown=-20.0f;
+pidInit.limit.outputLimitUp=30.0f;	
+pidInit.limit.outputLimitDown=-30.0f;
 
 pidInit.flag.refLimitEnable=active;
 pidInit.flag.outputLimitEnable=active;
@@ -81,9 +81,9 @@ piControllerInitialization(&pidnf,pidInit);// limits can be different
 //**************************************
 //**************************************
 	
-pidInit.parameter.ts=pi_ts;
-pidInit.parameter.Kp=0.04f;	
-pidInit.parameter.Ki=1.35f;
+piqInit.parameter.ts=pi_ts;
+piqInit.parameter.Kp=0.04f;	
+piqInit.parameter.Ki=1.35f;
 piqInit.parameter.atRest=0.0f;
 
 piqInit.limit.refLimitUp=20.0f;
@@ -115,10 +115,10 @@ pidcInit.parameter.atRest=0.0;
 pidcInit.limit.refLimitUp=100.0f;
 pidcInit.limit.refLimitDown=20.0f;
 
-pidcInit.limit.rateLimit=10.0f;//cau for test purpose
+pidcInit.limit.rateLimit=1000.0f;//cau for test purpose
 	
-pidcInit.limit.outputLimitUp=20.0f;	
-pidcInit.limit.outputLimitDown=-20.0f;
+pidcInit.limit.outputLimitUp=30.0f;	
+pidcInit.limit.outputLimitDown=-30.0f;
 
 pidcInit.flag.refLimitEnable=active;
 pidcInit.flag.outputLimitEnable=active;
@@ -181,7 +181,7 @@ void controlRoutines(void){
 	//*****for positive squence -start
 	//***d-side
 	//dc pi
-	pidcf.signal.ref=ref.Vdc_opt;
+	pidcf.signal.ref=ref.Vdc;
 	pidcf.signal.feedback=Vdcf;
 	piControllerImplementation(&pidcf);
 	

@@ -46,7 +46,7 @@ void mainFlow(void){
 	
 		
 		
-		//test routines
+		//test  routines
 		//channelOffsetCalculation();
 		//dqTransformSignalling();
 		//switchingTest();

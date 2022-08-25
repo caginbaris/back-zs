@@ -15,6 +15,13 @@ reference ref={0};
 static float ref_oz=0;
 
 
+void initReferences(void){
+
+ref.Vdc=30;
+
+}
+
+
 void references(void){
 	
 	

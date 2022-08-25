@@ -18,7 +18,7 @@ underLimit_outputParameters underVoltageDC, underVoltageAC;
 void voltageProtectionsInit(void){
 
 
-overVoltageDC_Config.level=300;
+overVoltageDC_Config.level=100;
 overVoltageDC_Config.delay=0.01;
 overVoltageDC_Config.dropout_ratio=0.99;
 overVoltageDC_Config.dropout_time=0.01;
@@ -29,7 +29,7 @@ overVoltageDC_Config.fs=samplingFrequency;
 overLimitInitialization(overVoltageDC_Config,&overVoltageDC);
 
 	
-overVoltageAC_Config.level=115;
+overVoltageAC_Config.level=50;
 overVoltageAC_Config.delay=0.01;
 overVoltageAC_Config.dropout_ratio=0.99;
 overVoltageAC_Config.dropout_time=0.01;

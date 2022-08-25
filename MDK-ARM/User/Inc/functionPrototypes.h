@@ -8,6 +8,9 @@ void init_ADC(void);
 void initProtections(void);
 void initControlRoutines(void);
 
+
+void initReferences(void);
+
 void LEDs(void);
 void initialization(void);
 

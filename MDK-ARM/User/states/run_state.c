@@ -49,7 +49,8 @@ if(checked.output){
 	
 	LED.out._3=1; 
 	
-	//modulatorEnable();
+	modulatorEnable();
+	
 	flag.ch.switchingStarted=1;
 	
 	pidcf.flag.enable=1;
@@ -68,9 +69,9 @@ if(checked.output){
 	
 
 
-ref.Vdc=ref.Vdc_opt;
+//ref.Vdc=ref.Vdc_opt;
 
-//modulator();
+modulator();
 
 
 if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}

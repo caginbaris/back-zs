@@ -1,16 +1,15 @@
 TODO
 
-#variac test is not fully completed due to delawere lines resides for voltage levels
 
-#dc mod (with low thd current) is not enabled check sim for further implementation 
+#dc mod (with low thd current) is not enabled check sim for further implementation (TBD)
 
-#check for inits (control and others)
+#check for inits (control and others) !!!
+
+#check for pi parameters and run state accumulation!!!
 
 #check for analog watchdog
 
 #ipm phase order is reversed, should be changed on panel !!!
-
-#minor off delay to reset should be added
 
 #check vdc opt level with pscad
 

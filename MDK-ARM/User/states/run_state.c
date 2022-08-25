@@ -66,14 +66,14 @@ if(checked.output){
 }
 	
 	
-//cau dc ramp is removed due 3rd injection
+
 
 ref.Vdc=ref.Vdc_opt;
 
 //modulator();
 
 
-if(panelInput.ch.stop){currentState=stopped;}
+if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
 if(faultWord.all || stateFault.all){currentState=fault;}
 
 
@@ -87,7 +87,10 @@ if(currentState!=run){
 	
 	pidcf.flag.enable=0;
 	piqf.flag.enable=0;
-	pidf.flag.enable=0;	
+	pidf.flag.enable=0;
+
+	pidnf.flag.enable=0;
+	piqnf.flag.enable=0;
 	
 	previousState=run;
 	

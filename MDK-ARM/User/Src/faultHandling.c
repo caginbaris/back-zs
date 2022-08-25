@@ -15,8 +15,6 @@ void faultHandling(void){
 	
 	faultWord.all=0;
 	stateFault.all=0;
-
-	//cau break latched faults
 	
 	}
 	
@@ -54,7 +52,7 @@ void faultHandling(void){
 	//grid freq in freq. measurement
 	// halt signal in it's source file
 	
-	//cau faultWord.bit.inverterFanSupplyFault=panelInput.ch.inverterFanSupplyFault;
+	faultWord.bit.inverterFanSupplyFault=panelInput.ch.inverterFanSupplyFault;
 	faultWord.bit.reactorThermoFault=panelInput.ch.reactorThermoFault;
 	faultWord.bit.semiconductorFault=panelInput.ch.semiconductorFault;
 		

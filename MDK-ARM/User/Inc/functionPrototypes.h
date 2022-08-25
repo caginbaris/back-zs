@@ -6,6 +6,7 @@ void busChecks(void);
 void init_ADC(void);
 //protection
 void initProtections(void);
+void initControlRoutines(void);
 
 void LEDs(void);
 void initialization(void);

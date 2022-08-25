@@ -5,6 +5,8 @@ void initialization(void){
 	
 init_ADC();
 initProtections();
+initControlRoutines(); //cau check for correct initialization	
+
 // add pi inits
 
 }

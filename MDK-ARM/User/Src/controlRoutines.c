@@ -10,7 +10,7 @@
 
 #define fs 10000.0f
 #define pi_ts 1.0f/(fs)
-#define wL (3.14159f*0.0008f)
+#define wL (2*3.14159f*50.f*0.0008f)
 
 phase V,I;
 
@@ -57,15 +57,15 @@ void initControlRoutines(void){
 //**************************************
 	
 pidInit.parameter.ts=pi_ts;
-pidInit.parameter.Kp=0.2f;	
-pidInit.parameter.Ki=0.000108f/pi_ts;
+pidInit.parameter.Kp=0.04f;	
+pidInit.parameter.Ki=1.35f;
 pidInit.parameter.atRest=0.0f;	
 	
 pidInit.limit.refLimitUp=20.0f;
 pidInit.limit.refLimitDown=-20.0f;
 		
 
-pidInit.limit.rateLimit=2000.0f;
+pidInit.limit.rateLimit=1000.0f;
 	
 pidInit.limit.outputLimitUp=20.0f;	
 pidInit.limit.outputLimitDown=-20.0f;
@@ -73,7 +73,7 @@ pidInit.limit.outputLimitDown=-20.0f;
 pidInit.flag.refLimitEnable=active;
 pidInit.flag.outputLimitEnable=active;
 pidInit.flag.feedBackReversal=passive;
-pidInit.flag.outputReversal=active;
+pidInit.flag.outputReversal=passive;
 
 piControllerInitialization(&pidf,pidInit);
 piControllerInitialization(&pidnf,pidInit);// limits can be different
@@ -81,15 +81,15 @@ piControllerInitialization(&pidnf,pidInit);// limits can be different
 //**************************************
 //**************************************
 	
-piqInit.parameter.ts=pi_ts;
-piqInit.parameter.Kp=0.2f;	
-piqInit.parameter.Ki=0.000108f/pi_ts;
+pidInit.parameter.ts=pi_ts;
+pidInit.parameter.Kp=0.04f;	
+pidInit.parameter.Ki=1.35f;
 piqInit.parameter.atRest=0.0f;
 
 piqInit.limit.refLimitUp=20.0f;
 piqInit.limit.refLimitDown=-20.0f;
 	
-piqInit.limit.rateLimit=1.732f;
+piqInit.limit.rateLimit=1.732f;//cau for test purposes
 
 piqInit.limit.outputLimitUp=20.0f;	
 piqInit.limit.outputLimitDown=-20.0f;
@@ -97,10 +97,10 @@ piqInit.limit.outputLimitDown=-20.0f;
 piqInit.flag.refLimitEnable=active;
 piqInit.flag.outputLimitEnable=active;
 piqInit.flag.feedBackReversal=passive;
-piqInit.flag.outputReversal=active;
+piqInit.flag.outputReversal=passive;
 
 piControllerInitialization(&piqf,piqInit);
-piControllerInitialization(&piqnf,pidInit); // limits can be different
+piControllerInitialization(&piqnf,piqInit); // limits can be different
 
 
 
@@ -108,14 +108,14 @@ piControllerInitialization(&piqnf,pidInit); // limits can be different
 //**************************************
 	
 pidcInit.parameter.ts=pi_ts;
-pidcInit.parameter.Kp=0.1f;	
-pidcInit.parameter.Ki=0.005f/pi_ts;;
+pidcInit.parameter.Kp=0.5f;	
+pidcInit.parameter.Ki=1.0f;;
 pidcInit.parameter.atRest=0.0;
 
-pidcInit.limit.refLimitUp=200.0f;
-pidcInit.limit.refLimitDown=30.0f;
+pidcInit.limit.refLimitUp=100.0f;
+pidcInit.limit.refLimitDown=20.0f;
 
-pidcInit.limit.rateLimit=10.0f;
+pidcInit.limit.rateLimit=10.0f;//cau for test purpose
 	
 pidcInit.limit.outputLimitUp=20.0f;	
 pidcInit.limit.outputLimitDown=-20.0f;
@@ -152,7 +152,7 @@ void controlRoutines(void){
 	
 	tCalculations(pll.theta,&scVal);
 	
-	//neg seq thetas //cau check for transform block
+	//neg seq thetas 
 	scValn.sinVal=-scVal.sinVal; 
 	scValn.cosVal= scVal.cosVal;
 	
@@ -177,7 +177,6 @@ void controlRoutines(void){
 	FOF(pInf.d,fofBuffer4NegSeq[2],pInf_lp.d,fofCoefficents1e2);
 	FOF(pInf.q,fofBuffer4NegSeq[3],pInf_lp.q,fofCoefficents1e2);
 	
-	//cau check for pi init
 	
 	//*****for positive squence -start
 	//***d-side
@@ -187,7 +186,7 @@ void controlRoutines(void){
 	piControllerImplementation(&pidcf);
 	
 	//d-pi
-	pidf.signal.ref=pidcf.signal.controllerOutput; //cau check for sign
+	pidf.signal.ref=-pidcf.signal.controllerOutput; 
 	pidf.signal.feedback=pIf.d;
 	piControllerImplementation(&pidf);
 
@@ -205,7 +204,7 @@ void controlRoutines(void){
 	//***d-side
 	//d-pi
 	pidnf.signal.ref=0;
-	pidnf.signal.feedback=pInf_lp.d;//cau
+	pidnf.signal.feedback=pInf_lp.d;
 	piControllerImplementation(&pidnf);
 
 	//***q-side

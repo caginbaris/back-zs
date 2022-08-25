@@ -4,6 +4,7 @@
 #include "plib.h"
 #include "measurements.h"
 #include "LEDs.h"
+#include "flagHandling.h"
 
 static delay_parameters idleToggle={0,samplingRate*0.5,0};
 
@@ -51,7 +52,7 @@ if(waiting4dcLevel.output==1){
 }	
 	
 if(faultWord.all || stateFault.all){currentState=fault ;}
-if(panelInput.ch.stop){currentState=stopped;}
+if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
 
 if(currentState!=idle){
 	

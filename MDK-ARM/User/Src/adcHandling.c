@@ -57,8 +57,7 @@ void init_ADC(void){
 
 void read_ADC(void){
 	
-	
-//cau voltages need to be inverted
+
 adc.ch.Van=-(adcReading[seq_Van]-2045.67554f)*scale4VAC;
 adc.ch.Vbn=-(adcReading[seq_Vbn]-2046.7594f)*scale4VAC;
 adc.ch.Vcn=-(adcReading[seq_Vcn]-2045.70972f)*scale4VAC;

@@ -3,6 +3,7 @@
 #include "ios.h"
 #include "faultHandling.h"
 #include "LEDs.h"
+#include "flagHandling.h"
 
 static delay_parameters timeout={0,samplingRate*5,0};
 
@@ -32,7 +33,8 @@ on_delay(1,&timeout);
 	
 if(timeout.output){
 	
-currentState=ready;	
+currentState=ready;
+flag.ch.stop=0;	
 	
 if(faultWord.all){currentState=fault;}
 

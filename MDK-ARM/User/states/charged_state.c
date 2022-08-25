@@ -6,8 +6,8 @@
 #include "LEDs.h"
 #include "flagHandling.h"
 
-//cau call ios before states
-//cau call fault after states
+
+
 
 static delay_parameters chargedToggle={0,samplingRate*1,0};
 
@@ -70,10 +70,9 @@ if(waiting4dcLevel.output==1){
 	panelOutput.ch.closePrechargeCB1=0;			
 	panelOutput.ch.closePrechargeCB2=0;	
 
-	//cau wait for settling of positions 
+	//wait for settling of positions 
+		
 	on_delay(1,&cbWait);
-
-	//cau checking for contactor positions might be better
 
 	if(cbWait.output==1){
 	
@@ -135,7 +134,7 @@ if(cbCheckPosition.output==1 && (panelInput.ch.cb1No==0 && panelInput.ch.cb2No==
 	
 
 if(faultWord.all || stateFault.all){currentState=fault;}
-if(panelInput.ch.stop){currentState=stopped;}
+if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
 
 if(currentState!=charged){
 	

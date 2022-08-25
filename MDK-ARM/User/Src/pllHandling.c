@@ -6,10 +6,11 @@
 #include "adcHandling.h"
 #include "faultHandling.h"
 #include "testBenches.h"
+#include "states.h"
 
 pll_parameters pll={0};
 
-static delay_parameters syncCheck={0,2000,0};
+static delay_parameters syncCheck={0,samplingFrequency*0.1,0};
 
 
 /*
@@ -34,12 +35,16 @@ void pllHandling(void){
 	if(tRMS[rms_Van].out>5.0f){ 
 		
 	PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
-	//PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
 		
-	}//cau fault can be generated
+	}else{
+		
+		
+	if(currentState==run)	{
+		
+	faultWord.bit.referenceLoss=1;	}
 	
+	}
 	
-	//cau check for pll parameters for fault
 	on_delay(pll.q>0.1f,&syncCheck);
 	
 	if(syncCheck.output){faultWord.bit.synchronization=1;}

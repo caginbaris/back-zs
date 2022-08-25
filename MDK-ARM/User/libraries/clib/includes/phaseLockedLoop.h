@@ -12,7 +12,7 @@
 #define p_Ki 1000.0f //100
 #define p_fs 10000.0f
 #define p_ts 1.0f/(p_fs)
-#define p_comp  1.0f*_2pi/(p_fs*0.02f) //cau
+#define p_comp  1.0f*_2pi/(p_fs*0.02f) 
 #define p_fc_num 0.059190703818405f
 #define p_fc_den -0.881618592363189f
 

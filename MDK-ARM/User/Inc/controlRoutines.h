@@ -25,7 +25,7 @@ extern park ipV;
 
 
 
-
+void initControlRoutines(void);
 void controlRoutines(void);
 
 //void dqFiltering(park in, park* out,float* interValue,sos_parameters* sosP, float* fofP);

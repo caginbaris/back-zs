@@ -46,6 +46,7 @@ typedef union faultInputs{
 		uint64_t voltageProtectionInit:1;
 
 		uint64_t synchronization:1;
+		uint64_t referenceLoss:1;
 		uint64_t gridFrequency:1;
 
 		uint64_t haltSignal:1; //29

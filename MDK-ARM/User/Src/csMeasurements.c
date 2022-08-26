@@ -1,5 +1,6 @@
 #include "mlib.h"
 #include "adcHandling.h"
+#include "controlRoutines.h"
 
 static phase_cs_in cs_Ain, cs_Bin, cs_Cin;
 phase_cs_out cs_Aout={0},cs_Bout={0},cs_Cout={0};
@@ -10,6 +11,8 @@ sym_out sym={0};
 
 //10khz k=0.5 SGI
 
+phase Pst={0},Qst={0},Ist={0};
+float Qstatcom=0;
 
 static float sosCoefficentsD[]={
 	
@@ -61,6 +64,22 @@ void csMeasurement(void){
 	
 
 	sym_comp(cs_Ain,cs_Bin,cs_Cin,&sym);
+	
+	Pst.a=cs_Aout.P;
+	Pst.b=cs_Bout.P;
+	Pst.c=cs_Cout.P;
+	
+	Qst.a=cs_Aout.Q;
+	Qst.b=cs_Bout.Q;
+	Qst.c=cs_Cout.Q;
+	
+	
+	Ist.a=cs_Aout.I;
+	Ist.b=cs_Bout.I;
+	Ist.c=cs_Cout.I;
+	
+	Qstatcom=Qst.a+Qst.b+Qst.c;
+	
 	
 	
 

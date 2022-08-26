@@ -1,5 +1,6 @@
 #include "measurements.h"
 #include "adcHandling.h"
+#include "controlRoutines.h"
 
 recordedVariables rec={0};
 
@@ -36,6 +37,9 @@ void recorder(){
 	rec.rec_pid=pidf;
 	rec.rec_piq=piqf;
 	rec.rec_pidc=pidcf;
+	
+	rec.rec_pidn=pidnf;
+	rec.rec_piqn=piqnf;
 	
 	rec.rec_pI=pI;
 	rec.rec_pV=pV;

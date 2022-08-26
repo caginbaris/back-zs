@@ -57,18 +57,18 @@ void initControlRoutines(void){
 //**************************************
 	
 pidInit.parameter.ts=pi_ts;
-pidInit.parameter.Kp=0.04f;	
-pidInit.parameter.Ki=1.35f;
+pidInit.parameter.Kp=0.16f;	
+pidInit.parameter.Ki=5.4f;
 pidInit.parameter.atRest=0.0f;	
 	
-pidInit.limit.refLimitUp=30.0f;
-pidInit.limit.refLimitDown=-30.0f;
+pidInit.limit.refLimitUp=40.0f;
+pidInit.limit.refLimitDown=-40.0f;
 		
 
 pidInit.limit.rateLimit=1000.0f;
 	
-pidInit.limit.outputLimitUp=30.0f;	
-pidInit.limit.outputLimitDown=-30.0f;
+pidInit.limit.outputLimitUp=100.0f;	
+pidInit.limit.outputLimitDown=-100.0f;
 
 pidInit.flag.refLimitEnable=active;
 pidInit.flag.outputLimitEnable=active;
@@ -82,17 +82,17 @@ piControllerInitialization(&pidnf,pidInit);// limits can be different
 //**************************************
 	
 piqInit.parameter.ts=pi_ts;
-piqInit.parameter.Kp=0.04f;	
-piqInit.parameter.Ki=1.35f;
+piqInit.parameter.Kp=0.16f;	
+piqInit.parameter.Ki=5.4f;
 piqInit.parameter.atRest=0.0f;
 
-piqInit.limit.refLimitUp=20.0f;
-piqInit.limit.refLimitDown=-20.0f;
+piqInit.limit.refLimitUp=40.0f;
+piqInit.limit.refLimitDown=-40.0f;
 	
 piqInit.limit.rateLimit=1.732f;//cau for test purposes
 
-piqInit.limit.outputLimitUp=20.0f;	
-piqInit.limit.outputLimitDown=-20.0f;
+piqInit.limit.outputLimitUp=100.0f;	
+piqInit.limit.outputLimitDown=-100.0f;
 
 piqInit.flag.refLimitEnable=active;
 piqInit.flag.outputLimitEnable=active;
@@ -115,10 +115,10 @@ pidcInit.parameter.atRest=0.0;
 pidcInit.limit.refLimitUp=100.0f;
 pidcInit.limit.refLimitDown=20.0f;
 
-pidcInit.limit.rateLimit=1000.0f;//cau for test purpose
+pidcInit.limit.rateLimit=1000.0f;
 	
-pidcInit.limit.outputLimitUp=30.0f;	
-pidcInit.limit.outputLimitDown=-30.0f;
+pidcInit.limit.outputLimitUp=100.0f;	
+pidcInit.limit.outputLimitDown=-100.0f;
 
 pidcInit.flag.refLimitEnable=active;
 pidcInit.flag.outputLimitEnable=active;
@@ -231,7 +231,7 @@ void controlRoutines(void){
 	
 	ipVn.d=pidnf.signal.controllerOutput + dec.Nd + pVnf_lp.d;
 	ipVn.q=piqnf.signal.controllerOutput + dec.Nq + pVnf_lp.q;
-
+	
 	inverseClarkeParkTransform(ipV,&icV,&posOut,scVal);
 	inverseClarkeParkTransform(ipVn,&icVn,&negOut,scValn); //rotating with negative sign
 	

@@ -45,7 +45,7 @@ void pllHandling(void){
 	
 	}
 	
-	on_delay(pll.q>0.1f,&syncCheck);
+	on_delay(pll.q>0.1f && currentState==run,&syncCheck);
 	
 	if(syncCheck.output){faultWord.bit.synchronization=1;}
 		

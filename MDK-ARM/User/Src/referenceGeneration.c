@@ -27,7 +27,7 @@ void references(void){
 	
 	ref.I=ref.Iline*1.732f;
 	
-	FOF((tRMS[rms_Van].out+ref.Iline*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1e0);
+	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1e0);
 	
 	// third harmonic generation
 	ref.thirdHarmMag=sqrtf(ipV.d*ipV.d + ipV.q*ipV.q)*0.16667f;

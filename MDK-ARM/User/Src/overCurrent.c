@@ -48,7 +48,7 @@ overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L2);
 overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L3);		
 
 
-overCurrentPeak_Config.level=20*1.414;
+overCurrentPeak_Config.level=30*1.414;
 overCurrentPeak_Config.delay=0.002;
 overCurrentPeak_Config.dropout_ratio=0.99;
 overCurrentPeak_Config.dropout_time=0.0005;

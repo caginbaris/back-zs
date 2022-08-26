@@ -79,6 +79,10 @@ typedef struct recordedVariables{
 		
 		piData rec_pid;
 		piData rec_piq;
+		
+		piData rec_pidn;
+		piData rec_piqn;
+		
 		piData rec_pidc;
 		
 		park rec_pV;

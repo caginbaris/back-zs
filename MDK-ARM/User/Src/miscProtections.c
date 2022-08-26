@@ -100,8 +100,8 @@ void unbalanceCheck(void){
 	
 	
 	
-	on_delay((tRMS[rms_V2].out>tRMS[rms_V1].out*0.1f) && maxV>10.0f,&unbalanceV);
-	on_delay((tRMS[rms_I2].out>tRMS[rms_I1].out*0.2f) && maxI>20.0f,&unbalanceI);
+	on_delay((tRMS[rms_V2].out>tRMS[rms_V1].out*0.1f) && maxV>10.0f && (currentState==idle || currentState==run),&unbalanceV);
+	on_delay((tRMS[rms_I2].out>tRMS[rms_I1].out*0.2f) && maxI>20.0f && (currentState==idle || currentState==run),&unbalanceI);
 	
 	if(unbalanceV.output){faultWord.bit.voltageUnbalance=1;}
 	if(unbalanceI.output){faultWord.bit.currentUnbalance=1;}
@@ -118,8 +118,8 @@ void zeroSequenceCheck(void){
 	maxV=max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out);
 	maxI=max3p(tRMS[rms_Ia].out,tRMS[rms_Ib].out,tRMS[rms_Ic].out);
 	
-	on_delay((tRMS[rms_V0].out>tRMS[rms_V1].out*0.1f)&& maxV>10.0f,&zeroV);
-	on_delay((tRMS[rms_I0].out>tRMS[rms_I1].out*0.2f)&& maxI>20.0f,&zeroI);
+	on_delay((tRMS[rms_V0].out>tRMS[rms_V1].out*0.1f)&& maxV>10.0f && (currentState==idle || currentState==run),&zeroV);
+	on_delay((tRMS[rms_I0].out>tRMS[rms_I1].out*0.2f)&& maxI>20.0f && (currentState==idle || currentState==run),&zeroI);
 	
 	if(zeroV.output){faultWord.bit.voltageZeroSequence=1;}
 	if(zeroI.output){faultWord.bit.currentZeroSequence=1;}

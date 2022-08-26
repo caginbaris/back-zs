@@ -69,7 +69,7 @@ if(checked.output){
 	
 
 
-//ref.Vdc=ref.Vdc_opt;
+ref.Vdc=ref.Vdc_opt;
 
 modulator();
 

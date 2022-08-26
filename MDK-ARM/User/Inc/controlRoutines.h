@@ -9,6 +9,7 @@ extern pll_parameters pll;
 extern phase V,I;
 extern clarke cV,cI;
 extern park  pV,pI;
+extern park  pVf,pIf;
 extern float theta;
 
 extern phase  posOut,negOut,final;

@@ -226,19 +226,19 @@ void controlRoutines(void){
 	
 	//sum of references
 	
-	ipV.d=pidf.signal.controllerOutput + dec.Pd + pVf.d;
-	ipV.q=piqf.signal.controllerOutput + dec.Pq + pVf.q;
+	ipV.d=pidf.signal.controllerOutput + dec.Pd ;
+	ipV.q=piqf.signal.controllerOutput + dec.Pq;
 	
-	ipVn.d=pidnf.signal.controllerOutput + dec.Nd + pVnf_lp.d;
-	ipVn.q=piqnf.signal.controllerOutput + dec.Nq + pVnf_lp.q;
+	ipVn.d=pidnf.signal.controllerOutput + dec.Nd ;
+	ipVn.q=piqnf.signal.controllerOutput + dec.Nq ;
 	
 	inverseClarkeParkTransform(ipV,&icV,&posOut,scVal);
 	inverseClarkeParkTransform(ipVn,&icVn,&negOut,scValn); //rotating with negative sign
 	
 	
-	final.a	=	posOut.a	+	negOut.a  +	ref.thirdHarmOut;
-	final.b	=	posOut.b	+	negOut.b	+	ref.thirdHarmOut;
-	final.c	=	posOut.c	+	negOut.c  + ref.thirdHarmOut;
+	final.a	=	posOut.a	+	negOut.a  +	ref.thirdHarmOut +V.a;
+	final.b	=	posOut.b	+	negOut.b	+	ref.thirdHarmOut +V.b;
+	final.c	=	posOut.c	+	negOut.c  + ref.thirdHarmOut +V.c;
 	
 
 	

@@ -57,7 +57,7 @@ void initControlRoutines(void){
 //**************************************
 	
 pidInit.parameter.ts=pi_ts;
-pidInit.parameter.Kp=0.16f;	
+pidInit.parameter.Kp=0.36f;	
 pidInit.parameter.Ki=5.4f;
 pidInit.parameter.atRest=0.0f;	
 	
@@ -82,12 +82,12 @@ piControllerInitialization(&pidnf,pidInit);// limits can be different
 //**************************************
 	
 piqInit.parameter.ts=pi_ts;
-piqInit.parameter.Kp=0.16f;	
+piqInit.parameter.Kp=0.36f;	
 piqInit.parameter.Ki=5.4f;
 piqInit.parameter.atRest=0.0f;
 
-piqInit.limit.refLimitUp=40.0f;
-piqInit.limit.refLimitDown=-40.0f;
+piqInit.limit.refLimitUp=80.0f;
+piqInit.limit.refLimitDown=-80.0f;
 	
 piqInit.limit.rateLimit=1.732f;//cau for test purposes
 

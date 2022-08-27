@@ -18,10 +18,10 @@ underLimit_outputParameters underVoltageDC, underVoltageAC;
 void voltageProtectionsInit(void){
 
 
-overVoltageDC_Config.level=150;
+overVoltageDC_Config.level=650;
 overVoltageDC_Config.delay=0.01;
 overVoltageDC_Config.dropout_ratio=0.99;
-overVoltageDC_Config.dropout_time=0.01;
+overVoltageDC_Config.dropout_time=0.001;
 overVoltageDC_Config.comm_pick_on_delay=0.01;	
 overVoltageDC_Config.comm_pick_off_delay=10;
 overVoltageDC_Config.fs=samplingFrequency;
@@ -29,7 +29,7 @@ overVoltageDC_Config.fs=samplingFrequency;
 overLimitInitialization(overVoltageDC_Config,&overVoltageDC);
 
 	
-overVoltageAC_Config.level=100;
+overVoltageAC_Config.level=245;
 overVoltageAC_Config.delay=0.01;
 overVoltageAC_Config.dropout_ratio=0.99;
 overVoltageAC_Config.dropout_time=0.01;
@@ -40,7 +40,7 @@ overVoltageAC_Config.fs=samplingFrequency;
 overLimitInitialization(overVoltageAC_Config,&overVoltageAC);	
 
 
-underVoltageDC_Config.level=20;
+underVoltageDC_Config.level=400;
 underVoltageDC_Config.delay=0.04;
 underVoltageDC_Config.dropout_ratio=1.01;
 underVoltageDC_Config.dropout_time=0.01;
@@ -51,7 +51,7 @@ underVoltageDC_Config.fs=samplingFrequency;
 underLimitInitialization(underVoltageDC_Config,&underVoltageDC);
 
 	
-underVoltageAC_Config.level=10;
+underVoltageAC_Config.level=210;
 underVoltageAC_Config.delay=0.04;
 underVoltageAC_Config.dropout_ratio=1.01;
 underVoltageAC_Config.dropout_time=0.01;

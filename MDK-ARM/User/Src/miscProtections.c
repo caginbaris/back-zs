@@ -8,7 +8,7 @@
 #define averagingPeriod (samplingFrequency/50.0f)
 #define averagingFactor (1.0f/averagingPeriod)
 
-#define meanCurrentThreshold 5.0f
+#define meanCurrentThreshold 10.0f
 #define dcRippleThreshold 10.0f
 
 #define temp1threshold 85.0f
@@ -20,6 +20,9 @@ float meanValueIa=0;
 float meanValueIb=0;
 float meanValueIc=0;
 
+static delay_parameters mIaDelay={0,samplingFrequency*0.1,0};
+static delay_parameters mIbDelay={0,samplingFrequency*0.1,0};
+static delay_parameters mIcDelay={0,samplingFrequency*0.1,0};
 
 void meanCurrentCheck(void){
 	
@@ -50,10 +53,14 @@ void meanCurrentCheck(void){
 		
 	}
 	
+	on_delay(meanValueIa>meanCurrentThreshold,&mIaDelay);
+	on_delay(meanValueIb>meanCurrentThreshold,&mIbDelay);
+	on_delay(meanValueIc>meanCurrentThreshold,&mIcDelay);
 	
-	if(meanValueIa>meanCurrentThreshold){faultWord.bit.meanIa=1;}
-	if(meanValueIb>meanCurrentThreshold){faultWord.bit.meanIb=1;}
-	if(meanValueIc>meanCurrentThreshold){faultWord.bit.meanIc=1;}
+	
+	if(mIaDelay.output){faultWord.bit.meanIa=1;}
+	if(mIbDelay.output){faultWord.bit.meanIb=1;}
+	if(mIcDelay.output){faultWord.bit.meanIc=1;}
 
 	
 }

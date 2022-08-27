@@ -112,7 +112,7 @@ pidcInit.parameter.Kp=0.5f;
 pidcInit.parameter.Ki=1.0f;;
 pidcInit.parameter.atRest=0.0;
 
-pidcInit.limit.refLimitUp=100.0f;
+pidcInit.limit.refLimitUp=600.0f;
 pidcInit.limit.refLimitDown=20.0f;
 
 pidcInit.limit.rateLimit=1000.0f;
@@ -236,11 +236,10 @@ void controlRoutines(void){
 	inverseClarkeParkTransform(ipVn,&icVn,&negOut,scValn); //rotating with negative sign
 	
 	
+	
 	final.a	=	posOut.a	+	negOut.a  +	ref.thirdHarmOut +V.a;
 	final.b	=	posOut.b	+	negOut.b	+	ref.thirdHarmOut +V.b;
 	final.c	=	posOut.c	+	negOut.c  + ref.thirdHarmOut +V.c;
-	
-
 	
 	
 

@@ -17,7 +17,7 @@ static float ref_oz=0;
 
 void initReferences(void){
 
-ref.Vdc=30;
+ref.Vdc=47.0f;
 
 }
 

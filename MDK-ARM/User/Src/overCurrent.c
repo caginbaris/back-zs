@@ -22,8 +22,8 @@ overLimit_outputParameters overCurrentPeak_L1,overCurrentPeak_L2,overCurrentPeak
 void overCurrentInit(void){
 
 
-overCurrentRMS_Config.level=15;
-overCurrentRMS_Config.delay=1;
+overCurrentRMS_Config.level=50;
+overCurrentRMS_Config.delay=0.1;
 overCurrentRMS_Config.dropout_ratio=0.99;
 overCurrentRMS_Config.dropout_time=0.01;
 overCurrentRMS_Config.comm_pick_on_delay=0.01;	
@@ -35,8 +35,8 @@ overLimitInitialization(overCurrentRMS_Config,&overCurrentRMS_L2);
 overLimitInitialization(overCurrentRMS_Config,&overCurrentRMS_L3);	
 	
 	
-overCurrentCS_Config.level=18;
-overCurrentCS_Config.delay=0.01;
+overCurrentCS_Config.level=60;
+overCurrentCS_Config.delay=0.02;
 overCurrentCS_Config.dropout_ratio=0.99;
 overCurrentCS_Config.dropout_time=0.001;
 overCurrentCS_Config.comm_pick_on_delay=0.0025;	
@@ -48,10 +48,10 @@ overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L2);
 overLimitInitialization(overCurrentCS_Config,&overCurrentCS_L3);		
 
 
-overCurrentPeak_Config.level=30*1.414;
-overCurrentPeak_Config.delay=0.002;
+overCurrentPeak_Config.level=70*1.414;
+overCurrentPeak_Config.delay=0.006;
 overCurrentPeak_Config.dropout_ratio=0.99;
-overCurrentPeak_Config.dropout_time=0.0005;
+overCurrentPeak_Config.dropout_time=0.001;
 overCurrentPeak_Config.comm_pick_on_delay=0.001;	
 overCurrentPeak_Config.comm_pick_off_delay=10;
 overCurrentPeak_Config.fs=samplingFrequency;

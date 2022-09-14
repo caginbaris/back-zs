@@ -7,6 +7,7 @@ init_ADC();
 initProtections();
 initControlRoutines(); //cau check for correct initialization	
 initReferences();
+initComm();	
 
 // add pi inits
 

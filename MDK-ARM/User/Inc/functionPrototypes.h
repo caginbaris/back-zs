@@ -14,4 +14,8 @@ void initReferences(void);
 void LEDs(void);
 void initialization(void);
 
+void mainLoopCommPart(void);
+void sysTickCommPart(void);
+void initComm(void);
+
 #endif

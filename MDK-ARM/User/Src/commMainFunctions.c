@@ -5,6 +5,8 @@
 #include "ios.h"
 //comm side entries---start--main
 
+void rtu_transmitDisable_receiveEnable(void);
+
 uint8_t ReceiveData, ReceiveData2 , RX_Index = 0;
 unsigned char rtu_modbusRxBuffer[RX_BUFFER_LIMIT];
 extern uint8_t recComp;
@@ -37,19 +39,7 @@ extern uint8_t comErrorFlag;
 extern volatile uint8_t conversion_complete;
 
 
-void enableDisableTransmit(uint8_t en){
-	
-	if(en){
-
-	HAL_GPIO_WritePin(UART_DE_GPIO_Port,UART_DE_Pin,1);
-	
-	}else{
-	
-	HAL_GPIO_WritePin(UART_DE_GPIO_Port,UART_DE_Pin,0);
-		
-	}
-
-}
+extern uint8_t dataSentFlag;
 
 
 
@@ -77,7 +67,9 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
     {
 
 			transmitComp = 1;
-			enableDisableTransmit(0);
+			dataSentFlag = 0;
+			rtu_modbusRxBuffer[SLAVE_ID]=0;
+			rtu_transmitDisable_receiveEnable();
     }
 }
 
@@ -108,8 +100,10 @@ void mainLoopCommPart(void){
 
 void sysTickCommPart(void){
 
-		recTimeOut++;
-	if(recFlag == 1 && recTimeOut == 10) 
+	recTimeOut++;
+
+	
+	if(recFlag == 1 && recTimeOut == 100) 
 	{
 		recComp = 1;
 		recTimeOut = 0;
@@ -138,7 +132,7 @@ void initComm(void){
 
 	HAL_UART_Receive_IT(&huart4,&ReceiveData, 1);	//activate UART receive interrupt every time
 	rtu_deviceSlaveID[0] = 1; //cau
-	enableDisableTransmit(0);
+	rtu_transmitDisable_receiveEnable();
 
 
 }

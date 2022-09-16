@@ -41,12 +41,14 @@ uint8_t rtuMasterSlaveID = 0;
 uint8_t masterModeOp = 0;
 extern uint32_t fckcnt;
 extern uint8_t comErrorFlag;
+extern uint16_t transmitComp;
 extern HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 extern UART_HandleTypeDef huart4;
 /* Typedefs ------------------------------------------------------------------*/
 Typedef_rtuCRC rtuCRC;
 Typedef_dummyTestData dummyTestData;
 
+uint8_t dataSentFlag=0;
 uint16_t dm1=1,dm2=3;
 uint16_t recdm1=0,recdm2=0;
 
@@ -174,8 +176,11 @@ void rtu_ModbusFrameProcessing(void)
 
     rtu_modbusStartingAdress = rtu_modbusRegAdress;
     rtu_modbusEndingAdress = rtu_modbusStartingAdress + rtu_modbusDataLen;
+
+	
 		rtu_transmitEnable_receiveDisable();
 		
+			
     switch(rtu_modbusRxBuffer[FUNCODE])
     {
       case READ_HOLDING_REGISTER:   
@@ -225,6 +230,7 @@ void rtu_ModbusFrameProcessing(void)
         printf("rtu_modbusDataLen is %d \n",rtu_modbusDataLen);
         printf("Selected ID is %d \n",rtu_selectedSlaveID);
 				#endif
+				
         rtu_writeMultipleRegisters();
         break;
       }
@@ -252,6 +258,10 @@ void rtu_ModbusFrameProcessing(void)
         break;
       } 
     }
+		
+		
+		
+
 
 }
 
@@ -382,6 +392,7 @@ void rtu_transmitData_writeMultipleRegisters(void)
     rtu_modbusTxBuffer[6] = rtuCRC.calculated_H;
     rtu_modbusTxBuffer[7] = rtuCRC.calculated_L;
     HAL_UART_Transmit_IT(&huart4, rtu_modbusTxBuffer, 8);
+		dataSentFlag=1;
 }
 
 /**

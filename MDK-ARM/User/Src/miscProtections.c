@@ -9,10 +9,10 @@
 #define averagingFactor (1.0f/averagingPeriod)
 
 #define meanCurrentThreshold 10.0f
-#define dcRippleThreshold 10.0f
+#define dcRippleThreshold 15.0f
 
-#define temp1threshold 85.0f
-#define temp2threshold 95.0f
+#define temp1threshold 75.0f
+#define temp2threshold 80.0f
 
 
 
@@ -138,8 +138,8 @@ void tempCheck(void){
 static delay_parameters temp1={0,samplingFrequency,0};
 static delay_parameters temp2={0,samplingFrequency*0.1,0};
 
-on_delay(adc.ch.Temp>temp1threshold,&temp1);
-on_delay(adc.ch.Temp>temp2threshold,&temp1);
+on_delay(tRMS[rms_temp].out>temp1threshold,&temp1);
+on_delay(tRMS[rms_temp].out>temp2threshold,&temp2);
 
 
 if(temp1.output || temp2.output){faultWord.bit.ipmTemperature=1;}
@@ -152,6 +152,7 @@ void miscProtections(){
 	dcRippleCheck();
 	unbalanceCheck();
 	zeroSequenceCheck();
+	tempCheck();
 	
 	if(currentState!=run){phaseSeqCheck();}
 	

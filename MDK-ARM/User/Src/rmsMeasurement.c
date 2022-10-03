@@ -82,5 +82,6 @@ void rmsMeasurement(void){
 		trueRMS_sampled(negOut.c,&tRMS[25],calculationCounter);
 
 		trueRMS_sampled(ref.thirdHarmOut,&tRMS[26],calculationCounter);
+		trueRMS_sampled(adc.ch.Temp,&tRMS[27],calculationCounter);
 		
 }

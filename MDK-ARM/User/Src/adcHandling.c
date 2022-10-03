@@ -7,6 +7,7 @@
 #define scale4Vdc (100.0f) //10mV/V
 #define scale4Current (1000.0f/24) // 24mV/A
 #define scale4VAC (1320.0f/6.2f)*(3.3f/4095.0f)
+#define scale4Temp (10.0f)
 
 void mainFlow(void);
 
@@ -67,7 +68,7 @@ adc.ch.Ib=(adcReading[seq_Ib]-2057.77124f)*scale4IPM*scale4Current;
 adc.ch.Ia=-(adcReading[seq_Ic]-2067.16162f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
 
 adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM*scale4Vdc; // 10mv/v	
-adc.ch.Temp=adcReading[seq_Temp]*scale4IPM;
+adc.ch.Temp=adcReading[seq_Temp]*scale4IPM*scale4Temp;
 	
 	
 }

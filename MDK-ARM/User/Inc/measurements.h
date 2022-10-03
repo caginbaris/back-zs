@@ -17,20 +17,30 @@ void measurement(void);
 typedef enum rmsChannel {   rms_Ia=0,
                             rms_Ib=1,
                             rms_Ic=2,
+	
 														rms_Van=3,
                             rms_Vbn=4,
                             rms_Vcn=5,
+	
 														rms_Vab=6,
                             rms_Vbc=7,
                             rms_Vca=8,
+	
 														rms_Vdc=9,
+	
                             rms_V0=10,
 														rms_V1=11,
 	                          rms_V2=12,
+	
 														rms_I0=13,
 														rms_I1=14,
 	                          rms_I2=15,
-														rms_dcr=16
+	
+														rms_dcr=16,
+	
+														rms_temp=27
+														
+
 
                        
 }rmsChannel_Type;
@@ -108,7 +118,6 @@ extern float meanValueIc;
 extern piData pidf,piqf,pidcf;
 extern park  pV,pI;
 extern phase  cOut,final;
-
 
 
 #endif

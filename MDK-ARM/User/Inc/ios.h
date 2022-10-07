@@ -74,6 +74,7 @@ typedef union panelInputs{
 	}ch;
 	
 	uint32_t all;
+	uint16_t halfWord[2];
 	
 }panelInputs; 
 
@@ -109,6 +110,7 @@ typedef union digitalOutputs{
 	}ch;
 	
 	uint32_t all;
+	uint16_t halfWord[2];
 	
 }digitalOutputs; 
 
@@ -145,6 +147,7 @@ typedef union panelOutputs{
 	}ch;
 	
 	uint32_t all;
+	uint16_t halfWord[2];
 	
 }panelOutputs; 
 

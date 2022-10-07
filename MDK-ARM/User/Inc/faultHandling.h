@@ -63,6 +63,7 @@ typedef union faultInputs{
 	}bit;
 	
 	uint64_t all;
+	uint16_t halfWord[4];
 	
 }faultInputs; 
 
@@ -89,6 +90,7 @@ typedef union stateFaults{
 	
 	
 	uint32_t all;
+	uint16_t halfWord[2];
 
 }stateFaults;
 

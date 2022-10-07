@@ -23,6 +23,7 @@ typedef union flags{
 	}ch;
 	
 	uint32_t all;
+	uint16_t halfWord[2];
 	
 }flags; 
 

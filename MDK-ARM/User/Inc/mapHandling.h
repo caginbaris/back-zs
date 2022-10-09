@@ -69,7 +69,14 @@ void mapDataTransfer(void);
 
 extern mapWord konumlar,komutlar,hfKomutlar;
 extern mapWordFloat analogData;
+extern mapWord stateInfo;
+
 extern float Qstatcom;
-extern int16_t QrefIncStatcom;
-extern float QrefStatcom;
+
+extern int16_t QrefRemoteIncStatcom;
+extern float QrefRemoteStatcom;
+
+extern int16_t QrefLocalIncStatcom;
+extern float QrefLocalStatcom;
+
 #endif

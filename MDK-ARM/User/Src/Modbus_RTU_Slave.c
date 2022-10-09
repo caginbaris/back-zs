@@ -358,16 +358,28 @@ void rtu_getFeeder1_writeMultipleRegisters(void)
 		
 			if (rtu_modbusRegAdress == 1002)
     {
-      QrefIncStatcom = (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]) << 8;
-      QrefIncStatcom |= (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]);
+      QrefRemoteIncStatcom = (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]) << 8;
+      QrefRemoteIncStatcom |= (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]);
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
 			
 			
     }
 		
-		QrefStatcom=(float)QrefIncStatcom;
 		
+			if (rtu_modbusRegAdress == 1003)
+    {
+      QrefLocalIncStatcom = (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]) << 8;
+      QrefLocalIncStatcom |= (uint32_t)(rtu_modbusRxBuffer[rtu_ModbusRxIndex++]);
+      rtu_modbusRegAdress += 1;
+      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
+			
+			
+    }
+		
+		
+		QrefRemoteStatcom=(float)QrefRemoteIncStatcom;
+		QrefLocalStatcom=(float)QrefLocalIncStatcom;
 
 		
 		#if 0
@@ -528,8 +540,8 @@ void rtu_Feeder1DataPrep(void)
 	
 				  if (rtu_modbusRegAdress == READ_IN_CH7)
   {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(faultWord.halfWord[3])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(faultWord.halfWord[3]));
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(stateInfo.all)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(stateInfo.all));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }
@@ -563,8 +575,8 @@ void rtu_Feeder1DataPrep(void)
 	
 				if (rtu_modbusRegAdress == READ_IN_CH11)
   {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(10)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(10));
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Qtotal)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Qtotal));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }
@@ -683,6 +695,22 @@ void rtu_Feeder1DataPrep(void)
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }
 	
+				if (rtu_modbusRegAdress == READ_IN_CH25)
+  {
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(13)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(13));
+      rtu_modbusRegAdress += 1;
+      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
+  }
+	
+	
+				if (rtu_modbusRegAdress == READ_IN_CH26)
+  {
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(17)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(17));
+      rtu_modbusRegAdress += 1;
+      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
+  }
   rtu_transmitData_readHoldingRegister();
   
 }

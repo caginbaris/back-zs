@@ -18,4 +18,6 @@ void mainLoopCommPart(void);
 void sysTickCommPart(void);
 void initComm(void);
 
+void hfHandling(void);
+
 #endif

@@ -33,7 +33,7 @@ panelOutput.ch.closePrechargeCB1=0;
 panelOutput.ch.closePrechargeCB2=0;		
 	
 //get start
-low2highTransition(flag.ch.start,&startTrigger);	
+low2highTransition(flag.ch.start,&startTrigger);//cau panel input start should be OR'ed
 
 if(startTrigger.output){currentState=charged;}
 if(faultWord.all || stateFault.all ){currentState=fault;}

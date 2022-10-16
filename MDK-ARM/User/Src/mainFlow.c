@@ -30,6 +30,8 @@ void mainFlow(void){
 		protection();
 		pllHandling();
 		haltSignal();
+		
+		hfHandling();
 			
 		ios();
 		state_chart();

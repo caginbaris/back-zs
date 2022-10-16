@@ -71,3 +71,22 @@ flagInfo.ch._6=1;//cau TBD
 flagInfo.ch._7=1;//cau TBD
 }
 
+void incomingDataParsing(void){
+
+	flag.ch.start=komutlar.ch._1;
+	flag.ch.stop=komutlar.ch._2;
+	flag.ch.reset=komutlar.ch._3;
+	//rest of flags handled in corresponding source files (referenceGeneration,run etc)
+	
+	if(currentState!=run){
+	
+	flag.ch.local= komutlar.ch._4;	
+	flag.ch.remote= komutlar.ch._5;	
+	flag.ch.coldRun= komutlar.ch._6;
+		
+	}
+	
+	QrefRemoteStatcom=(float)QrefRemoteIncStatcom;
+	QrefLocalStatcom=(float)QrefLocalIncStatcom;
+
+}

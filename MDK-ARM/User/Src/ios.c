@@ -61,10 +61,12 @@ void ios(void){
 	panelInput.ch.prechargeCB2NO=(input.ch._12==0)?(1):0;
 	
 	
-	panelInput.ch.panelSupplyFault=(input.ch._13==1)?(1):0;
-	panelInput.ch.panelUpsFault=(input.ch._14==1)?(0):1;
+	panelInput.ch.panelSupplyFault=(input.ch._14==1)?(1):0;
+	panelInput.ch.panelUpsFault=(input.ch._15==1)?(0):1;
 	
-	
+	panelInput.ch.hf1=(input.ch._16==0)?(1):(0);
+	panelInput.ch.hf2=(input.ch._17==0)?(1):(0);
+	panelInput.ch.hfTherm=(input.ch._18==0)?(0):(1);
 	
 	HAL_GPIO_WritePin(DO1_GPIO_Port,DO1_Pin,(GPIO_PinState)panelOutput.ch.closePrechargeCB1);
 	HAL_GPIO_WritePin(DO2_GPIO_Port,DO2_Pin,(GPIO_PinState)panelOutput.ch.closeCB1);
@@ -77,8 +79,8 @@ void ios(void){
 	HAL_GPIO_WritePin(DO9_GPIO_Port,DO9_Pin,(GPIO_PinState)panelOutput.ch.closePrechargeCB2);
 	HAL_GPIO_WritePin(DO10_GPIO_Port,DO10_Pin,(GPIO_PinState)panelOutput.ch.spare);
 	
-	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,(GPIO_PinState)output.ch._11);
-	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,(GPIO_PinState)output.ch._12);
+	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,(GPIO_PinState)panelOutput.ch.hf1);
+	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,(GPIO_PinState)panelOutput.ch.hf2);
 	HAL_GPIO_WritePin(DO13_GPIO_Port,DO13_Pin,(GPIO_PinState)output.ch._13);
 	HAL_GPIO_WritePin(DO14_GPIO_Port,DO14_Pin,(GPIO_PinState)output.ch._14);
 	HAL_GPIO_WritePin(DO15_GPIO_Port,DO15_Pin,(GPIO_PinState)output.ch._15);

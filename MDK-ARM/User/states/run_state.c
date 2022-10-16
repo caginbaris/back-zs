@@ -11,6 +11,7 @@
 #include "references.h"
 //#include "testBenches.h"
 #include "flagHandling.h"
+#include "mapHandling.h"
 
 static delay_parameters timeout={0,samplingRate*15,0};
 static delay_parameters wait4InitialConditions={0,samplingRate*5,0};
@@ -49,7 +50,11 @@ if(checked.output){
 	
 	LED.out._3=1; 
 	
+	if(flag.ch.coldRun==0){
+	
 	modulatorEnable();
+	
+	}
 	
 	flag.ch.switchingStarted=1;
 	

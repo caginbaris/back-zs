@@ -65,6 +65,7 @@ typedef union mapWordFloat{
 }mapWordFloat; 
 
 void mapDataTransfer(void);
+void incomingDataParsing(void);
 
 
 extern mapWord konumlar,komutlar,hfKomutlar;

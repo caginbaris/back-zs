@@ -18,7 +18,10 @@ typedef union flags{
 		uint32_t closeCBsent:1;
 		
 		uint32_t switchingStarted:1;
-
+		
+		uint32_t local:1;
+		uint32_t remote:1;
+		uint32_t coldRun:1;
 
 	}ch;
 	

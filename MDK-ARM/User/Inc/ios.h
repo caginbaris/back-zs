@@ -63,9 +63,9 @@ typedef union panelInputs{
 		uint32_t prechargeCB2NO:1;
 		uint32_t panelSupplyFault:1;	
 		uint32_t panelUpsFault:1;	
-		uint32_t _15:1;
-		uint32_t _16:1;
-		uint32_t _17:1;
+		uint32_t hf1:1;
+		uint32_t hf2:1;
+		uint32_t hfTherm:1;
 		uint32_t _18:1;
 		uint32_t _19:1;
 		
@@ -132,8 +132,8 @@ typedef union panelOutputs{
 		uint32_t closePrechargeCB2:1;
 		uint32_t spare:1;
 		
-		uint32_t _11:1;
-		uint32_t _12:1;
+		uint32_t hf1:1;
+		uint32_t hf2:1;
 		uint32_t _13:1;	
 		uint32_t _14:1;	
 		uint32_t _15:1;

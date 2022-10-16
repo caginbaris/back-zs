@@ -1,6 +1,8 @@
 #include "references.h"
 #include "controlRoutines.h"
 #include "measurements.h"
+#include "mapHandling.h"
+#include "flagHandling.h"
 
 #define dc2ac 0.707f 
 #define idc2ac (1.0f/dc2ac) 
@@ -33,7 +35,7 @@ float fofCoefficents1em1[2]={
 void references(void){
 	
 	
-	ref.I=ref.Iline*1.732f;
+	
 	
 	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1em1);
 	
@@ -42,7 +44,33 @@ void references(void){
 	ref.thirdHarmOut=sinf(3.0f *pll.theta)*ref.thirdHarmMag;
 	 
 								
-
+	
+	
+	if(flag.ch.local){
+		
+		if(pVf.d>300.0f){
+			
+			ref.I=QrefLocalStatcom/pVf.d;
+			
+		}	
+		
+	}
+	
+	
+	if(flag.ch.remote){
+		
+		if(pVf.d>300.0f){
+			
+			ref.I=QrefRemoteStatcom/pVf.d;
+			
+		}
+		
+	}
+	
+	
+	ref.I=ref.Iline*1.732f;
+	
+	
 }
 
 

@@ -30,7 +30,7 @@ konumlar.ch._6=panelInput.ch.prechargeCB2NO;
 
 //analog
 
-analogData.ch.Qtotal=Qstatcom;
+analogData.ch.Qtotal=Qstatcom*0.001f;
 	
 analogData.ch.Van=tRMS[rms_Van].out;
 analogData.ch.Vbn=tRMS[rms_Vbn].out;	
@@ -86,7 +86,7 @@ void incomingDataParsing(void){
 		
 	}
 	
-	QrefRemoteStatcom=(float)QrefRemoteIncStatcom;
-	QrefLocalStatcom=(float)QrefLocalIncStatcom;
+	QrefRemoteStatcom=(float)QrefRemoteIncStatcom*1000.0f;
+	QrefLocalStatcom=(float)QrefLocalIncStatcom*1000.0f;
 
 }

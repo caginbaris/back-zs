@@ -3,6 +3,8 @@
 #include "measurements.h"
 #include "mapHandling.h"
 #include "flagHandling.h"
+#include "ios.h"
+
 
 #define dc2ac 0.707f 
 #define idc2ac (1.0f/dc2ac) 
@@ -11,11 +13,11 @@
 #define sqrt3 (1.732f)
 #define sqrt2 (1.414f)
 
-
+#define currentLimit 100.0f
 
 reference ref={0};
 static float ref_oz=0;
-
+float Qhf;
 
 void initReferences(void){
 
@@ -35,22 +37,22 @@ float fofCoefficents1em1[2]={
 void references(void){
 	
 	
-	
-	
+	//opt vdc generation
 	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1em1);
 	
 	// third harmonic generation
 	ref.thirdHarmMag=pVf.d*0.8125f*0.16667f;
 	ref.thirdHarmOut=sinf(3.0f *pll.theta)*ref.thirdHarmMag;
-	 
-								
+	
+	//hf and reactive references
+	Qhf=-25000.0f*(panelInput.ch.hf1+panelInput.ch.hf2);							
 	
 	
 	if(flag.ch.local){
 		
 		if(pVf.d>300.0f){
 			
-			ref.I=QrefLocalStatcom/pVf.d;
+			ref.I=(QrefLocalStatcom-Qhf)/pVf.d;
 			
 		}	
 		
@@ -61,7 +63,7 @@ void references(void){
 		
 		if(pVf.d>300.0f){
 			
-			ref.I=QrefRemoteStatcom/pVf.d;
+			ref.I=(QrefRemoteStatcom-Qhf)/pVf.d;
 			
 		}
 		
@@ -69,6 +71,9 @@ void references(void){
 	
 	
 	ref.I=ref.Iline*1.732f;
+	
+	if(ref.I>currentLimit){ref.I=currentLimit;}
+	if(ref.I<-currentLimit){ref.I=-currentLimit;}
 	
 	
 }

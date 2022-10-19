@@ -79,7 +79,7 @@ ref.Vdc=ref.Vdc_opt;
 modulator();
 
 
-if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
+if(flag.ch.stop){currentState=stopped;}
 if(faultWord.all || stateFault.all){currentState=fault;}
 
 

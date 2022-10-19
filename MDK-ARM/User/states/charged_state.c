@@ -134,7 +134,7 @@ if(cbCheckPosition.output==1 && (panelInput.ch.cb1No==0 && panelInput.ch.cb2No==
 	
 
 if(faultWord.all || stateFault.all){currentState=fault;}
-if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
+if(flag.ch.stop){currentState=stopped;}
 
 if(currentState!=charged){
 	

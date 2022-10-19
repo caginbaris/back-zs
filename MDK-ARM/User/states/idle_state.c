@@ -52,7 +52,7 @@ if(waiting4dcLevel.output==1){
 }	
 	
 if(faultWord.all || stateFault.all){currentState=fault ;}
-if(panelInput.ch.stop || flag.ch.stop){currentState=stopped;}
+if(flag.ch.stop){currentState=stopped;}
 
 if(currentState!=idle){
 	

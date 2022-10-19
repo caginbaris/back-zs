@@ -22,6 +22,7 @@ typedef union flags{
 		uint32_t local:1;
 		uint32_t remote:1;
 		uint32_t coldRun:1;
+		uint32_t hfManualControl:1;
 
 	}ch;
 	

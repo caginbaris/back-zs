@@ -558,8 +558,8 @@ void rtu_Feeder1DataPrep(void)
 	
 					if (rtu_modbusRegAdress == READ_IN_CH9)
   {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(flag.halfWord[0])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(flag.halfWord[0]));
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(flagInfo.all)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(flagInfo.all));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }

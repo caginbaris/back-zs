@@ -36,7 +36,7 @@ typedef union mapWordFloat{
 	
 	struct{
 		
-		uint16_t Qtotal;
+		int16_t Qtotal;
 	
 		uint16_t Van;
 		uint16_t Vbn;
@@ -71,6 +71,7 @@ void incomingDataParsing(void);
 extern mapWord konumlar,komutlar,hfKomutlar;
 extern mapWordFloat analogData;
 extern mapWord stateInfo;
+extern mapWord flagInfo;
 
 extern float Qstatcom;
 
@@ -79,5 +80,6 @@ extern float QrefRemoteStatcom;
 
 extern int16_t QrefLocalIncStatcom;
 extern float QrefLocalStatcom;
+
 
 #endif

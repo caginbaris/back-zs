@@ -61,4 +61,6 @@ void faultHandling(void){
 		
 	faultWord.bit.panelSupplyFault=panelInput.ch.panelSupplyFault;
 	faultWord.bit.panelUpsFault=panelInput.ch.panelUpsFault;
+	
+	faultWord.bit.hfTherm=panelInput.ch.hfTherm;
 }

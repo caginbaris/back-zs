@@ -59,6 +59,7 @@ typedef union faultInputs{
 		uint64_t panelSupplyFault:1;
 		uint64_t panelUpsFault:1;
 		
+		uint64_t hfTherm:1;
 		
 	}bit;
 	

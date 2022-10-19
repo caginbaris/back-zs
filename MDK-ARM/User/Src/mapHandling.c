@@ -23,8 +23,8 @@ void mapDataTransfer(void){
 //1000
 konumlar.ch._1=panelInput.ch.cb1No;
 konumlar.ch._2=panelInput.ch.cb2No;
-konumlar.ch._3=0; //cau TBD
-konumlar.ch._4=0; //cau TBD
+konumlar.ch._3=panelInput.ch.hf1; 
+konumlar.ch._4=panelInput.ch.hf2; 
 konumlar.ch._5=panelInput.ch.prechargeCB1NO; 
 konumlar.ch._6=panelInput.ch.prechargeCB2NO; 
 
@@ -37,7 +37,7 @@ analogData.ch.Vbn=tRMS[rms_Vbn].out;
 analogData.ch.Vcn=tRMS[rms_Vcn].out;	
 
 analogData.ch.Vpos=tRMS[rms_V1].out;
-analogData.ch.Vneg=tRMS[rms_V2].out*100.0f;
+analogData.ch.Vneg=tRMS[rms_V2].out;
 
 
 analogData.ch.Ia=tRMS[rms_Ia].out;
@@ -45,10 +45,10 @@ analogData.ch.Ib=tRMS[rms_Ib].out;
 analogData.ch.Ic=tRMS[rms_Ic].out;	
 
 analogData.ch.Ipos=tRMS[rms_I1].out;
-analogData.ch.Ineg=tRMS[rms_I2].out*100.0f;	
+analogData.ch.Ineg=tRMS[rms_I2].out;	
 
 analogData.ch.Vdc=tRMS[rms_Vdc].out;
-analogData.ch.Vdcr=tRMS[rms_dcr].out*100.0f;
+analogData.ch.Vdcr=tRMS[rms_dcr].out;
 
 analogData.ch.temp=tRMS[rms_temp].out;
 
@@ -65,10 +65,10 @@ stateInfo.ch._7=currentState==fault?1:0;
 flagInfo.ch._1=flag.ch.bus1energised;
 flagInfo.ch._2=flag.ch.bus2energised;
 flagInfo.ch._3=flag.ch.switchingStarted;
-flagInfo.ch._4=1;//cau TBD
-flagInfo.ch._5=1;//cau TBD
-flagInfo.ch._6=1;//cau TBD
-flagInfo.ch._7=1;//cau TBD
+flagInfo.ch._4=flag.ch.local;
+flagInfo.ch._5=flag.ch.remote;
+flagInfo.ch._6=flag.ch.coldRun;
+flagInfo.ch._7=flag.ch.hfManualControl;
 }
 
 void incomingDataParsing(void){

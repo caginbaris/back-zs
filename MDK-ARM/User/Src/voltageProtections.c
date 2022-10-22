@@ -30,7 +30,7 @@ overLimitInitialization(overVoltageDC_Config,&overVoltageDC);
 
 	
 overVoltageAC_Config.level=245;
-overVoltageAC_Config.delay=0.01;
+overVoltageAC_Config.delay=0.1;
 overVoltageAC_Config.dropout_ratio=0.99;
 overVoltageAC_Config.dropout_time=0.01;
 overVoltageAC_Config.comm_pick_on_delay=0.01;	

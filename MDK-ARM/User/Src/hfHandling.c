@@ -44,8 +44,8 @@ void hfHandling(void){
 	//hfmanual control
 	if(flag.ch.hfManualControl){
 		
-		panelOutput.ch.hf1=komutlar.ch._2;
-		panelOutput.ch.hf2=komutlar.ch._3;
+		panelOutput.ch.hf1=hfKomutlar.ch._2;
+		panelOutput.ch.hf2=hfKomutlar.ch._3;
 	
 	}
 	

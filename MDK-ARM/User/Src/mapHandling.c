@@ -76,6 +76,8 @@ void incomingDataParsing(void){
 	flag.ch.start=komutlar.ch._1;
 	flag.ch.stop=komutlar.ch._2;
 	flag.ch.reset=komutlar.ch._3;
+	
+	flag.ch.hfManualControl=hfKomutlar.ch._1;
 	//rest of flags handled in corresponding source files (referenceGeneration,run etc)
 	
 	if(currentState!=run){

@@ -1,6 +1,8 @@
 #ifndef __adcHandling_H
 #define __adcHandling_H
 
+#include <stdint.h>
+
 typedef enum adcSeq_Type {  seq_Van=0,
                             seq_Vbn=1,
                             seq_Vcn=2,  
@@ -48,3 +50,4 @@ extern adcData_Type adc;
 void initAdc(void);
 
 
+extern uint8_t adc_completed;

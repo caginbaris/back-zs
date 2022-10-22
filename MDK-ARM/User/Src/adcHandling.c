@@ -14,7 +14,7 @@ void mainFlow(void);
 uint32_t adcReading[9];
 adcData_Type adc={0};
 
-
+uint8_t adc_completed=0;
 
 
 void init_ADC(void){
@@ -76,7 +76,11 @@ adc.ch.Temp=adcReading[seq_Temp]*scale4IPM*scale4Temp;
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	
+	adc_completed=0;
+	
 	read_ADC();
 	mainFlow();
+	
+	adc_completed=1;
 	
 }

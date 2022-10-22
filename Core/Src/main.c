@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "functionPrototypes.h"
+#include "adcHandling.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -112,9 +113,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		if(adc_completed==1){
 		
 		LEDs();
 		mainLoopCommPart();
+		
+		}
 
 		
   }

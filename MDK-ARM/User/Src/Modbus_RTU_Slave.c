@@ -211,7 +211,7 @@ void rtu_ModbusFrameProcessing(void)
         printf("rtu_modbusDataLen is %d \n",rtu_modbusDataLen);
         printf("Selected ID is %d \n",rtu_selectedSlaveID);
 				#endif
-				rtu_writeSingleRegister();
+				//rtu_writeSingleRegister();
 				break;
 			}
 				
@@ -716,7 +716,7 @@ void rtu_Feeder1DataPrep(void)
   
 }
 
-void rtu_getFeeder1_writeSingleRegister(void)
+/*void rtu_getFeeder1_writeSingleRegister(void)
 {
 	  #if 0
     if (rtu_modbusRegAdress == WRITE_OUT_CH1)
@@ -732,7 +732,7 @@ void rtu_getFeeder1_writeSingleRegister(void)
 void rtu_writeSingleRegister(void)
 {
 	  if(rtu_selectedSlaveID == rtu_deviceSlaveID[0]) rtu_getFeeder1_writeSingleRegister();
-}
+}*/
 
 void rtu_transmitEnable_receiveDisable(void)
 {

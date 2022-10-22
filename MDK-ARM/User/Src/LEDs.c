@@ -5,7 +5,7 @@
 
 LEDoutputs LED={0};
 
-static delay_parameters led_toggle={0,samplingFrequency*10,0}; 
+static delay_parameters led_toggle={0,samplingFrequency,0}; 
 
 void LEDs(void){
 	

@@ -38,10 +38,10 @@ void references(void){
 	
 	
 	//opt vdc generation
-	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1em1);
+	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1e0);
 	
 	// third harmonic generation
-	ref.thirdHarmMag=pVf.d*0.8125f*0.16667f;
+	ref.thirdHarmMag=ref.Vdc_opt*0.0962f;
 	ref.thirdHarmOut=sinf(3.0f *pll.theta)*ref.thirdHarmMag;
 	
 	//hf and reactive references
@@ -72,8 +72,7 @@ void references(void){
 	
 	ref.I=ref.Iline*1.732f;
 	
-	if(ref.I>currentLimit){ref.I=currentLimit;}
-	if(ref.I<-currentLimit){ref.I=-currentLimit;}
+
 	
 	
 }

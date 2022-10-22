@@ -60,7 +60,7 @@ void faultHandling(void){
 	faultWord.bit.cb2Trip=panelInput.ch.cb2Trip && panelInput.ch.cb2No; 
 		
 	faultWord.bit.panelSupplyFault=panelInput.ch.panelSupplyFault;
-	faultWord.bit.panelUpsFault=panelInput.ch.panelUpsFault;
+	//faultWord.bit.panelUpsFault=panelInput.ch.panelUpsFault;
 	
 	faultWord.bit.hfTherm=panelInput.ch.hfTherm;
 }

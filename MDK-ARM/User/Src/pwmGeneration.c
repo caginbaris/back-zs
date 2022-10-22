@@ -52,16 +52,18 @@ void modulator(void){
 	
 	float inv_Vdc;
 	
-	if(ref.Vdc>1.0f){
+	if(Vdcf>1.0f){
 		
-	inv_Vdc=1/ref.Vdc;	
+	inv_Vdc=1/Vdcf;	
 		
-	sw_count_a=wscale*(final.a+ref.Vdc*0.5f)*inv_Vdc;
-	sw_count_b=wscale*(final.b+ref.Vdc*0.5f)*inv_Vdc;
-	sw_count_c=wscale*(final.c+ref.Vdc*0.5f)*inv_Vdc;
+	sw_count_a=wscale*(final.a+Vdcf*0.5f)*inv_Vdc;
+	sw_count_b=wscale*(final.b+Vdcf*0.5f)*inv_Vdc;
+	sw_count_c=wscale*(final.c+Vdcf*0.5f)*inv_Vdc;
 	
 
 	}
+	
+
 	
 	ui_LIMITER(sw_count_a,0,wscale);
 	ui_LIMITER(sw_count_b,0,wscale);

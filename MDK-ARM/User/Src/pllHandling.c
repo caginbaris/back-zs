@@ -34,7 +34,7 @@ void pllHandling(void){
 	
 	if(tRMS[rms_Van].out>10.0f){ 
 		
-	PLL(Vf/(tRMS[rms_Van].out*1.414f),&pll);
+	PLL(adc.ch.Van/(tRMS[rms_Van].out*1.414f),&pll);
 		
 	}else{
 		

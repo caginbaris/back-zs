@@ -11,6 +11,8 @@
 #define fs 10000.0f
 #define pi_ts 1.0f/(fs)
 #define wL (2*3.14159f*50.f*0.0008f)
+#define cKp 0.25f
+#define cKi 40.6f
 
 phase V,I;
 
@@ -51,21 +53,21 @@ float fofBuffer4NegSeq[4]={0};
 
 void initControlRoutines(void){
 	
-//vau check for pi parameters
+//cau check for pi parameters
 	
 //**************************************
 //**************************************
 	
 pidInit.parameter.ts=pi_ts;
-pidInit.parameter.Kp=0.36f;	
-pidInit.parameter.Ki=5.4f;
+pidInit.parameter.Kp=cKp;	
+pidInit.parameter.Ki=cKi;
 pidInit.parameter.atRest=0.0f;	
 	
 pidInit.limit.refLimitUp=40.0f;
 pidInit.limit.refLimitDown=-40.0f;
 		
 
-pidInit.limit.rateLimit=1000.0f;
+pidInit.limit.rateLimit=1000000.0f;
 	
 pidInit.limit.outputLimitUp=100.0f;	
 pidInit.limit.outputLimitDown=-100.0f;
@@ -82,14 +84,14 @@ piControllerInitialization(&pidnf,pidInit);// limits can be different
 //**************************************
 	
 piqInit.parameter.ts=pi_ts;
-piqInit.parameter.Kp=0.36f;	
-piqInit.parameter.Ki=5.4f;
+piqInit.parameter.Kp=cKp;	
+piqInit.parameter.Ki=cKi;
 piqInit.parameter.atRest=0.0f;
 
-piqInit.limit.refLimitUp=80.0f;
-piqInit.limit.refLimitDown=-80.0f;
+piqInit.limit.refLimitUp=200.0f;
+piqInit.limit.refLimitDown=-200.0f;
 	
-piqInit.limit.rateLimit=1.732f;//cau for test purposes
+piqInit.limit.rateLimit=2.0f*17.32f;//cau for test purposes
 
 piqInit.limit.outputLimitUp=100.0f;	
 piqInit.limit.outputLimitDown=-100.0f;
@@ -108,14 +110,14 @@ piControllerInitialization(&piqnf,piqInit); // limits can be different
 //**************************************
 	
 pidcInit.parameter.ts=pi_ts;
-pidcInit.parameter.Kp=0.5f;	
+pidcInit.parameter.Kp=1.1f;	
 pidcInit.parameter.Ki=1.0f;;
 pidcInit.parameter.atRest=0.0;
 
-pidcInit.limit.refLimitUp=600.0f;
+pidcInit.limit.refLimitUp=700.0f;
 pidcInit.limit.refLimitDown=20.0f;
 
-pidcInit.limit.rateLimit=1000.0f;
+pidcInit.limit.rateLimit=1000000.0f;
 	
 pidcInit.limit.outputLimitUp=100.0f;	
 pidcInit.limit.outputLimitDown=-100.0f;
@@ -217,13 +219,14 @@ void controlRoutines(void){
 	//*****for negative squence -end
 
 	//decoupling terms (sign included)
-	
+
 	dec.Pd= -pIf.q*wL;
 	dec.Pq=  pIf.d*wL;
 	
 	dec.Nd=  pInf_lp.q*wL; 
 	dec.Nq= -pInf_lp.d*wL;
 	
+
 	//sum of references
 	
 	ipV.d=pidf.signal.controllerOutput + dec.Pd ;

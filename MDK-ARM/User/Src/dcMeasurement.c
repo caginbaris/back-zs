@@ -29,11 +29,18 @@ float fofCoefficents1e0[2]={
 };
 
 
+static float fofCoefficents1e1[2]={
+
+0.003131764229193,
+-0.993736471541615
+};
+
+
 
 void dcMeasurement(void){
 	
 	
-FOF(adc.ch.Vdc,Vdcz,Vdcf,fofCoefficents1e2);
+FOF(adc.ch.Vdc,Vdcz,Vdcf,fofCoefficents1e3);
 FOF(adc.ch.Vdc,Vdcrz,dcAverage,fofCoefficents1e0); 	
 dcRipple=adc.ch.Vdc-dcAverage; 
 

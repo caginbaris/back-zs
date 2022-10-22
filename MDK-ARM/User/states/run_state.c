@@ -109,6 +109,9 @@ if(currentState!=run){
 	checked.output=0;
 	checked.back=0;
 	
+	ref.Iline=0;
+	ref.I=0;
+	
 	flag.ch.switchingStarted=0;
 	
 	

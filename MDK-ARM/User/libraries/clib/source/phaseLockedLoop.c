@@ -1,6 +1,6 @@
 #include "phaseLockedLoop.h"
 
-float correction=-1.9f;
+float correction=-1.82f;
 
 void PLL(float alpha, pll_parameters *pll) {
 

@@ -4,6 +4,7 @@
 #include "ios.h"
 #include "faultHandling.h"
 #include "states.h"
+#include "controlRoutines.h"
 
 #define averagingPeriod (samplingFrequency/50.0f)
 #define averagingFactor (1.0f/averagingPeriod)
@@ -20,9 +21,10 @@ float meanValueIa=0;
 float meanValueIb=0;
 float meanValueIc=0;
 
-static delay_parameters mIaDelay={0,samplingFrequency*0.1,0};
-static delay_parameters mIbDelay={0,samplingFrequency*0.1,0};
-static delay_parameters mIcDelay={0,samplingFrequency*0.1,0};
+
+static delay_parameters mIaDelay={0,samplingFrequency*1.0,0};
+static delay_parameters mIbDelay={0,samplingFrequency*1.0,0};
+static delay_parameters mIcDelay={0,samplingFrequency*1.0,0};
 
 void meanCurrentCheck(void){
 	
@@ -32,9 +34,13 @@ void meanCurrentCheck(void){
 	static float meanValueSumIb=0;
 	static float meanValueSumIc=0;
 	
+
+	
 	meanValueSumIa+=adc.ch.Ia;
 	meanValueSumIb+=adc.ch.Ib;
 	meanValueSumIc+=adc.ch.Ic;
+	
+
 	
 	meanValueCounter++;
 	
@@ -46,9 +52,13 @@ void meanCurrentCheck(void){
 	meanValueIb=meanValueSumIb*averagingFactor;
 	meanValueIc=meanValueSumIc*averagingFactor;
 		
+
+	
 	meanValueSumIa=0;	
 	meanValueSumIb=0;
 	meanValueSumIc=0;	
+		
+	
 		
 		
 	}

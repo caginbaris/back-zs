@@ -40,7 +40,7 @@ overVoltageAC_Config.fs=samplingFrequency;
 overLimitInitialization(overVoltageAC_Config,&overVoltageAC);	
 
 
-underVoltageDC_Config.level=400;
+underVoltageDC_Config.level=350;
 underVoltageDC_Config.delay=0.04;
 underVoltageDC_Config.dropout_ratio=1.01;
 underVoltageDC_Config.dropout_time=0.01;

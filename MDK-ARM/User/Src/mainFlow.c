@@ -49,7 +49,7 @@ void mainFlow(void){
 		
 		
 		//test  routines
-		//channelOffsetCalculation();
+		channelOffsetCalculation();
 		//dqTransformSignalling();
 		//switchingTest();
 		//pllTest();

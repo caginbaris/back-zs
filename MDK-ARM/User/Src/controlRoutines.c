@@ -88,8 +88,8 @@ piqInit.parameter.Kp=cKp;
 piqInit.parameter.Ki=cKi;
 piqInit.parameter.atRest=0.0f;
 
-piqInit.limit.refLimitUp=200.0f;
-piqInit.limit.refLimitDown=-200.0f;
+piqInit.limit.refLimitUp=127.0f;
+piqInit.limit.refLimitDown=-127.0f;
 	
 piqInit.limit.rateLimit=2.0f*17.32f;//cau for test purposes
 

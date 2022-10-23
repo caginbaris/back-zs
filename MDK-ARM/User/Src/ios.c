@@ -81,6 +81,8 @@ void ios(void){
 	
 	HAL_GPIO_WritePin(DO11_GPIO_Port,DO11_Pin,(GPIO_PinState)panelOutput.ch.hf1);
 	HAL_GPIO_WritePin(DO12_GPIO_Port,DO12_Pin,(GPIO_PinState)panelOutput.ch.hf2);
+	
+	/*
 	HAL_GPIO_WritePin(DO13_GPIO_Port,DO13_Pin,(GPIO_PinState)output.ch._13);
 	HAL_GPIO_WritePin(DO14_GPIO_Port,DO14_Pin,(GPIO_PinState)output.ch._14);
 	HAL_GPIO_WritePin(DO15_GPIO_Port,DO15_Pin,(GPIO_PinState)output.ch._15);
@@ -91,7 +93,7 @@ void ios(void){
 	HAL_GPIO_WritePin(DOR3_GPIO_Port,DOR3_Pin,(GPIO_PinState)output.ch._DOR3);
 	HAL_GPIO_WritePin(DOR4_GPIO_Port,DOR4_Pin,(GPIO_PinState)output.ch._DOR4);
 	
-
+	*/
 
 	
 }

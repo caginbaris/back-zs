@@ -2,6 +2,7 @@
 #include "tim.h"
 #include "adc.h"
 #include "adcHandling.h"
+#include "testBenches.h"
 
 #define scale4IPM (30.0f/6.8f)*(3.3f/4095.0f)
 #define scale4Vdc (100.0f) //10mV/V
@@ -58,15 +59,25 @@ void init_ADC(void){
 
 void read_ADC(void){
 	
-
-adc.ch.Van=-(adcReading[seq_Van]-2045.67554f)*scale4VAC;
-adc.ch.Vbn=-(adcReading[seq_Vbn]-2046.7594f)*scale4VAC;
-adc.ch.Vcn=-(adcReading[seq_Vcn]-2045.70972f)*scale4VAC;
+/*
+adc.ch.Van=-(adcReading[seq_Van]-valueF.Van)*scale4VAC;
+adc.ch.Vbn=-(adcReading[seq_Vbn]-valueF.Vbn)*scale4VAC;
+adc.ch.Vcn=-(adcReading[seq_Vcn]-valueF.Vcn)*scale4VAC;
 	
-adc.ch.Ic=(adcReading[seq_Ia]-2041.2135f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
-adc.ch.Ib=(adcReading[seq_Ib]-2057.77124f)*scale4IPM*scale4Current;
-adc.ch.Ia=-(adcReading[seq_Ic]-2067.16162f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
+adc.ch.Ic=(adcReading[seq_Ia]-valueF.Ic)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
+adc.ch.Ib=(adcReading[seq_Ib]-valueF.Ib)*scale4IPM*scale4Current;
+adc.ch.Ia=-(adcReading[seq_Ic]-valueF.Ia)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
+*/
 
+adc.ch.Van=-(adcReading[seq_Van]-2046.4364f)*scale4VAC;
+adc.ch.Vbn=-(adcReading[seq_Vbn]-2047.66077f)*scale4VAC;
+adc.ch.Vcn=-(adcReading[seq_Vcn]-2046.19116f)*scale4VAC;
+	
+adc.ch.Ic=(adcReading[seq_Ia]-2042.04358f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
+adc.ch.Ib=(adcReading[seq_Ib]-2058.06201f)*scale4IPM*scale4Current;
+adc.ch.Ia=-(adcReading[seq_Ic]-2067.51025f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
+	
+	
 adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM*scale4Vdc; // 10mv/v	
 adc.ch.Temp=adcReading[seq_Temp]*scale4IPM*scale4Temp;
 	

@@ -27,18 +27,18 @@ ref.Vdc=47.0f;
 
 
 
-float fofCoefficents1em1[2]={
+static float fofCoefficents1e1[2]={
 
-0.0000314149396167807f,
--0.999937170120766f
-
+0.003131764229193,
+-0.993736471541615
 };
 
 void references(void){
 	
 	
 	//opt vdc generation
-	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1e0);
+	FOF((max3p(tRMS[rms_Van].out,tRMS[rms_Vbn].out,tRMS[rms_Vcn].out)-piqf.signal.ref_rateLimited*Xvalue)*sqrt3*idc2ac,ref_oz,ref.Vdc_opt,fofCoefficents1e1);
+	
 	
 	// third harmonic generation
 	ref.thirdHarmMag=ref.Vdc_opt*0.0962f;
@@ -47,6 +47,11 @@ void references(void){
 	//hf and reactive references
 	Qhf=-25000.0f*(panelInput.ch.hf1+panelInput.ch.hf2);							
 	
+	
+	if(flag.ch.local==0 && flag.ch.remote==0){
+	
+		flag.ch.local=1;
+	}
 	
 	if(flag.ch.local){
 		
@@ -70,7 +75,7 @@ void references(void){
 	}
 	
 	
-	ref.I=ref.Iline*1.732f;
+	
 	
 
 	

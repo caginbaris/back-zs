@@ -1,27 +1,21 @@
 #include "adcHandling.h"
 #include <stdint.h>
+#include "testBenches.h"
+#include "measurements.h"
 
-
-typedef struct channelOffsets{
-
-float Van;
-float Vbn;
-float Vcn;
-
-float Ia;
-float Ib;
-float Ic;	
-	
-float Vdc;
-float temp;	
-	
-
-}channelOffsets;
 
 
 channelOffsets value;
+channelOffsets value_z={0};
+channelOffsets valueF;
 channelOffsets sum;
 extern uint32_t adcReading[9];
+
+static float fofCoefficents1e1[2]={
+
+0.003131764229193,
+-0.993736471541615
+};
 
 void channelOffsetCalculation(void){
 	
@@ -63,7 +57,14 @@ sum.Vdc=0;
 
 counter=0;	
 
-}	
-	
+}
+
+FOF(value.Van,value_z.Van,valueF.Van,fofCoefficents1e1);
+FOF(value.Vbn,value_z.Vbn,valueF.Vbn,fofCoefficents1e1);
+FOF(value.Vcn,value_z.Vcn,valueF.Vcn,fofCoefficents1e1);
+
+FOF(value.Ia,value_z.Ia,valueF.Ia,fofCoefficents1e1);
+FOF(value.Ib,value_z.Ib,valueF.Ib,fofCoefficents1e1);
+FOF(value.Ic,value_z.Ic,valueF.Ic,fofCoefficents1e1);
 	
 }

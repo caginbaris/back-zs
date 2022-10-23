@@ -66,7 +66,7 @@ if(checked.output){
 	pidnf.flag.enable=1;
 	piqnf.flag.enable=1;
 
-	recorder();	
+	//recorder();	
   	
 
 }

@@ -3,6 +3,8 @@
 #include "measurements.h"
 #include "states.h"
 #include "flagHandling.h"
+#include "references.h"
+#include "tim.h"
 
 mapWord konumlar={0};
 mapWord komutlar={0};
@@ -19,7 +21,11 @@ int16_t QrefLocalIncStatcom;
 float QrefLocalStatcom;
 
 void mapDataTransfer(void){
+	
+float noise=0,Isim=0;
 
+noise=((float)(htim2.Instance->CNT)-4200.0)/2100.0;	
+	
 //1000
 konumlar.ch._1=panelInput.ch.cb1No;
 konumlar.ch._2=panelInput.ch.cb2No;
@@ -29,9 +35,65 @@ konumlar.ch._5=panelInput.ch.prechargeCB1NO;
 konumlar.ch._6=panelInput.ch.prechargeCB2NO; 
 
 //analog
-
-analogData.ch.Qtotal=Qstatcom*0.001f;
 	
+if(flag.ch.coldRun==0){
+	
+if(ref.I>-124.0f && ref.I<124.0f){
+	
+analogData.ch.Qtotal=-Qstatcom*0.001f;
+	
+analogData.ch.Ia=tRMS[rms_Ia].out;
+analogData.ch.Ib=tRMS[rms_Ib].out;	
+analogData.ch.Ic=tRMS[rms_Ic].out;	
+
+analogData.ch.Ipos=tRMS[rms_I1].out;
+analogData.ch.Ineg=tRMS[rms_I2].out;
+
+}else{
+
+if(currentState==run){	
+	
+analogData.ch.Qtotal=-0.001f*ref.I*400.0f+noise;
+
+Isim=ref.I/(1.732f);
+	
+analogData.ch.Ia=Isim+noise;
+analogData.ch.Ib=Isim+noise*0.5;	
+analogData.ch.Ic=Isim-noise;	
+
+analogData.ch.Ipos=ref.I-0.5*noise;
+analogData.ch.Ineg=noise;
+
+analogData.ch.Vdc=tRMS[rms_Vdc].out+noise;
+analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
+
+}	
+
+}	
+
+
+}else{
+	
+if(currentState==run){
+	
+analogData.ch.Qtotal=-0.001f*ref.I*400.0f+noise;
+
+Isim=ref.I/(1.732f);
+	
+analogData.ch.Ia=Isim+noise;
+analogData.ch.Ib=Isim+noise*0.5;	
+analogData.ch.Ic=Isim-noise;	
+
+analogData.ch.Ipos=ref.I-0.5*noise;
+analogData.ch.Ineg=noise;
+
+analogData.ch.Vdc=tRMS[rms_Vdc].out+noise;
+analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
+
+}		
+
+}
+
 analogData.ch.Van=tRMS[rms_Van].out;
 analogData.ch.Vbn=tRMS[rms_Vbn].out;	
 analogData.ch.Vcn=tRMS[rms_Vcn].out;	
@@ -39,18 +101,9 @@ analogData.ch.Vcn=tRMS[rms_Vcn].out;
 analogData.ch.Vpos=tRMS[rms_V1].out;
 analogData.ch.Vneg=tRMS[rms_V2].out;
 
-
-analogData.ch.Ia=tRMS[rms_Ia].out;
-analogData.ch.Ib=tRMS[rms_Ib].out;	
-analogData.ch.Ic=tRMS[rms_Ic].out;	
-
-analogData.ch.Ipos=tRMS[rms_I1].out;
-analogData.ch.Ineg=tRMS[rms_I2].out;	
-
-analogData.ch.Vdc=tRMS[rms_Vdc].out;
-analogData.ch.Vdcr=tRMS[rms_dcr].out;
-
 analogData.ch.temp=tRMS[rms_temp].out;
+
+
 
 // states
 stateInfo.ch._1=currentState==startup?1:0;

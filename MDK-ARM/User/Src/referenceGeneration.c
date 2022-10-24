@@ -4,7 +4,7 @@
 #include "mapHandling.h"
 #include "flagHandling.h"
 #include "ios.h"
-
+ 
 
 #define dc2ac 0.707f 
 #define idc2ac (1.0f/dc2ac) 
@@ -19,9 +19,11 @@ reference ref={0};
 static float ref_oz=0;
 float Qhf;
 
+
+
 void initReferences(void){
 
-ref.Vdc=47.0f;
+ref.Vdc=560.0f;
 
 }
 
@@ -45,12 +47,17 @@ void references(void){
 	ref.thirdHarmOut=sinf(3.0f *pll.theta)*ref.thirdHarmMag;
 	
 	//hf and reactive references
-	Qhf=-25000.0f*(panelInput.ch.hf1+panelInput.ch.hf2);							
+	Qhf=-25000.0f*(panelInput.ch.hf1+panelInput.ch.hf2);				
+
+	
+
+
 	
 	
 	if(flag.ch.local==0 && flag.ch.remote==0){
 	
-		flag.ch.local=1;
+		flag.ch.remote=1;
+		
 	}
 	
 	if(flag.ch.local){

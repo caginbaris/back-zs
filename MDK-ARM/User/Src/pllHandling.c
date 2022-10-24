@@ -26,9 +26,9 @@ void pllHandling(void){
 	
 	static float Vf=0,Vz=0;
 
-	//hp for dc removal
-	Vf=0.999685939389360f*(adc.ch.Van-Vz)+(0.999371878778719f)*Vf;
-	Vz=adc.ch.Van;
+	//hp for dc removal- canceled
+	//Vf=0.999685939389360f*(adc.ch.Van-Vz)+(0.999371878778719f)*Vf;
+	//Vz=adc.ch.Van;
 	
 	
 	

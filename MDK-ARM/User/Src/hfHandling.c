@@ -13,7 +13,7 @@ static delay_parameters hf2Enable={0,samplingFrequency*60,0};
 
 static delay_parameters bothActiveDelay={0,samplingFrequency*60,0};
 
-static delay_parameters hf2DelayedOutput={0,samplingFrequency*0.5,0};
+static delay_parameters hf2DelayedOutput={0,samplingFrequency*1.0,0};
 
 
 //cau call before ios
@@ -22,7 +22,7 @@ void hfHandling(void){
 	
 	uint8_t hf2Flag=0;
 	
-	on_off_delay((flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (flag.ch.remote==1 && QrefRemoteIncStatcom<-50000.0f) ,&bothActiveDelay);
+	on_off_delay((flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (flag.ch.remote==1 && QrefRemoteStatcom<-50000.0f) ,&bothActiveDelay);
 	
 	if(bothActiveDelay.output){
 		

@@ -86,7 +86,7 @@ if(faultWord.all || stateFault.all){currentState=fault;}
 
 if(currentState!=run){
 	
-	recorder();
+	//recorder();
 	modulatorDisable();
 	
 	

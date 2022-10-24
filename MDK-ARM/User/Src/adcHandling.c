@@ -59,16 +59,6 @@ void init_ADC(void){
 
 void read_ADC(void){
 	
-/*
-adc.ch.Van=-(adcReading[seq_Van]-valueF.Van)*scale4VAC;
-adc.ch.Vbn=-(adcReading[seq_Vbn]-valueF.Vbn)*scale4VAC;
-adc.ch.Vcn=-(adcReading[seq_Vcn]-valueF.Vcn)*scale4VAC;
-	
-adc.ch.Ic=(adcReading[seq_Ia]-valueF.Ic)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
-adc.ch.Ib=(adcReading[seq_Ib]-valueF.Ib)*scale4IPM*scale4Current;
-adc.ch.Ia=-(adcReading[seq_Ic]-valueF.Ia)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
-*/
-
 adc.ch.Van=-(adcReading[seq_Van]-2046.4364f)*scale4VAC;
 adc.ch.Vbn=-(adcReading[seq_Vbn]-2047.66077f)*scale4VAC;
 adc.ch.Vcn=-(adcReading[seq_Vcn]-2046.19116f)*scale4VAC;

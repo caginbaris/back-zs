@@ -25,5 +25,5 @@ float temp;
 
 }channelOffsets;
 
-extern channelOffsets value,valueF;
+
 #endif

@@ -698,8 +698,8 @@ void rtu_Feeder1DataPrep(void)
 	
 				if (rtu_modbusRegAdress == READ_IN_CH25)
   {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefLocalStatcom)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefLocalStatcom));
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefLocalStatcom*0.001f)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefLocalStatcom*0.001f));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }
@@ -707,8 +707,8 @@ void rtu_Feeder1DataPrep(void)
 	
 				if (rtu_modbusRegAdress == READ_IN_CH26)
   {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefRemoteStatcom)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefRemoteStatcom));
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefRemoteStatcom*0.001f)) >> 8;
+      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefRemoteStatcom*0.001f));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }

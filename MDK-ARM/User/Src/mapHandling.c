@@ -19,12 +19,13 @@ float QrefRemoteStatcom;
 
 int16_t QrefLocalIncStatcom;
 float QrefLocalStatcom;
+int8_t noise=0;
 
 void mapDataTransfer(void){
 	
-float noise=0,Isim=0;
+float Isim=0;
 
-noise=((float)(htim2.Instance->CNT)-4200.0)/2100.0;	
+noise=(htim2.Instance->CNT)%3 -1;	
 	
 //1000
 konumlar.ch._1=panelInput.ch.cb1No;
@@ -48,49 +49,58 @@ analogData.ch.Ic=tRMS[rms_Ic].out;
 
 analogData.ch.Ipos=tRMS[rms_I1].out;
 analogData.ch.Ineg=tRMS[rms_I2].out;
+	
+analogData.ch.Vdcr=tRMS[rms_dcr].out;	
 
 }else{
 
 if(currentState==run){	
 	
-analogData.ch.Qtotal=-0.001f*ref.I*400.0f+noise;
+analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise;
 
 Isim=ref.I/(1.732f);
 	
+if(Isim<0){Isim=-Isim;}		
+	
 analogData.ch.Ia=Isim+noise;
-analogData.ch.Ib=Isim+noise*0.5;	
+analogData.ch.Ib=Isim+noise;	
 analogData.ch.Ic=Isim-noise;	
 
-analogData.ch.Ipos=ref.I-0.5*noise;
-analogData.ch.Ineg=noise;
+analogData.ch.Ipos=Isim-noise;
+analogData.ch.Ineg=noise+1;
 
-analogData.ch.Vdc=tRMS[rms_Vdc].out+noise;
+
 analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
 
 }	
 
 }	
 
+analogData.ch.Vdc=tRMS[rms_Vdc].out;
 
 }else{
 	
 if(currentState==run){
 	
-analogData.ch.Qtotal=-0.001f*ref.I*400.0f+noise;
+analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise;
 
 Isim=ref.I/(1.732f);
 	
+if(Isim<0){Isim=-Isim;}	
+	
 analogData.ch.Ia=Isim+noise;
-analogData.ch.Ib=Isim+noise*0.5;	
+analogData.ch.Ib=Isim+noise;	
 analogData.ch.Ic=Isim-noise;	
 
-analogData.ch.Ipos=ref.I-0.5*noise;
-analogData.ch.Ineg=noise;
+analogData.ch.Ipos=Isim-noise;
+analogData.ch.Ineg=noise+1;
 
-analogData.ch.Vdc=tRMS[rms_Vdc].out+noise;
+
 analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
 
-}		
+}
+
+
 
 }
 
@@ -102,6 +112,8 @@ analogData.ch.Vpos=tRMS[rms_V1].out;
 analogData.ch.Vneg=tRMS[rms_V2].out;
 
 analogData.ch.temp=tRMS[rms_temp].out;
+
+analogData.ch.Vdc=tRMS[rms_Vdc].out;
 
 
 

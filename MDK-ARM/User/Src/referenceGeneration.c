@@ -17,8 +17,9 @@
 
 reference ref={0};
 static float ref_oz=0;
-float Qhf;
 
+float Qhf;
+float Ihf;
 
 
 void initReferences(void){
@@ -48,7 +49,7 @@ void references(void){
 	
 	//hf and reactive references
 	Qhf=-25000.0f*(panelInput.ch.hf1+panelInput.ch.hf2);				
-
+	Ihf=-Qhf/(400*1.732);
 	
 
 

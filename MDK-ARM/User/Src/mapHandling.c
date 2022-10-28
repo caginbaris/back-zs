@@ -43,11 +43,13 @@ if(ref.I>-124.0f && ref.I<124.0f){
 	
 analogData.ch.Qtotal=-Qstatcom*0.001f;
 	
-analogData.ch.Ia=tRMS[rms_Ia].out;
-analogData.ch.Ib=tRMS[rms_Ib].out;	
-analogData.ch.Ic=tRMS[rms_Ic].out;	
+if(ref.I<0){Ihf=-Ihf;}	
+	
+analogData.ch.Ia=tRMS[rms_Ia].out-Ihf;
+analogData.ch.Ib=tRMS[rms_Ib].out-Ihf;	
+analogData.ch.Ic=tRMS[rms_Ic].out-Ihf;	
 
-analogData.ch.Ipos=tRMS[rms_I1].out;
+analogData.ch.Ipos=tRMS[rms_I1].out-Ihf;
 analogData.ch.Ineg=tRMS[rms_I2].out;
 	
 analogData.ch.Vdcr=tRMS[rms_dcr].out;	

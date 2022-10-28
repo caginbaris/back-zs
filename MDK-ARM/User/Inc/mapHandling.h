@@ -81,5 +81,6 @@ extern float QrefRemoteStatcom;
 extern int16_t QrefLocalIncStatcom;
 extern float QrefLocalStatcom;
 
+extern float Qhf;
 extern float Ihf;
 #endif

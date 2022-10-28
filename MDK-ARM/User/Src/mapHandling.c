@@ -41,7 +41,7 @@ if(flag.ch.coldRun==0){
 	
 if(ref.I>-124.0f && ref.I<124.0f){
 	
-analogData.ch.Qtotal=-Qstatcom*0.001f;
+analogData.ch.Qtotal=-Qstatcom*0.001f + Qhf*0.001f;
 	
 if(ref.I<0){Ihf=-Ihf;}	
 	
@@ -84,17 +84,18 @@ analogData.ch.Vdc=tRMS[rms_Vdc].out;
 	
 if(currentState==run){
 	
-analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise;
+analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise+ Qhf*0.001f;
 
 Isim=ref.I/(1.732f);
 	
 if(Isim<0){Isim=-Isim;}	
-	
-analogData.ch.Ia=Isim+noise;
-analogData.ch.Ib=Isim+noise;	
-analogData.ch.Ic=Isim-noise;	
+if(ref.I<0){Ihf=-Ihf;}
 
-analogData.ch.Ipos=Isim-noise;
+analogData.ch.Ia=Isim+noise-Ihf;
+analogData.ch.Ib=Isim+noise-Ihf;	
+analogData.ch.Ic=Isim-noise-Ihf;	
+
+analogData.ch.Ipos=Isim-noise-Ihf;
 analogData.ch.Ineg=noise+1;
 
 

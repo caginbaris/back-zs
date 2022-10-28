@@ -30,7 +30,6 @@ flag.ch.reset=resetOffDelay.output;
 
 // start handling
 
-if(flag.ch.local){
 
 if(panelInput.ch.start==1 && currentState==ready){flag.ch.start=1;}
 
@@ -40,7 +39,7 @@ off_delay(startOn.output,&startOffDelay);
 
 flag.ch.start=startOffDelay.output;
 
-}
+
 
 // stop handling
 

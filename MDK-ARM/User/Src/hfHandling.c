@@ -3,15 +3,16 @@
 #include "plib.h"
 #include "maphandling.h"
 #include "flaghandling.h"
+#include "states.h"
 
-static transition_parameters hf1on,hf1off={0,0};
-static transition_parameters hf2on,hf2off={0,0};
+static transition_parameters hf1off={0,0};
+static transition_parameters hf2off={0,0};
 
 static delay_parameters hf1Enable={0,samplingFrequency*60,0};
 static delay_parameters hf2Enable={0,samplingFrequency*60,0};
 
 
-static delay_parameters bothActiveDelay={0,samplingFrequency*60,0};
+static delay_parameters bothActiveDelay={0,samplingFrequency*30,0};
 
 static delay_parameters hf2DelayedOutput={0,samplingFrequency*1.0,0};
 
@@ -22,7 +23,7 @@ void hfHandling(void){
 	
 	uint8_t hf2Flag=0;
 	
-	on_off_delay((flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (flag.ch.remote==1 && QrefRemoteStatcom<-50000.0f) ,&bothActiveDelay);
+	off_delay((currentState==run && flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (currentState==run && flag.ch.remote==1 && QrefRemoteStatcom<-50000.0f) ,&bothActiveDelay);
 	
 	if(bothActiveDelay.output){
 		
@@ -59,5 +60,12 @@ void hfHandling(void){
 	
 	if(hf1Enable.output==1){panelOutput.ch.hf1=0;}
 	if(hf2Enable.output==1){panelOutput.ch.hf2=0;}
+	
+	if(currentState!=run){
+		
+		panelOutput.ch.hf1=0;
+		panelOutput.ch.hf2=0;
+		
+	}
 
 }

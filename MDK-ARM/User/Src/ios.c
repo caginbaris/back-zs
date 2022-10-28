@@ -36,8 +36,8 @@ void ios(void){
 	input.ch._16=HAL_GPIO_ReadPin(DI16_GPIO_Port,DI16_Pin);
 	input.ch._17=HAL_GPIO_ReadPin(DI17_GPIO_Port,DI17_Pin);
 	input.ch._18=HAL_GPIO_ReadPin(DI18_GPIO_Port,DI18_Pin);
-	input.ch._19=HAL_GPIO_ReadPin(DI19_GPIO_Port,DI19_Pin);
-	input.ch._20=HAL_GPIO_ReadPin(DI20_GPIO_Port,DI20_Pin);
+	//input.ch._19=HAL_GPIO_ReadPin(DI19_GPIO_Port,DI19_Pin);
+	//input.ch._20=HAL_GPIO_ReadPin(DI20_GPIO_Port,DI20_Pin);
 	
 	
 	

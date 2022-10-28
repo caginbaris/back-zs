@@ -38,7 +38,7 @@ typedef enum rmsChannel {   rms_Ia=0,
 	
 														rms_dcr=16,
 	
-														rms_temp=27
+														rms_temp=17
 														
 
 

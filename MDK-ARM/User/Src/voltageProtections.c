@@ -18,8 +18,8 @@ underLimit_outputParameters underVoltageDC, underVoltageAC;
 void voltageProtectionsInit(void){
 
 
-overVoltageDC_Config.level=720;
-overVoltageDC_Config.delay=0.01;
+overVoltageDC_Config.level=750;
+overVoltageDC_Config.delay=0.015;
 overVoltageDC_Config.dropout_ratio=0.99;
 overVoltageDC_Config.dropout_time=0.001;
 overVoltageDC_Config.comm_pick_on_delay=0.01;	

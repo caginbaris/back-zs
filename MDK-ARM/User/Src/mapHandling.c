@@ -43,13 +43,13 @@ if(ref.I>-124.0f && ref.I<124.0f){
 	
 analogData.ch.Qtotal=-Qstatcom*0.001f + Qhf*0.001f;
 	
-if(ref.I<0){Ihf=-Ihf;}	
+if(ref.I>0){Ihf=-Ihf;}	
 	
-analogData.ch.Ia=tRMS[rms_Ia].out-Ihf;
-analogData.ch.Ib=tRMS[rms_Ib].out-Ihf;	
-analogData.ch.Ic=tRMS[rms_Ic].out-Ihf;	
+analogData.ch.Ia=tRMS[rms_Ia].out+Ihf;
+analogData.ch.Ib=tRMS[rms_Ib].out+Ihf;	
+analogData.ch.Ic=tRMS[rms_Ic].out+Ihf;	
 
-analogData.ch.Ipos=tRMS[rms_I1].out-Ihf;
+analogData.ch.Ipos=tRMS[rms_I1].out+Ihf;
 analogData.ch.Ineg=tRMS[rms_I2].out;
 	
 analogData.ch.Vdcr=tRMS[rms_dcr].out;	
@@ -62,23 +62,23 @@ analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise;
 
 Isim=ref.I/(1.732f);
 	
-if(Isim<0){Isim=-Isim;}		
-	
-analogData.ch.Ia=Isim+noise;
-analogData.ch.Ib=Isim+noise;	
-analogData.ch.Ic=Isim-noise;	
+if(Isim<0){Isim=-Isim;}
 
-analogData.ch.Ipos=Isim-noise;
+if(ref.I<0){Ihf=-Ihf;}
+	
+analogData.ch.Ia=Isim+noise-Ihf;
+analogData.ch.Ib=Isim+noise-Ihf;	
+analogData.ch.Ic=Isim-noise-Ihf;	
+
+analogData.ch.Ipos=Isim-noise-Ihf;
 analogData.ch.Ineg=noise+1;
 
 
-analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
+analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
 }	
 
 }	
-
-analogData.ch.Vdc=tRMS[rms_Vdc].out;
 
 }else{
 	
@@ -99,8 +99,20 @@ analogData.ch.Ipos=Isim-noise-Ihf;
 analogData.ch.Ineg=noise+1;
 
 
-analogData.ch.Vdcr=3.0+tRMS[rms_dcr].out-noise;
+analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
+}else{
+
+analogData.ch.Qtotal=0;	
+	
+analogData.ch.Ia=0;
+analogData.ch.Ib=0;	
+analogData.ch.Ic=0;	
+
+analogData.ch.Ipos=0;
+analogData.ch.Ineg=0;
+analogData.ch.Vdcr=0;	
+	
 }
 
 

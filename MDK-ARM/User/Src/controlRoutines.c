@@ -117,7 +117,7 @@ pidcInit.parameter.atRest=0.0;
 pidcInit.limit.refLimitUp=645.0f;
 pidcInit.limit.refLimitDown=485.0f;
 
-pidcInit.limit.rateLimit=1000000.0f;
+pidcInit.limit.rateLimit=10.0f;
 	
 pidcInit.limit.outputLimitUp=100.0f;	
 pidcInit.limit.outputLimitDown=-100.0f;

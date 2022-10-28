@@ -65,9 +65,9 @@ void csMeasurement(void){
 
 	sym_comp(cs_Ain,cs_Bin,cs_Cin,&sym);
 	
-	Pst.a=cs_Aout.P;
-	Pst.b=cs_Bout.P;
-	Pst.c=cs_Cout.P;
+	//Pst.a=cs_Aout.P;
+	//Pst.b=cs_Bout.P;
+	//Pst.c=cs_Cout.P;
 	
 	Qst.a=cs_Aout.Q;
 	Qst.b=cs_Bout.Q;

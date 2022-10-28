@@ -68,7 +68,7 @@ void rmsMeasurement(void){
 		trueRMS_sampled(sym.I2,&tRMS[15],calculationCounter);
 		
 		trueRMS_sampled(dcRipple,&tRMS[16],calculationCounter);
-		
+		/*
 		trueRMS_sampled(final.a ,&tRMS[17],calculationCounter);
 		trueRMS_sampled(final.b,&tRMS[18],calculationCounter);
 		trueRMS_sampled(final.c,&tRMS[19],calculationCounter);
@@ -81,7 +81,7 @@ void rmsMeasurement(void){
 		trueRMS_sampled(negOut.b,&tRMS[24],calculationCounter);
 		trueRMS_sampled(negOut.c,&tRMS[25],calculationCounter);
 
-		trueRMS_sampled(ref.thirdHarmOut,&tRMS[26],calculationCounter);
-		trueRMS_sampled(adc.ch.Temp,&tRMS[27],calculationCounter);
+		trueRMS_sampled(ref.thirdHarmOut,&tRMS[26],calculationCounter);*/
+		trueRMS_sampled(adc.ch.Temp,&tRMS[17],calculationCounter);
 		
 }

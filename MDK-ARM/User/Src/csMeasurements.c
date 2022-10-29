@@ -74,9 +74,9 @@ void csMeasurement(void){
 	Qst.c=cs_Cout.Q;
 	
 	
-	Ist.a=cs_Aout.I;
-	Ist.b=cs_Bout.I;
-	Ist.c=cs_Cout.I;
+	//Ist.a=cs_Aout.I;
+	//Ist.b=cs_Bout.I;
+	//Ist.c=cs_Cout.I;
 	
 	Qstatcom=Qst.a+Qst.b+Qst.c;
 	

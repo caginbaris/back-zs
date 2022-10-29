@@ -5,6 +5,7 @@
 #include "flagHandling.h"
 #include "references.h"
 #include "tim.h"
+#include <math.h>
 
 mapWord konumlar={0};
 mapWord komutlar={0};
@@ -45,13 +46,7 @@ analogData.ch.Qtotal=-Qstatcom*0.001f + Qhf*0.001f;
 	
 if(ref.I>0){Ihf=-Ihf;}	
 	
-analogData.ch.Ia=tRMS[rms_Ia].out+Ihf;
-analogData.ch.Ib=tRMS[rms_Ib].out+Ihf;	
-analogData.ch.Ic=tRMS[rms_Ic].out+Ihf;	
-
-analogData.ch.Ipos=tRMS[rms_I1].out+Ihf;
-analogData.ch.Ineg=tRMS[rms_I2].out;
-	
+analogData.ch.Iline=fabsf(tRMS[rms_Ia].out+Ihf);
 analogData.ch.Vdcr=tRMS[rms_dcr].out;	
 
 }else{
@@ -66,14 +61,7 @@ if(Isim<0){Isim=-Isim;}
 
 if(ref.I<0){Ihf=-Ihf;}
 	
-analogData.ch.Ia=Isim+noise-Ihf;
-analogData.ch.Ib=Isim+noise-Ihf;	
-analogData.ch.Ic=Isim-noise-Ihf;	
-
-analogData.ch.Ipos=Isim-noise-Ihf;
-analogData.ch.Ineg=noise+1;
-
-
+analogData.ch.Iline=fabsf(Isim+noise-Ihf);
 analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
 }	
@@ -91,43 +79,21 @@ Isim=ref.I/(1.732f);
 if(Isim<0){Isim=-Isim;}	
 if(ref.I<0){Ihf=-Ihf;}
 
-analogData.ch.Ia=Isim+noise-Ihf;
-analogData.ch.Ib=Isim+noise-Ihf;	
-analogData.ch.Ic=Isim-noise-Ihf;	
-
-analogData.ch.Ipos=Isim-noise-Ihf;
-analogData.ch.Ineg=noise+1;
-
-
+analogData.ch.Iline=fabsf(Isim+noise-Ihf);
 analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
 }else{
 
 analogData.ch.Qtotal=0;	
-	
-analogData.ch.Ia=0;
-analogData.ch.Ib=0;	
-analogData.ch.Ic=0;	
-
-analogData.ch.Ipos=0;
-analogData.ch.Ineg=0;
+analogData.ch.Iline=0;
 analogData.ch.Vdcr=0;	
 	
 }
 
-
-
 }
 
-analogData.ch.Van=tRMS[rms_Van].out;
-analogData.ch.Vbn=tRMS[rms_Vbn].out;	
-analogData.ch.Vcn=tRMS[rms_Vcn].out;	
-
-analogData.ch.Vpos=tRMS[rms_V1].out;
-analogData.ch.Vneg=tRMS[rms_V2].out;
-
+analogData.ch.Vpp=tRMS[rms_Vab].out;
 analogData.ch.temp=tRMS[rms_temp].out;
-
 analogData.ch.Vdc=tRMS[rms_Vdc].out;
 
 

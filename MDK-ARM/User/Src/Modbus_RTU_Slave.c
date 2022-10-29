@@ -483,237 +483,32 @@ void rtu_transmitData_readHoldingRegister(void)
 
 void rtu_Feeder1DataPrep(void)
 {
+	uint8_t i=0;
 	
 	mapDataTransfer();
 	
-	prepData4TX(konumlar.all,&rtu_modbusRegAdress,READ_IN_CH1,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
-	/*
-  if (rtu_modbusRegAdress == READ_IN_CH1)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(konumlar.all)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(konumlar.all));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }*/
+	prepData4TX(konumlar.all,&rtu_modbusRegAdress,							READ_IN_CH1,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(panelInput.halfWord[0],&rtu_modbusRegAdress,		READ_IN_CH2,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(panelOutput.halfWord[0],&rtu_modbusRegAdress,		READ_IN_CH3,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(faultWord.halfWord[0],&rtu_modbusRegAdress,			READ_IN_CH4,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(faultWord.halfWord[1],&rtu_modbusRegAdress,			READ_IN_CH5,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(faultWord.halfWord[2],&rtu_modbusRegAdress,			READ_IN_CH6,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(stateInfo.all,&rtu_modbusRegAdress,							READ_IN_CH7,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(stateFault.halfWord[0],&rtu_modbusRegAdress,		READ_IN_CH8,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(flagInfo.all,&rtu_modbusRegAdress,							READ_IN_CH9,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(13,&rtu_modbusRegAdress,												READ_IN_CH10,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	
+	prepData4TX(analogData.ch.Qtotal,&rtu_modbusRegAdress,			READ_IN_CH11,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(analogData.ch.Vpp,&rtu_modbusRegAdress,					READ_IN_CH12,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(analogData.ch.Iline,&rtu_modbusRegAdress,				READ_IN_CH13,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(analogData.ch.Vdc,&rtu_modbusRegAdress,					READ_IN_CH14,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(analogData.ch.Vdcr,&rtu_modbusRegAdress,				READ_IN_CH15,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(analogData.ch.temp,&rtu_modbusRegAdress,				READ_IN_CH16,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(QrefLocalStatcom*0.001f,&rtu_modbusRegAdress,			  	READ_IN_CH17,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX(QrefRemoteStatcom*0.001f,&rtu_modbusRegAdress,					READ_IN_CH18,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
 
-  if (rtu_modbusRegAdress == READ_IN_CH2)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(panelInput.halfWord[0])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(panelInput.halfWord[0]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
+
 	
-	  if (rtu_modbusRegAdress == READ_IN_CH3)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(panelOutput.halfWord[0])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(panelOutput.halfWord[0]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-		  if (rtu_modbusRegAdress == READ_IN_CH4)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(faultWord.halfWord[0])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(faultWord.halfWord[0]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			  if (rtu_modbusRegAdress == READ_IN_CH5)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(faultWord.halfWord[1])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(faultWord.halfWord[1]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH6)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(faultWord.halfWord[2])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(faultWord.halfWord[2]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-	
-				  if (rtu_modbusRegAdress == READ_IN_CH7)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(stateInfo.all)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(stateInfo.all));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH8)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(stateFault.halfWord[0])) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(stateFault.halfWord[0]));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	/*
-					if (rtu_modbusRegAdress == READ_IN_CH9)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(flagInfo.all)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(flagInfo.all));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			if (rtu_modbusRegAdress == READ_IN_CH10)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(13)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(13));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH11)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Qtotal)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Qtotal));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-					if (rtu_modbusRegAdress == READ_IN_CH12)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Van)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Van));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-						if (rtu_modbusRegAdress == READ_IN_CH13)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vbn)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vbn));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-					if (rtu_modbusRegAdress == READ_IN_CH14)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vcn)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vcn));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH15)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vpos)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vpos));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-					if (rtu_modbusRegAdress == READ_IN_CH16)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vneg)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vneg));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-	  if (rtu_modbusRegAdress == READ_IN_CH17)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Ia)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Ia));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-		  if (rtu_modbusRegAdress == READ_IN_CH18)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Ib)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Ib));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			if (rtu_modbusRegAdress == READ_IN_CH19)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Ic)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Ic));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			  if (rtu_modbusRegAdress == READ_IN_CH20)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Ipos)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Ipos));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			if (rtu_modbusRegAdress == READ_IN_CH21)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Ineg)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Ineg));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				  if (rtu_modbusRegAdress == READ_IN_CH22)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vdc)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vdc));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-			if (rtu_modbusRegAdress == READ_IN_CH23)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.Vdcr)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.Vdcr));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH24)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(analogData.ch.temp)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(analogData.ch.temp));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-				if (rtu_modbusRegAdress == READ_IN_CH25)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefLocalStatcom*0.001f)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefLocalStatcom*0.001f));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
-	
-	
-				if (rtu_modbusRegAdress == READ_IN_CH26)
-  {
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(QrefRemoteStatcom*0.001f)) >> 8;
-      rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefRemoteStatcom*0.001f));
-      rtu_modbusRegAdress += 1;
-      if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }*/
   rtu_transmitData_readHoldingRegister();
   
 }

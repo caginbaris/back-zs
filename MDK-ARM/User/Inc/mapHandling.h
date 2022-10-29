@@ -38,21 +38,12 @@ typedef union mapWordFloat{
 		
 		int16_t Qtotal;
 	
-		uint16_t Van;
-		uint16_t Vbn;
-		uint16_t Vcn;
-		
-		uint16_t Vpos;
-		uint16_t Vneg;
-		
-		uint16_t Ia;
-		uint16_t Ib;
-		uint16_t Ic;
-		
-		uint16_t Ipos;
-		uint16_t Ineg;
-		
+		uint16_t Vpp;
+
+		uint16_t Iline;
+
 		uint16_t Vdc;
+		
 		uint16_t Vdcr;
 		
 		uint16_t temp;

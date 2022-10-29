@@ -81,14 +81,16 @@ if(ref.I<0.0f){Ihf=-Ihf;}
 analogData.ch.Iline=fabsf(Isim+noise-Ihf);
 analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
-}else{
+}
+
+}
+
+if(currentState!=run){
 
 analogData.ch.Qtotal=0.0f;	
 analogData.ch.Iline=0.0f;
 analogData.ch.Vdcr=0.0f;	
 	
-}
-
 }
 
 analogData.ch.Vpp=tRMS[rms_Vab].out;

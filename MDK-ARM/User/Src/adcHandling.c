@@ -59,13 +59,13 @@ void init_ADC(void){
 
 void read_ADC(void){
 	
-adc.ch.Van=-(adcReading[seq_Van]-2045.8364f)*scale4VAC;
-adc.ch.Vbn=-(adcReading[seq_Vbn]-2047.86077f)*scale4VAC;
-adc.ch.Vcn=-(adcReading[seq_Vcn]-2046.33116f)*scale4VAC;
+adc.ch.Van=-(adcReading[seq_Van]-2045.6364f)*scale4VAC;
+adc.ch.Vbn=-(adcReading[seq_Vbn]-2044.46077f)*scale4VAC;
+adc.ch.Vcn=-(adcReading[seq_Vcn]-2045.23116f)*scale4VAC;
 	
-adc.ch.Ic=(adcReading[seq_Ia]-2043.04358f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
-adc.ch.Ib=(adcReading[seq_Ib]-2051.06201f)*scale4IPM*scale4Current;
-adc.ch.Ia=-(adcReading[seq_Ic]-2067.51025f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
+adc.ch.Ic=(adcReading[seq_Ia]-2035.12358f)*scale4IPM*scale4Current;//hb3 connected to hb1 on PCB
+adc.ch.Ib=(adcReading[seq_Ib]-2044.64201f)*scale4IPM*scale4Current;
+adc.ch.Ia=-(adcReading[seq_Ic]-2057.351025f)*scale4IPM*scale4Current;//hb1 connected to hb3 on PCB	and reverted
 	
 	
 adc.ch.Vdc=adcReading[seq_Vdc]*scale4IPM*scale4Vdc; // 10mv/v	

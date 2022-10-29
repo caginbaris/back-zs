@@ -12,7 +12,7 @@ static delay_parameters hf1Enable={0,samplingFrequency*60,0};
 static delay_parameters hf2Enable={0,samplingFrequency*60,0};
 
 
-static delay_parameters bothActiveDelay={0,samplingFrequency*30,0};
+static delay_parameters bothActiveDelay={0,samplingFrequency*5,0};
 
 static delay_parameters hf2DelayedOutput={0,samplingFrequency*1.0,0};
 
@@ -23,7 +23,7 @@ void hfHandling(void){
 	
 	uint8_t hf2Flag=0;
 	
-	off_delay((currentState==run && flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (currentState==run && flag.ch.remote==1 && QrefRemoteStatcom<-50000.0f) ,&bothActiveDelay);
+	on_off_delay((currentState==run && flag.ch.local==1 && QrefLocalStatcom<-50000.0f) || (currentState==run && flag.ch.remote==1 && QrefRemoteStatcom<-50000.0f) ,&bothActiveDelay);
 	
 	if(bothActiveDelay.output){
 		

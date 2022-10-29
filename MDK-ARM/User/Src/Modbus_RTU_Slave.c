@@ -504,8 +504,8 @@ void rtu_Feeder1DataPrep(void)
 	prepData4TX(analogData.ch.Vdc,&rtu_modbusRegAdress,					READ_IN_CH14,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
 	prepData4TX(analogData.ch.Vdcr,&rtu_modbusRegAdress,				READ_IN_CH15,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
 	prepData4TX(analogData.ch.temp,&rtu_modbusRegAdress,				READ_IN_CH16,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
-	prepData4TX(QrefLocalStatcom*0.001f,&rtu_modbusRegAdress,			  	READ_IN_CH17,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
-	prepData4TX(QrefRemoteStatcom*0.001f,&rtu_modbusRegAdress,					READ_IN_CH18,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX((int16_t)(QrefLocalStatcom*0.001f),&rtu_modbusRegAdress,		READ_IN_CH17,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	prepData4TX((int16_t)QrefRemoteStatcom*0.001f,&rtu_modbusRegAdress,	READ_IN_CH18,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
 
 
 	

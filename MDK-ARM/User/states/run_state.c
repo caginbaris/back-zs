@@ -66,7 +66,7 @@ if(checked.output){
 	pidnf.flag.enable=1;
 	piqnf.flag.enable=1;
 	
-	ref.Vdc=640.0f;
+	ref.Vdc=560.0f;
 
 	//recorder();	
   	
@@ -76,7 +76,7 @@ if(checked.output){
 	
 
 
-//ref.Vdc=ref.Vdc_opt;
+ref.Vdc=ref.Vdc_opt;
 
 modulator();
 

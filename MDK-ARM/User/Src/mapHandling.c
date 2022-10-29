@@ -53,14 +53,13 @@ analogData.ch.Vdcr=tRMS[rms_dcr].out;
 
 if(currentState==run){	
 	
-analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise;
+analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise+ Qhf*0.001f;
 
 Isim=ref.I/(1.732f);
 	
-if(Isim<0){Isim=-Isim;}
+if(Isim<0.0f){Isim=-Isim;}	
+if(ref.I<0.0f){Ihf=-Ihf;}
 
-if(ref.I<0){Ihf=-Ihf;}
-	
 analogData.ch.Iline=fabsf(Isim+noise-Ihf);
 analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
@@ -76,17 +75,17 @@ analogData.ch.Qtotal=0.001f*ref.I*400.0f+noise+ Qhf*0.001f;
 
 Isim=ref.I/(1.732f);
 	
-if(Isim<0){Isim=-Isim;}	
-if(ref.I<0){Ihf=-Ihf;}
+if(Isim<0.0f){Isim=-Isim;}	
+if(ref.I<0.0f){Ihf=-Ihf;}
 
 analogData.ch.Iline=fabsf(Isim+noise-Ihf);
 analogData.ch.Vdcr=3.0f+tRMS[rms_dcr].out-noise;
 
 }else{
 
-analogData.ch.Qtotal=0;	
-analogData.ch.Iline=0;
-analogData.ch.Vdcr=0;	
+analogData.ch.Qtotal=0.0f;	
+analogData.ch.Iline=0.0f;
+analogData.ch.Vdcr=0.0f;	
 	
 }
 

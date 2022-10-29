@@ -249,7 +249,7 @@ void rtu_ModbusFrameProcessing(void)
         printf("rtu_modbusDataLen is %d \n",rtu_modbusDataLen);
         printf("Selected ID is %d \n",rtu_selectedSlaveID);
 				#endif
-				rtu_readUniqueRegisters();
+				//rtu_readUniqueRegisters();
 				break;
 			}
 			
@@ -486,13 +486,15 @@ void rtu_Feeder1DataPrep(void)
 	
 	mapDataTransfer();
 	
+	prepData4TX(konumlar.all,&rtu_modbusRegAdress,READ_IN_CH1,rtu_modbusTxBuffer,&rtu_txBufferIndex,rtu_modbusEndingAdress);
+	/*
   if (rtu_modbusRegAdress == READ_IN_CH1)
   {
       rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(konumlar.all)) >> 8;
       rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(konumlar.all));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
+  }*/
 
   if (rtu_modbusRegAdress == READ_IN_CH2)
   {
@@ -555,7 +557,7 @@ void rtu_Feeder1DataPrep(void)
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
   }
-	
+	/*
 					if (rtu_modbusRegAdress == READ_IN_CH9)
   {
       rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x0000FF00 & (int32_t)(flagInfo.all)) >> 8;
@@ -711,7 +713,7 @@ void rtu_Feeder1DataPrep(void)
       rtu_modbusTxBuffer[rtu_txBufferIndex++] = (0x000000FF & (int32_t)(QrefRemoteStatcom*0.001f));
       rtu_modbusRegAdress += 1;
       if (rtu_modbusRegAdress == rtu_modbusEndingAdress) rtu_modbusRegAdress = 0;
-  }
+  }*/
   rtu_transmitData_readHoldingRegister();
   
 }

@@ -172,3 +172,20 @@ void incomingDataParsing(void){
 	QrefLocalStatcom=(float)QrefLocalIncStatcom*1000.0f;
 
 }
+
+void prepData4TX(uint16_t data,uint16_t* rtu_modbusRegAdress,uint16_t address,unsigned char* rtu_txBuffer ,uint16_t* rtu_txBufferIndex,uint16_t endingAdress){
+
+	  if (*rtu_modbusRegAdress == address)
+  {
+      rtu_txBuffer[*(rtu_txBufferIndex)] = (0x0000FF00 & (int32_t)(data)) >> 8;
+			*rtu_txBufferIndex=*rtu_txBufferIndex+1;
+		
+      rtu_txBuffer[*(rtu_txBufferIndex)] = (0x000000FF & (int32_t)(data));
+			*rtu_txBufferIndex=*rtu_txBufferIndex+1;
+		
+      *rtu_modbusRegAdress += 1;
+      if (*rtu_modbusRegAdress == endingAdress) *rtu_modbusRegAdress = 0;
+  }
+	
+
+} 

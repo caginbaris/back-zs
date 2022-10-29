@@ -4,7 +4,7 @@
 #include "testBenches.h"
 #include "controlRoutines.h"
 #include "references.h"
-trueRMS_sampled_parameters tRMS[28]={
+trueRMS_sampled_parameters tRMS[18]={
 	
 {0,0,0},
 {0,0,1},
@@ -24,16 +24,7 @@ trueRMS_sampled_parameters tRMS[28]={
 {0,0,15},
 {0,0,16},
 {0,0,17},
-{0,0,18},
-{0,0,19},
-{0,0,20},
-{0,0,21},
-{0,0,22},
-{0,0,23},
-{0,0,24},
-{0,0,25},
-{0,0,26},
-{0,0,27},
+
 
 
 };

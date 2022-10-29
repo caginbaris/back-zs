@@ -46,7 +46,7 @@ typedef enum rmsChannel {   rms_Ia=0,
 }rmsChannel_Type;
 
 extern rmsChannel_Type rmsSeq;
-extern trueRMS_sampled_parameters tRMS[28];
+extern trueRMS_sampled_parameters tRMS[18];
 extern phase_cs_out cs_Aout,cs_Bout,cs_Cout;
 extern sym_out sym;
 extern float dcRipple, dcAverage,Vdcf;

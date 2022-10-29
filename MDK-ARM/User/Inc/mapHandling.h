@@ -83,4 +83,7 @@ extern float QrefLocalStatcom;
 
 extern float Qhf;
 extern float Ihf;
+
+void prepData4TX(uint16_t data,uint16_t* rtu_modbusRegAdress,uint16_t address,unsigned char* rtu_txBuffer ,uint16_t* rtu_txBufferIndex,uint16_t endingAdress);
+
 #endif

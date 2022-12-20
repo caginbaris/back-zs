@@ -51,8 +51,8 @@ underVoltageDC_Config.fs=samplingFrequency;
 underLimitInitialization(underVoltageDC_Config,&underVoltageDC);
 
 	
-underVoltageAC_Config.level=210;
-underVoltageAC_Config.delay=0.04;
+underVoltageAC_Config.level=180;
+underVoltageAC_Config.delay=0.1;
 underVoltageAC_Config.dropout_ratio=1.01;
 underVoltageAC_Config.dropout_time=0.01;
 underVoltageAC_Config.comm_pick_on_delay=0.01;	

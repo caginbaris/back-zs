@@ -64,7 +64,7 @@ stateFault.bit.charged_simulataneousContactors=1;
 
 if(waiting4dcLevel.output==1){
 	
-	if(tRMS[rms_Vdc].out>tRMS[rms_Vab].out*1.2f){
+	if(tRMS[rms_Vdc].out>400.0f){
 	
 	//open contactors 
 	panelOutput.ch.closePrechargeCB1=0;			
